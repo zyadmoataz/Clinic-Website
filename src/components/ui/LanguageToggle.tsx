@@ -25,7 +25,7 @@ export function LanguageToggle() {
       onClick={toggleLanguage}
       aria-label="Toggle language"
     >
-      <Globe className="mr-1 h-4 w-4" />
+      <Globe className="mx-1 h-4 w-4" />
       {i18n.language === 'en' ? 'AR' : 'EN'}
     </Button>
   );
