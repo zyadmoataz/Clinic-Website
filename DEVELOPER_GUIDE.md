@@ -264,3 +264,5 @@ If REST endpoints (`GET /api/doctors`, `GET /api/me/appointments`) are not ready
 We enforce Husky pre-commit hooks. Before staging files:
 1. Conventional Commits structure is mandatory: `type(scope): message` (e.g. `feat(ui): add booking checkout layout`).
 2. Code formatting is checked by **Prettier** and **ESLint** automatically during `git commit`. Errors block commits.
+
+## doaa test
