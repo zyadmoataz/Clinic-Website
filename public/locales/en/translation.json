@@ -1,0 +1,22 @@
+{
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "doctors": "Doctors",
+    "find_doctor": "Find a doctor",
+    "sign_in": "Login",
+    "create_account": "Create account",
+    "subtitle": "Care, booked simply"
+  },
+  "home": {
+    "hero_title": "Calm, clear care — booked in a minute",
+    "hero_subtitle": "Find the right doctor, pick a free time, and book online or pay at the clinic.",
+    "cta": "Find a doctor",
+    "feature_1_title": "Real availability",
+    "feature_1_desc": "See only free slots, on a clean 15-minute grid.",
+    "feature_2_title": "Pay your way",
+    "feature_2_desc": "Securely online now, or in cash at the clinic.",
+    "feature_3_title": "Everything in one place",
+    "feature_3_desc": "Appointments, prescriptions and history, always with you."
+  }
+}

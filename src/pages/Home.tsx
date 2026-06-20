@@ -1,20 +1,44 @@
+// ==========================================
+// OWNER: Othman
+// ==========================================
+import { useTranslation } from 'react-i18next';
+import { Button } from '../components/ui';
+import { FeatureCard } from '../components/cards/FeatureCard';
+import { PageContainer } from '../components/layout/PageContainer';
+import { Calendar, CreditCard, Stethoscope } from 'lucide-react';
+
 export default function Home() {
+  const { t } = useTranslation();
+
   return (
-    <div className="flex flex-col items-center justify-center py-20">
-      <h1 className="text-5xl font-extrabold text-gray-900 mb-6 tracking-tight text-center">
-        Welcome to <span className="text-blue-600">ClinicNow</span>
-      </h1>
-      <p className="text-xl text-gray-600 mb-10 max-w-2xl text-center">
-        Book appointments with the best doctors in your area. Quick, easy, and secure.
-      </p>
-      <div className="flex gap-4">
-        <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-colors">
-          Find a Doctor
-        </button>
-        <button className="bg-white hover:bg-gray-50 text-blue-600 font-bold py-3 px-8 rounded-lg border border-blue-200 transition-colors">
-          Learn More
-        </button>
+    <PageContainer className="py-20">
+      {/* Hero Section */}
+      <div className="animate-in fade-in slide-in-from-bottom-4 mx-auto mb-20 max-w-3xl text-center duration-500">
+        <h1 className="text-text mb-6 text-4xl leading-tight font-black tracking-tight md:text-5xl lg:text-6xl">
+          {t('home.hero_title')}
+        </h1>
+        <p className="text-muted mb-10 text-lg md:text-xl">{t('home.hero_subtitle')}</p>
+        <Button className="h-12 rounded-full px-8 text-lg">{t('home.cta')} →</Button>
       </div>
-    </div>
+
+      {/* Features Grid */}
+      <div className="animate-in fade-in slide-in-from-bottom-8 grid grid-cols-1 gap-6 duration-700 md:grid-cols-3">
+        <FeatureCard
+          icon={<Calendar className="h-6 w-6" />}
+          title={t('home.feature_1_title')}
+          desc={t('home.feature_1_desc')}
+        />
+        <FeatureCard
+          icon={<CreditCard className="h-6 w-6" />}
+          title={t('home.feature_2_title')}
+          desc={t('home.feature_2_desc')}
+        />
+        <FeatureCard
+          icon={<Stethoscope className="h-6 w-6" />}
+          title={t('home.feature_3_title')}
+          desc={t('home.feature_3_desc')}
+        />
+      </div>
+    </PageContainer>
   );
 }
