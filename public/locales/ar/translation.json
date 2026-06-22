@@ -23,6 +23,16 @@
       "feature_3_title": "كل شيء في مكان واحد",
       "feature_3_desc": "المواعيد، الوصفات الطبية والسجل، دائماً معك."
     },
-    "metrics": {}
+
+    "metrics": {
+      "patients": "10K+",
+      "patients-text": "عملاء راضون",
+      "specialists": "50+",
+      "specialists-text": "متخصص",
+      "experience": "15+",
+      "experience-text": "سنه من الخبرة",
+      "rating": "4.9",
+      "rating-text": "متوسط التقييم"
+    }
   }
 }

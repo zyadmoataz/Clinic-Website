@@ -23,6 +23,15 @@
       "feature_3_title": "Everything in one place",
       "feature_3_desc": "Appointments, prescriptions and history, always with you."
     },
-    "metrics": {}
+    "metrics": {
+      "patients": "10K+",
+      "patients-text": "happy clients",
+      "specialists": "50+",
+      "specialists-text": "specialists",
+      "experience": "15+",
+      "experience-text": "years of experience",
+      "rating": "4.9",
+      "rating-text": "average rating"
+    }
   }
 }

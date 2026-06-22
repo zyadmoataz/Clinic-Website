@@ -54,20 +54,24 @@ export default function Home() {
       <section className="bg-border border-y-border-strong mb-16 border-y py-[2rem]">
         <div className="item-center container mx-auto flex justify-between px-[1rem]">
           <div className="border-r-border-strong flex flex-1 flex-col items-center justify-center border-r">
-            <p className="text-primary text-[2.5rem] font-[600]">10K+</p>
-            <p className="font-[300] tracking-wider">HAPPY PATIENTS</p>
+            <p className="text-primary text-[2.5rem] font-[600]">{t('home.metrics.patients')}</p>
+            <p className="font-[300] tracking-wider uppercase">{t('home.metrics.patients-text')}</p>
           </div>
           <div className="border-r-border-strong flex flex-1 flex-col items-center justify-center border-r">
-            <p className="text-primary text-[2.5rem] font-[600]">50+</p>
-            <p className="font-[300] tracking-wider">SPECIALISTS</p>
+            <p className="text-primary text-[2.5rem] font-[600]">{t('home.metrics.specialists')}</p>
+            <p className="font-[300] tracking-wider uppercase">
+              {t('home.metrics.specialists-text')}
+            </p>
           </div>
           <div className="border-r-border-strong flex flex-1 flex-col items-center justify-center border-r">
-            <p className="text-primary text-[2.5rem] font-[600]">15+</p>
-            <p className="font-[300] tracking-wider">YEARS EXPERIENCE</p>
+            <p className="text-primary text-[2.5rem] font-[600]">{t('home.metrics.experience')}</p>
+            <p className="font-[300] tracking-wider uppercase">
+              {t('home.metrics.experience-text')}
+            </p>
           </div>
           <div className="flex flex-1 flex-col items-center justify-center">
-            <p className="text-primary text-[2.5rem] font-[600]">4.9</p>
-            <p className="font-[300] tracking-wider">AVERAGE RATING</p>
+            <p className="text-primary text-[2.5rem] font-[600]">{t('home.metrics.rating')}</p>
+            <p className="font-[300] tracking-wider uppercase">{t('home.metrics.rating-text')}</p>
           </div>
         </div>
       </section>
