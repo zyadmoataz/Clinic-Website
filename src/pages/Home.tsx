@@ -5,16 +5,17 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '../components/ui';
 import { FeatureCard } from '../components/cards/FeatureCard';
 import { PageContainer } from '../components/layout/PageContainer';
-import { Calendar, CreditCard, Stethoscope } from 'lucide-react';
+import { Bone, Brain, ClipboardPlus, HeartPulse, Stethoscope } from 'lucide-react';
 import { RiVerifiedBadgeLine } from 'react-icons/ri';
+import { TbDental } from 'react-icons/tb';
 
 export default function Home() {
   const { t } = useTranslation();
 
   return (
     <>
+      {/* Hero Section */}
       <PageContainer>
-        {/* Hero Section */}
         <section className="flex h-screen items-center justify-between gap-[5rem]">
           <section className="flex-1">
             <div className="text-primary border-primary-ring bg-primary-soft mb-[1rem] flex w-fit items-center gap-[.3rem] rounded-full border px-[1rem] py-[.3rem]">
@@ -76,23 +77,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Grid */}
+      {/* Our Services */}
       <PageContainer>
+        <div>
+          <h2 className="text-[2rem] font-[600]">{t('home.services.services-title')}</h2>
+          <p className="mb-[3rem] text-[1.125rem] font-[300]">
+            {t('home.services.services-subtitle')}
+          </p>
+        </div>
+
         <div className="animate-in fade-in slide-in-from-bottom-8 grid grid-cols-1 gap-6 duration-700 md:grid-cols-3">
           <FeatureCard
-            icon={<Calendar className="h-6 w-6" />}
-            title={t('home.feature_1_title')}
-            desc={t('home.feature_1_desc')}
-          />
-          <FeatureCard
-            icon={<CreditCard className="h-6 w-6" />}
-            title={t('home.feature_2_title')}
-            desc={t('home.feature_2_desc')}
-          />
-          <FeatureCard
             icon={<Stethoscope className="h-6 w-6" />}
-            title={t('home.feature_3_title')}
-            desc={t('home.feature_3_desc')}
+            title={t('home.services.service1-title')}
+            desc={t('home.services.service1-desc')}
+          />
+          <FeatureCard
+            icon={<HeartPulse className="h-6 w-6" />}
+            title={t('home.services.service2-title')}
+            desc={t('home.services.service2-desc')}
+          />
+          <FeatureCard
+            icon={<ClipboardPlus className="h-6 w-6" />}
+            title={t('home.services.service3-title')}
+            desc={t('home.services.service3-desc')}
+          />
+          <FeatureCard
+            icon={<Brain className="h-6 w-6" />}
+            title={t('home.services.service4-title')}
+            desc={t('home.services.service4-desc')}
+          />
+          <FeatureCard
+            icon={<TbDental className="h-6 w-6" />}
+            title={t('home.services.service5-title')}
+            desc={t('home.services.service5-desc')}
+          />
+          <FeatureCard
+            icon={<Bone className="h-6 w-6" />}
+            title={t('home.services.service6-title')}
+            desc={t('home.services.service6-desc')}
           />
         </div>
       </PageContainer>

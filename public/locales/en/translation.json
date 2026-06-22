@@ -15,13 +15,7 @@
       "hero_subtitle1": "Experience world-class healthcare tailored to your needs.",
       "hero_subtitle2": "Our specialized are dedicated to your well-being, providing personalize attention every step of the way.",
       "main-cta": "Book an Appointment",
-      "sec-cta": "Our Services",
-      "feature_1_title": "Real availability",
-      "feature_1_desc": "See only free slots, on a clean 15-minute grid.",
-      "feature_2_title": "Pay your way",
-      "feature_2_desc": "Securely online now, or in cash at the clinic.",
-      "feature_3_title": "Everything in one place",
-      "feature_3_desc": "Appointments, prescriptions and history, always with you."
+      "sec-cta": "Our Services"
     },
     "metrics": {
       "patients": "10K+",
@@ -32,6 +26,22 @@
       "experience-text": "years of experience",
       "rating": "4.9",
       "rating-text": "average rating"
+    },
+    "services": {
+      "services-title": "Our Services",
+      "services-subtitle": "Comprehensive healthcare solutions for you and your family.",
+      "service1-title": "General Medicine",
+      "service1-desc": "Routine check-ups, preventive care, and treatment for common illnesses.",
+      "service2-title": "Cardiology",
+      "service2-desc": "Advance heart care, diagnosis, and customized treatment plans.",
+      "service3-title": "Pediatrics",
+      "service3-desc": "Specialized care for infants, children, and adolescents in a welcoming environment.",
+      "service4-title": "Neurology",
+      "service4-desc": "Expert diagnoses and management of nervous system disorders.",
+      "service5-title": "Dental Care",
+      "service5-desc": "Comprehensive dental services from routine cleanings to complex procedure.",
+      "service6-title": "Orthopedics",
+      "service6-desc": "Treatment for musculoskeletal injuries and conditions."
     }
   }
 }
