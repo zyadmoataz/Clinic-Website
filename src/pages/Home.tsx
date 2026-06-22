@@ -6,6 +6,7 @@ import { Button } from '../components/ui';
 import { FeatureCard } from '../components/cards/FeatureCard';
 import { PageContainer } from '../components/layout/PageContainer';
 import { Calendar, CreditCard, Stethoscope } from 'lucide-react';
+import { RiVerifiedBadgeLine } from 'react-icons/ri';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -15,6 +16,10 @@ export default function Home() {
       {/* Hero Section */}
       <section className="flex h-screen items-center justify-between gap-[5rem]">
         <section className="flex-1">
+          <div className="text-primary border-primary-ring bg-primary-soft mb-[1rem] flex w-fit items-center gap-[.3rem] rounded-full border px-[1rem] py-[.3rem]">
+            <RiVerifiedBadgeLine /> Top-Rated Care
+          </div>
+
           <h1 className="text-text mb-6 w-[95%] text-4xl leading-tight font-[700] tracking-tighter md:text-5xl lg:text-6xl">
             {t('home.hero.hero_title')}
             <span className="text-primary">{t('home.hero.hero_title-colored')}.</span>
