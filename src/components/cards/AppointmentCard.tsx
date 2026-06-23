@@ -1,43 +1,87 @@
-// ==========================================
-// OWNER: Helda
-// PURPOSE: Patient History - Appointment Card
-// ACTION: Replace this static layout with dynamic data!
-// ==========================================
+type Props = {
+  statusLabel: string;
+  currencyLabel: string;
+  appointment: {
+    id: number;
+    doctorName: string;
+    serviceName: string;
+    status: string;
+    date: string;
+    startTime: string;
+    endTime?: string;
+    mode?: string;
+    paymentMethod?: string;
+    price?: number;
+  };
+  toLocalizedNumbers: (input: string | number) => string;
+  onClick?: () => void;
+};
 
-export function AppointmentCard() {
+const STATUS_DOT: Record<string, string> = {
+  confirmed: 'bg-emerald-500',
+  completed: 'bg-blue-500',
+  cancelled: 'bg-red-400',
+  'no-show': 'bg-yellow-400',
+  arrived: 'bg-purple-500',
+  pending: 'bg-orange-400'
+};
+
+const STATUS_TEXT: Record<string, string> = {
+  confirmed: 'text-emerald-600',
+  completed: 'text-blue-600',
+  cancelled: 'text-red-500',
+  'no-show': 'text-yellow-600',
+  arrived: 'text-purple-600',
+  pending: 'text-orange-500'
+};
+
+export function AppointmentCard({
+  appointment,
+  onClick,
+  statusLabel,
+  currencyLabel,
+  toLocalizedNumbers
+}: Props) {
+  const key = appointment.status?.toLowerCase();
+
   return (
-    <div className="flex h-full flex-col rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
-      <div className="mb-4 flex items-start justify-between">
-        <div className="flex items-center gap-3">
-          <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800">
-            Confirmed
+    <div
+      onClick={onClick}
+      className="bg-surface border-border cursor-pointer rounded-2xl border px-6 py-5 transition-shadow hover:shadow-sm"
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0 flex-1">
+          <p className="text-text text-base leading-snug font-semibold">{appointment.doctorName}</p>
+          <p className="text-text mt-0.5 text-sm opacity-50">
+            {appointment.serviceName} · {appointment.date} · {appointment.startTime}
+            {appointment.endTime ? ` – ${appointment.endTime}` : ''}
+          </p>
+
+          <div className="mt-3 flex flex-wrap gap-2">
+            {appointment.mode && (
+              <span className="bg-border text-text rounded-full px-3 py-1 text-xs opacity-70">
+                {appointment.mode}
+              </span>
+            )}
+            {appointment.paymentMethod && (
+              <span className="bg-border text-text rounded-full px-3 py-1 text-xs opacity-70">
+                {appointment.paymentMethod}
+              </span>
+            )}
+            {appointment.price != null && appointment.price > 0 && (
+              <span className="bg-border text-text rounded-full px-3 py-1 text-xs opacity-70">
+                {toLocalizedNumbers(appointment.price)} {currencyLabel}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="mt-1 flex shrink-0 items-center gap-1.5">
+          <span className={`h-2 w-2 rounded-full ${STATUS_DOT[key] ?? 'bg-gray-400'}`} />
+          <span className={`text-sm font-medium ${STATUS_TEXT[key] ?? 'text-gray-500'}`}>
+            {statusLabel}
           </span>
         </div>
-      </div>
-
-      <div className="mb-4 flex gap-4">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gray-100 text-xl font-bold text-gray-500">
-          DA
-        </div>
-        <div>
-          <h3 className="leading-tight font-bold text-gray-900">Dr. Ahmed Ali</h3>
-          <p className="mb-1 text-sm text-gray-500">Cardiology</p>
-        </div>
-      </div>
-
-      <div className="mt-auto mb-6 flex flex-col gap-2">
-        <div className="flex items-center gap-2 text-sm text-gray-600">
-          <span>Tomorrow at 10:00 AM</span>
-        </div>
-      </div>
-
-      <div className="mt-auto flex w-full gap-2">
-        <button className="h-8 w-full rounded-lg border border-gray-300 bg-transparent px-3 text-xs text-gray-800 hover:bg-gray-50">
-          Reschedule
-        </button>
-        <button className="h-8 w-full rounded-lg bg-transparent px-3 text-xs text-red-500 hover:bg-red-50 hover:text-red-600">
-          Cancel
-        </button>
       </div>
     </div>
   );

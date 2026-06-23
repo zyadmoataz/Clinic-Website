@@ -18,5 +18,39 @@
     "feature_2_desc": "Securely online now, or in cash at the clinic.",
     "feature_3_title": "Everything in one place",
     "feature_3_desc": "Appointments, prescriptions and history, always with you."
+  },
+  
+ "appointments": {
+    "title": "My appointments",
+    "upcoming": "Upcoming",
+    "past": "Past",
+    "status_label": "Status",
+    "loading": "Loading your appointments…",
+    "error": "Something went wrong while loading appointments.",
+    "no_appointments": "No appointments found",
+    "no_upcoming_desc": "You have no upcoming appointments.",
+    "no_past_desc": "You have no past appointments.",
+    "details_title": "Appointment details",
+    "date": "Date",
+    "time": "Time",
+    "status": "Status",
+    "payment": "Payment",
+    "amount": "Amount",
+    "currency": "EGP",
+    "cancel_btn": "Cancel Appointment",
+    "close_btn": "Close",
+    "cancel_confirm": "Are you sure you want to cancel this appointment?",
+    "cancel_success": "Appointment cancelled successfully.",
+    "cancel_error": "Could not cancel. Please try again.",
+    "statuses": {
+      "all": "All",
+      "confirmed": "Confirmed",
+      "arrived": "Checked In",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "no-show": "Missed",
+      "pending": "Pending"
+    }
   }
+
 }
