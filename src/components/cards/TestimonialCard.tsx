@@ -2,8 +2,6 @@
 // OWNER: Othman
 // PURPOSE: Renders testimonials on the home landing page
 // ==========================================
-import React from 'react';
-
 interface TestimonialCardProps {
   name: string;
   comment: string;
