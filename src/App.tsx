@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RootLayout } from './components/layout/RootLayout';
 import { Spinner } from './components/ui/Spinner';
 import { Toaster } from 'react-hot-toast';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 // Lazy-loaded routes for code splitting and placeholder structure
 const Home = lazy(() => import('./pages/Home'));
@@ -52,33 +55,35 @@ function LoadingFallback() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Toaster position="top-right" />
-      <Suspense fallback={<LoadingFallback />}>
-        <Routes>
-          <Route element={<RootLayout />}>
-            {/* Othman */}
-            <Route path="/" element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Toaster position="top-right" />
+        <Suspense fallback={<LoadingFallback />}>
+          <Routes>
+            <Route element={<RootLayout />}>
+              {/* Othman */}
+              <Route path="/" element={<Home />} />
+              <Route path="/profile" element={<Profile />} />
 
-            {/* Zyad */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+              {/* Zyad */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
 
-            {/* Omar */}
-            <Route path="/doctors" element={<DoctorsList />} />
-            <Route path="/doctors/:id" element={<DoctorDetail />} />
+              {/* Omar */}
+              <Route path="/doctors" element={<DoctorsList />} />
+              <Route path="/doctors/:id" element={<DoctorDetail />} />
 
-            {/* Doaa */}
-            <Route path="/booking" element={<Booking />} />
-            <Route path="/booking/confirmation" element={<BookingConfirmation />} />
+              {/* Doaa */}
+              <Route path="/booking" element={<Booking />} />
+              <Route path="/booking/confirmation" element={<BookingConfirmation />} />
 
-            {/* Helda */}
-            <Route path="/my-appointments" element={<MyAppointments />} />
-            <Route path="/my-prescriptions" element={<MyPrescriptions />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+              {/* Helda */}
+              <Route path="/my-appointments" element={<MyAppointments />} />
+              <Route path="/my-prescriptions" element={<MyPrescriptions />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }

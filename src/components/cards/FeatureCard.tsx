@@ -14,12 +14,12 @@ interface FeatureCardProps {
 
 export function FeatureCard({ title, desc, icon }: FeatureCardProps) {
   return (
-    <div className="bg-surface border-border flex flex-col items-start rounded-2xl border p-6 shadow-sm transition-shadow hover:shadow-md">
-      <div className="bg-primary-soft text-primary mb-4 rounded-xl p-3">
+    <div className="group bg-surface border-border/50 flex flex-col items-start rounded-[2rem] border p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-md">
+      <div className="bg-primary/10 text-primary group-hover:bg-primary/20 mb-6 w-fit rounded-full p-4 transition-transform duration-300 group-hover:scale-110">
         {icon || <div className="bg-primary h-6 w-6 rounded-full"></div>}
       </div>
-      <h3 className="text-text mb-2 text-lg font-bold">{title}</h3>
-      <p className="text-muted text-sm leading-relaxed">{desc}</p>
+      <h3 className="text-text mb-3 text-xl font-bold">{title}</h3>
+      <p className="text-muted text-base leading-relaxed">{desc}</p>
     </div>
   );
 }

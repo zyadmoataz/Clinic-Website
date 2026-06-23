@@ -2,11 +2,15 @@
   "navbar": {
     "home": "Home",
     "services": "Services",
-    "doctors": "Doctors",
     "find_doctor": "Find a doctor",
     "sign_in": "Login",
+    "sign_out": "Logout",
     "create_account": "Create account",
-    "subtitle": "Care, booked simply"
+    "prescriptions": "Prescriptions",
+    "appointments": "Appointments",
+    "doctors": "Doctors",
+    "register": "New Account",
+    "profile": "Profile"
   },
   "home": {
     "hero": {
@@ -65,5 +69,36 @@
       "testimonial-card3-title": "Emily Rodriguez",
       "testimonial-card3-text": "The care I received at clarity was exceptional. The doctors were attentive and truly listened to my concerns. I felt completely supported throughout my treatment."
     }
+  },
+  "login": {
+    "success_login": "You have successfully logged in",
+    "correct_email_or_password": "This email or password didn't match. Check and try again, or reset your password.",
+    "hero_title": "Welcome back",
+    "hero_subtitle": "Sign in to see your appointments.",
+    "cta": "Create Account",
+    "email": "Email",
+    "password": "Password",
+    "forgot": "Forgot?",
+    "email_validation": "Invalid email address",
+    "password_validation": "Password must be at least 8 characters",
+    "logout": "You have been logged out"
+  },
+  "register": {
+    "success_register": "You have successfully registered",
+    "correct_email_or_password": "This email or password didn't match. Check and try again, or reset your password.",
+    "hero_title": "Create your account",
+    "hero_subtitle": "Book and manage visits in one place.",
+    "cta": "Create Account",
+    "full_name": "Full Name",
+    "phone": "Phone Number",
+    "email": "Email",
+    "password": "Password",
+    "forgot": "Forgot?",
+    "email_validation": "Invalid email address",
+    "phone_validation": "Invalid phone number",
+    "email_already_registered": "This email is already registered. Sign in instead?",
+    "password_validation": "Password must be at least 8 characters",
+    "full_name_validation": "Full name must be at least 3 characters",
+    "terms_privacy": "By continuing you agree to our Terms & Privacy."
   }
 }

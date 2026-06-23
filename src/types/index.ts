@@ -1,13 +1,23 @@
-// Shared TypeScript interfaces mapping to backend DTOs
+export interface LoginUser {
+  email: string;
+  password: string;
+}
 
-export interface UserDto {
+export interface RegisterUser {
+  displayName: string;
+  email: string;
+  password: string;
+  phone: string;
+}
+
+export interface User {
   id: string;
   email: string;
   displayName: string;
   role: 'patient' | 'doctor' | 'admin' | 'receptionist';
 }
 
-export interface DoctorDto {
+export interface Doctor {
   id: string;
   displayName: string;
   specialization: string;
@@ -15,17 +25,17 @@ export interface DoctorDto {
   rating: number;
   reviewCount: number;
   yearsExperience: number;
-  services: ServiceDto[];
+  services: Service[];
 }
 
-export interface ServiceDto {
+export interface Service {
   id: string;
   name: string;
   durationMinutes: number;
   price: number;
 }
 
-export interface AppointmentDto {
+export interface Appointment {
   id: string;
   doctorId: string;
   doctorName: string;

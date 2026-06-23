@@ -3,7 +3,6 @@
 // ==========================================
 import { useTranslation } from 'react-i18next';
 import { Globe } from 'lucide-react';
-import { Button } from './Button';
 import { useEffect } from 'react';
 
 export function LanguageToggle() {
@@ -20,13 +19,13 @@ export function LanguageToggle() {
   }, [i18n.language]);
 
   return (
-    <Button
-      className="h-8 px-3 text-xs text-gray-800 hover:bg-gray-100"
+    <button
+      className="text-text hover:bg-surface-2 flex h-10 cursor-pointer items-center justify-center rounded-full px-4 text-sm font-semibold transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.92]"
       onClick={toggleLanguage}
       aria-label="Toggle language"
     >
       <Globe className="mx-1 h-4 w-4" />
       {i18n.language === 'en' ? 'AR' : 'EN'}
-    </Button>
+    </button>
   );
 }
