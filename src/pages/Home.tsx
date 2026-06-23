@@ -21,7 +21,7 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <PageContainer>
-        <section className="flex h-screen items-center justify-between gap-[5rem]">
+        <section className="mt-[5rem] flex flex-col items-center justify-between gap-[5rem] lg:mt-0 lg:h-screen lg:flex-row">
           <section className="flex-1">
             <div className="text-primary border-primary-ring bg-primary-soft mb-[1rem] flex w-fit items-center gap-[.3rem] rounded-full border px-[1rem] py-[.3rem]">
               <RiVerifiedBadgeLine /> Top-Rated Care
@@ -37,7 +37,7 @@ export default function Home() {
               {t('home.hero.hero_subtitle2')}
             </p>
 
-            <div className="flex gap-[2rem]">
+            <div className="flex flex-col gap-[2rem] md:flex-row">
               <Button className="h-12 rounded-full px-8 text-lg">
                 {t('home.hero.main-cta')} →
               </Button>
@@ -46,6 +46,7 @@ export default function Home() {
               </Button>
             </div>
           </section>
+
           <section className="flex h-[75%] w-[90%] flex-1 items-center justify-center rounded-[1rem] shadow-2xl">
             <img
               className="h-full w-full rounded-[1rem]"
@@ -58,18 +59,18 @@ export default function Home() {
 
       {/* Metrics */}
       <section className="bg-border border-y-border-strong mb-[10rem] border-y py-[2rem]">
-        <div className="item-center container mx-auto flex justify-between px-[1rem]">
-          <div className="border-r-border-strong flex flex-1 flex-col items-center justify-center border-r">
+        <div className="item-center container mx-auto flex flex-col justify-between gap-[2rem] px-[1rem] lg:flex-row">
+          <div className="lg:border-r-border-strong flex flex-1 flex-col items-center justify-center lg:border-r">
             <p className="text-primary text-[2.5rem] font-[600]">{t('home.metrics.patients')}</p>
             <p className="font-[300] tracking-wider uppercase">{t('home.metrics.patients-text')}</p>
           </div>
-          <div className="border-r-border-strong flex flex-1 flex-col items-center justify-center border-r">
+          <div className="lg:border-r-border-strong flex flex-1 flex-col items-center justify-center lg:border-r">
             <p className="text-primary text-[2.5rem] font-[600]">{t('home.metrics.specialists')}</p>
             <p className="font-[300] tracking-wider uppercase">
               {t('home.metrics.specialists-text')}
             </p>
           </div>
-          <div className="border-r-border-strong flex flex-1 flex-col items-center justify-center border-r">
+          <div className="lg:border-r-border-strong flex flex-1 flex-col items-center justify-center lg:border-r">
             <p className="text-primary text-[2.5rem] font-[600]">{t('home.metrics.experience')}</p>
             <p className="font-[300] tracking-wider uppercase">
               {t('home.metrics.experience-text')}
@@ -92,7 +93,7 @@ export default function Home() {
         </section>
 
         <section className="flex flex-col gap-[2rem]">
-          <div className="flex items-stretch justify-between gap-[2rem]">
+          <div className="flex flex-col items-stretch justify-between gap-[2rem] lg:flex-row">
             <div className="flex flex-2 flex-col gap-[1rem] rounded-[.3rem] p-[2rem] shadow-sm">
               <div className="bg-primary-soft w-fit rounded-full p-[1rem]">
                 <Microscope className="text-primary" />
@@ -110,7 +111,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex items-stretch justify-between gap-[2rem]">
+          <div className="flex flex-col items-stretch justify-between gap-[2rem] lg:flex-row">
             <div className="flex flex-1 flex-col gap-[1rem] rounded-[.3rem] p-[2rem] shadow-sm">
               <div className="bg-warning-soft-soft w-fit rounded-full p-[1rem]">
                 <MdAccessTimeFilled className="text-warning text-[24px]" />
@@ -186,7 +187,7 @@ export default function Home() {
           </p>
         </section>
 
-        <section className="flex gap-[2rem]">
+        <section className="flex flex-col gap-[2rem] lg:flex-row">
           <TestimonialCard
             name={t('home.testimonial.testimonial-card1-title')}
             comment={t('home.testimonial.testimonial-card1-text')}
