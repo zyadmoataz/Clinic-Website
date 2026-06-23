@@ -54,6 +54,16 @@
       "whyUs-card3-text": "Round-the-clock medical assistance and consultation for your peace of mind.",
       "whyUs-card4-title": "Advanced Technology",
       "whyUs-card4-text": "Equipped with state-of-the-art medical equipment for accurate diagnostics and effective treatments, ensuring you receive the highest standard of care."
+    },
+    "testimonial": {
+      "testimonial-title": "Patient Stories",
+      "testimonial-subtitle": "Hear from those who have experienced our compassionate care",
+      "testimonial-card1-title": "Sarah Jenkins",
+      "testimonial-card1-text": "The care I received at clarity was exceptional. The doctors were attentive and truly listened to my concerns. I felt completely supported throughout my treatment.",
+      "testimonial-card2-title": "David Chen",
+      "testimonial-card2-text": "The care I received at clarity was exceptional. The doctors were attentive and truly listened to my concerns. I felt completely supported throughout my treatment.",
+      "testimonial-card3-title": "Emily Rodriguez",
+      "testimonial-card3-text": "The care I received at clarity was exceptional. The doctors were attentive and truly listened to my concerns. I felt completely supported throughout my treatment."
     }
   }
 }

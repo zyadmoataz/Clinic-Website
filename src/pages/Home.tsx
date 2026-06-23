@@ -178,26 +178,28 @@ export default function Home() {
       {/* Patient Stories */}
       <PageContainer className="pt-[10rem]">
         <section className="flex flex-col items-center justify-center">
-          <h2 className="mb-[1rem] text-[2rem] font-[600]">Patient Stories</h2>
+          <h2 className="mb-[1rem] text-[2rem] font-[600]">
+            {t('home.testimonial.testimonial-title')}
+          </h2>
           <p className="mb-[3rem] max-w-[45rem] text-center text-[1.125rem] font-[300]">
-            Hear from those who have experienced our compassionate care
+            {t('home.testimonial.testimonial-subtitle')}
           </p>
         </section>
 
         <section className="flex gap-[2rem]">
           <TestimonialCard
-            name="Sarah Jenkins"
-            comment="The care I received at clarity was exceptional. The doctors were attentive and truly listened to my concerns. I felt completely supported throughout my treatment."
+            name={t('home.testimonial.testimonial-card1-title')}
+            comment={t('home.testimonial.testimonial-card1-text')}
             rating={5}
           />
           <TestimonialCard
-            name="David Chen"
-            comment="The care I received at clarity was exceptional. The doctors were attentive and truly listened to my concerns. I felt completely supported throughout my treatment."
+            name={t('home.testimonial.testimonial-card2-title')}
+            comment={t('home.testimonial.testimonial-card2-text')}
             rating={5}
           />
           <TestimonialCard
-            name="Emily Rodriguez"
-            comment="The care I received at clarity was exceptional. The doctors were attentive and truly listened to my concerns. I felt completely supported throughout my treatment."
+            name={t('home.testimonial.testimonial-card3-title')}
+            comment={t('home.testimonial.testimonial-card3-text')}
             rating={5}
           />
         </section>
