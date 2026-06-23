@@ -15,15 +15,16 @@ export function Button({
   ...props
 }: ButtonProps) {
   const variantStyles = {
-    primary: 'bg-primary text-white hover:bg-primary-hover shadow-sm',
-    secondary: 'bg-primary-soft text-primary hover:bg-primary/10',
+    primary:
+      'bg-primary text-white shadow-[0_8px_16px_rgba(37,99,235,0.2)] hover:shadow-[0_12px_24px_rgba(37,99,235,0.3)] hover:-translate-y-0.5',
+    secondary: 'bg-primary-soft text-primary hover:bg-primary/20',
     ghost: 'text-text hover:bg-surface-2'
   };
 
   return (
     <button
       disabled={disabled}
-      className={`focus:ring-primary-ring inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-colors focus:ring-2 focus:outline-none disabled:opacity-50 ${variantStyles[variant]} ${className}`}
+      className={`inline-flex cursor-pointer items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50 ${variantStyles[variant]} ${className}`}
       {...props}
     >
       {children}
