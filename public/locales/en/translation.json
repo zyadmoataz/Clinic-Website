@@ -2,11 +2,15 @@
   "navbar": {
     "home": "Home",
     "services": "Services",
-    "doctors": "Doctors",
     "find_doctor": "Find a doctor",
     "sign_in": "Login",
+    "sign_out": "Logout",
     "create_account": "Create account",
-    "subtitle": "Care, booked simply"
+    "prescriptions": "Prescriptions",
+    "appointments": "Appointments",
+    "doctors": "Doctors",
+    "register": "New Account",
+    "profile": "Profile"
   },
   "home": {
     "hero": {

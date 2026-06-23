@@ -15,8 +15,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const variantStyles = {
-    primary:
-      'bg-primary text-white shadow-[0_8px_16px_rgba(37,99,235,0.2)] hover:shadow-[0_12px_24px_rgba(37,99,235,0.3)] hover:-translate-y-0.5',
+    primary: 'bg-primary text-white shadow-md hover:shadow-glow hover:-translate-y-0.5',
     secondary: 'bg-primary-soft text-primary hover:bg-primary/20',
     ghost: 'text-text hover:bg-surface-2'
   };

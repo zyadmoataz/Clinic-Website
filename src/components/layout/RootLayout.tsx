@@ -9,7 +9,7 @@ export function RootLayout() {
   return (
     <div className="selection:bg-primary-soft selection:text-primary min-h-screen font-sans">
       <Navbar />
-      <main className="my-20">
+      <main className="w-full">
         <Outlet />
       </main>
     </div>

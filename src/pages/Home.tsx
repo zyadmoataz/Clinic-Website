@@ -5,12 +5,19 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '../components/ui';
 import { FeatureCard } from '../components/cards/FeatureCard';
 import { PageContainer } from '../components/layout/PageContainer';
-import { Bone, Brain, ClipboardPlus, HeartPulse, Microscope, Stethoscope } from 'lucide-react';
-import { RiVerifiedBadgeLine } from 'react-icons/ri';
-import { TbDental } from 'react-icons/tb';
-import { IoMdHeart } from 'react-icons/io';
-import { BiPlusMedical } from 'react-icons/bi';
-import { MdAccessTimeFilled } from 'react-icons/md';
+import {
+  Bone,
+  Brain,
+  ClipboardPlus,
+  HeartPulse,
+  Microscope,
+  Stethoscope,
+  BadgeCheck,
+  Smile,
+  Heart,
+  Clock,
+  Activity
+} from 'lucide-react';
 import { TestimonialCard } from '../components/cards/TestimonialCard';
 import { Footer } from '../components/layout/Footer';
 
@@ -21,24 +28,26 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <PageContainer>
-        <section className="flex h-screen items-center justify-between gap-[5rem]">
-          <section className="flex-1">
-            <div className="text-primary border-primary-ring bg-primary-soft mb-[1rem] flex w-fit items-center gap-[.3rem] rounded-full border px-[1rem] py-[.3rem]">
-              <RiVerifiedBadgeLine /> Top-Rated Care
+        <section className="flex flex-col items-center justify-between gap-12 py-12 md:py-20 lg:flex-row lg:gap-20 lg:py-24">
+          <section className="animate-in fade-in slide-in-from-bottom-8 flex-1 duration-[1000ms] ease-[cubic-bezier(0.22,1,0.36,1)]">
+            <div className="text-primary border-primary/20 bg-primary/10 mb-6 flex w-fit items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-semibold">
+              <BadgeCheck className="h-4 w-4" /> Top-Rated Care
             </div>
 
-            <h1 className="text-text mb-6 w-[95%] text-4xl leading-tight font-[700] tracking-tighter md:text-5xl lg:text-6xl">
+            <h1 className="text-text mb-6 w-full text-4xl leading-tight font-extrabold tracking-tight md:text-5xl lg:text-6xl">
               {t('home.hero.hero_title')}
               <span className="text-primary">{t('home.hero.hero_title-colored')}.</span>
             </h1>
 
-            <p className="text-muted text-lg md:text-xl">{t('home.hero.hero_subtitle1')}</p>
-            <p className="text-muted mb-10 w-[80%] text-lg md:text-xl">
+            <p className="text-muted mb-2 max-w-xl text-lg font-medium md:text-xl">
+              {t('home.hero.hero_subtitle1')}
+            </p>
+            <p className="text-muted mb-10 max-w-xl text-lg md:text-xl">
               {t('home.hero.hero_subtitle2')}
             </p>
 
-            <div className="flex gap-[2rem]">
-              <Button className="h-12 rounded-full px-8 text-lg">
+            <div className="flex flex-wrap gap-4">
+              <Button className="hover:shadow-glow h-12 rounded-full px-8 text-lg shadow-md hover:-translate-y-1">
                 {t('home.hero.main-cta')} →
               </Button>
               <Button className="h-12 rounded-full px-8 text-lg" variant="secondary">
@@ -46,101 +55,118 @@ export default function Home() {
               </Button>
             </div>
           </section>
-          <section className="flex h-[75%] w-[90%] flex-1 items-center justify-center rounded-[1rem] shadow-2xl">
-            <img
-              className="h-full w-full rounded-[1rem]"
-              src="/images/hero-img.jpg"
-              alt="The clinic receptionist"
-            />
+          <section className="animate-in fade-in slide-in-from-right-8 flex w-full max-w-2xl flex-1 items-center justify-center delay-300 duration-[1000ms] ease-[cubic-bezier(0.22,1,0.36,1)]">
+            <div className="shadow-glow ring-border/50 relative aspect-square w-full overflow-hidden rounded-[2rem] ring-1 transition-transform duration-700 hover:-translate-y-2 hover:shadow-lg lg:aspect-auto lg:h-[75vh]">
+              <img
+                className="h-full w-full object-cover transition-transform duration-[1500ms] hover:scale-105"
+                src="/images/hero-img.jpg"
+                alt="The clinic receptionist"
+              />
+              <div className="pointer-events-none absolute inset-0 rounded-[2rem] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)]"></div>
+            </div>
           </section>
         </section>
       </PageContainer>
 
       {/* Metrics */}
-      <section className="bg-border border-y-border-strong mb-[10rem] border-y py-[2rem]">
-        <div className="item-center container mx-auto flex justify-between px-[1rem]">
-          <div className="border-r-border-strong flex flex-1 flex-col items-center justify-center border-r">
-            <p className="text-primary text-[2.5rem] font-[600]">{t('home.metrics.patients')}</p>
-            <p className="font-[300] tracking-wider uppercase">{t('home.metrics.patients-text')}</p>
+      <section className="bg-surface-2 border-y-border/50 relative overflow-hidden border-y py-12 md:py-16">
+        <div className="container mx-auto grid grid-cols-2 gap-8 px-4 lg:grid-cols-4">
+          <div className="group lg:border-border/50 flex flex-col items-center justify-center transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 lg:border-r">
+            <p className="text-primary mb-2 text-4xl font-bold tracking-tight transition-transform duration-[300ms] group-hover:scale-110 md:text-5xl">
+              {t('home.metrics.patients')}
+            </p>
+            <p className="text-muted text-xs font-semibold tracking-wider uppercase md:text-sm">
+              {t('home.metrics.patients-text')}
+            </p>
           </div>
-          <div className="border-r-border-strong flex flex-1 flex-col items-center justify-center border-r">
-            <p className="text-primary text-[2.5rem] font-[600]">{t('home.metrics.specialists')}</p>
-            <p className="font-[300] tracking-wider uppercase">
+          <div className="group lg:border-border/50 flex flex-col items-center justify-center transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 lg:border-r">
+            <p className="text-primary mb-2 text-4xl font-bold tracking-tight transition-transform duration-[300ms] group-hover:scale-110 md:text-5xl">
+              {t('home.metrics.specialists')}
+            </p>
+            <p className="text-muted text-center text-xs font-semibold tracking-wider uppercase md:text-sm">
               {t('home.metrics.specialists-text')}
             </p>
           </div>
-          <div className="border-r-border-strong flex flex-1 flex-col items-center justify-center border-r">
-            <p className="text-primary text-[2.5rem] font-[600]">{t('home.metrics.experience')}</p>
-            <p className="font-[300] tracking-wider uppercase">
+          <div className="group lg:border-border/50 flex flex-col items-center justify-center transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 lg:border-r">
+            <p className="text-primary mb-2 text-4xl font-bold tracking-tight transition-transform duration-[300ms] group-hover:scale-110 md:text-5xl">
+              {t('home.metrics.experience')}
+            </p>
+            <p className="text-muted text-center text-xs font-semibold tracking-wider uppercase md:text-sm">
               {t('home.metrics.experience-text')}
             </p>
           </div>
-          <div className="flex flex-1 flex-col items-center justify-center">
-            <p className="text-primary text-[2.5rem] font-[600]">{t('home.metrics.rating')}</p>
-            <p className="font-[300] tracking-wider uppercase">{t('home.metrics.rating-text')}</p>
+          <div className="group flex flex-col items-center justify-center transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1">
+            <p className="text-primary mb-2 text-4xl font-bold tracking-tight transition-transform duration-[300ms] group-hover:scale-110 md:text-5xl">
+              {t('home.metrics.rating')}
+            </p>
+            <p className="text-muted text-xs font-semibold tracking-wider uppercase md:text-sm">
+              {t('home.metrics.rating-text')}
+            </p>
           </div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <PageContainer>
-        <section className="flex flex-col items-center justify-center">
-          <h2 className="mb-[1rem] text-[2rem] font-[600]">{t('home.whyUs.whyUs-title')}</h2>
-          <p className="mb-[3rem] max-w-[45rem] text-center text-[1.125rem] font-[300]">
+      <PageContainer className="py-16 md:py-24">
+        <section className="animate-in fade-in slide-in-from-bottom-8 mb-16 flex flex-col items-center justify-center duration-700">
+          <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl">
+            {t('home.whyUs.whyUs-title')}
+          </h2>
+          <p className="text-muted max-w-2xl text-center text-lg">
             {t('home.whyUs.whyUs-subtitle')}
           </p>
         </section>
 
-        <section className="flex flex-col gap-[2rem]">
-          <div className="flex items-stretch justify-between gap-[2rem]">
-            <div className="flex flex-2 flex-col gap-[1rem] rounded-[.3rem] p-[2rem] shadow-sm">
-              <div className="bg-primary-soft w-fit rounded-full p-[1rem]">
-                <Microscope className="text-primary" />
-              </div>
-              <h3 className="text-[1.25rem] font-[600]">{t('home.whyUs.whyUs-card1-title')}</h3>
-              <p className="text-muted max-w-[33rem]">{t('home.whyUs.whyUs-card1-text')}</p>
+        <section className="animate-in fade-in slide-in-from-bottom-12 grid grid-cols-1 gap-6 delay-200 duration-700 md:grid-cols-2 lg:grid-cols-3">
+          {/* Card 1 */}
+          <div className="group bg-surface border-border/50 flex flex-col gap-4 rounded-[2rem] border p-8 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:shadow-md lg:col-span-2">
+            <div className="bg-primary/10 group-hover:bg-primary/20 w-fit rounded-full p-4 transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110">
+              <Microscope className="text-primary h-6 w-6" />
             </div>
-
-            <div className="flex flex-1 flex-col gap-[1rem] rounded-[.3rem] p-[2rem] shadow-sm">
-              <div className="bg-success-soft w-fit rounded-full p-[1rem]">
-                <IoMdHeart className="text-success text-[24px]" />
-              </div>
-              <h3 className="text-[1.25rem] font-[600]">{t('home.whyUs.whyUs-card2-title')}</h3>
-              <p className="text-muted max-w-[20rem]">{t('home.whyUs.whyUs-card2-text')}</p>
-            </div>
+            <h3 className="text-xl font-bold">{t('home.whyUs.whyUs-card1-title')}</h3>
+            <p className="text-muted leading-relaxed">{t('home.whyUs.whyUs-card1-text')}</p>
           </div>
 
-          <div className="flex items-stretch justify-between gap-[2rem]">
-            <div className="flex flex-1 flex-col gap-[1rem] rounded-[.3rem] p-[2rem] shadow-sm">
-              <div className="bg-warning-soft-soft w-fit rounded-full p-[1rem]">
-                <MdAccessTimeFilled className="text-warning text-[24px]" />
-              </div>
-              <h3 className="text-[1.25rem] font-[600]">{t('home.whyUs.whyUs-card3-title')}</h3>
-              <p className="text-muted max-w-[20rem]">{t('home.whyUs.whyUs-card3-text')}</p>
+          {/* Card 2 */}
+          <div className="group bg-surface border-border/50 flex flex-col gap-4 rounded-[2rem] border p-8 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:shadow-md">
+            <div className="bg-success/10 group-hover:bg-success/20 w-fit rounded-full p-4 transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110">
+              <Heart className="text-success h-6 w-6" />
             </div>
+            <h3 className="text-xl font-bold">{t('home.whyUs.whyUs-card2-title')}</h3>
+            <p className="text-muted leading-relaxed">{t('home.whyUs.whyUs-card2-text')}</p>
+          </div>
 
-            <div className="flex flex-2 flex-col gap-[1rem] rounded-[.3rem] p-[2rem] shadow-sm">
-              <div className="bg-primary-soft w-fit rounded-full p-[1rem]">
-                <BiPlusMedical className="text-primary text-[24px]" />
-              </div>
-              <h3 className="text-[1.25rem] font-[600]">{t('home.whyUs.whyUs-card4-title')}</h3>
-              <p className="text-muted max-w-[33rem]">{t('home.whyUs.whyUs-card4-text')}</p>
+          {/* Card 3 */}
+          <div className="group bg-surface border-border/50 flex flex-col gap-4 rounded-[2rem] border p-8 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:shadow-md">
+            <div className="bg-warning/10 group-hover:bg-warning/20 w-fit rounded-full p-4 transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110">
+              <Clock className="text-warning h-6 w-6" />
             </div>
+            <h3 className="text-xl font-bold">{t('home.whyUs.whyUs-card3-title')}</h3>
+            <p className="text-muted leading-relaxed">{t('home.whyUs.whyUs-card3-text')}</p>
+          </div>
+
+          {/* Card 4 */}
+          <div className="group bg-surface border-border/50 flex flex-col gap-4 rounded-[2rem] border p-8 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:shadow-md lg:col-span-2">
+            <div className="bg-primary/10 group-hover:bg-primary/20 w-fit rounded-full p-4 transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110">
+              <Activity className="text-primary h-6 w-6" />
+            </div>
+            <h3 className="text-xl font-bold">{t('home.whyUs.whyUs-card4-title')}</h3>
+            <p className="text-muted leading-relaxed">{t('home.whyUs.whyUs-card4-text')}</p>
           </div>
         </section>
       </PageContainer>
 
       {/* Our Services */}
-      <section className="bg-surface-2 pt-[5rem]">
+      <section className="bg-surface-2 relative py-16 md:py-24">
         <PageContainer>
-          <div>
-            <h2 className="text-[2rem] font-[600]">{t('home.services.services-title')}</h2>
-            <p className="mb-[3rem] text-[1.125rem] font-[300]">
-              {t('home.services.services-subtitle')}
-            </p>
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl">
+              {t('home.services.services-title')}
+            </h2>
+            <p className="text-muted text-lg">{t('home.services.services-subtitle')}</p>
           </div>
 
-          <div className="animate-in fade-in slide-in-from-bottom-8 grid grid-cols-1 gap-6 duration-700 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             <FeatureCard
               icon={<Stethoscope className="h-6 w-6" />}
               title={t('home.services.service1-title')}
@@ -162,7 +188,7 @@ export default function Home() {
               desc={t('home.services.service4-desc')}
             />
             <FeatureCard
-              icon={<TbDental className="h-6 w-6" />}
+              icon={<Smile className="h-6 w-6" />}
               title={t('home.services.service5-title')}
               desc={t('home.services.service5-desc')}
             />
@@ -176,17 +202,17 @@ export default function Home() {
       </section>
 
       {/* Patient Stories */}
-      <PageContainer className="pt-[10rem]">
-        <section className="flex flex-col items-center justify-center">
-          <h2 className="mb-[1rem] text-[2rem] font-[600]">
+      <PageContainer className="py-16 md:py-24">
+        <section className="mb-16 flex flex-col items-center justify-center">
+          <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl">
             {t('home.testimonial.testimonial-title')}
           </h2>
-          <p className="mb-[3rem] max-w-[45rem] text-center text-[1.125rem] font-[300]">
+          <p className="text-muted max-w-2xl text-center text-lg">
             {t('home.testimonial.testimonial-subtitle')}
           </p>
         </section>
 
-        <section className="flex gap-[2rem]">
+        <section className="grid w-full grid-cols-1 gap-8 md:grid-cols-3">
           <TestimonialCard
             name={t('home.testimonial.testimonial-card1-title')}
             comment={t('home.testimonial.testimonial-card1-text')}

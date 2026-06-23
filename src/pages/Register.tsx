@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { useRegisterQuery } from '../services/api/queries/register.query';
 import type { RegisterUser } from '../types';
+import { PageContainer } from '../components/layout/PageContainer';
 
 export default function Page() {
   const { t } = useTranslation();
@@ -36,7 +37,7 @@ export default function Page() {
   };
 
   return (
-    <div className="mx-auto max-w-xl pt-10">
+    <PageContainer className="mx-auto max-w-xl pt-24">
       <div className="flex flex-col gap-1 pb-16">
         <h1 className="text-[32px] font-extrabold">{t('register.hero_title')}</h1>
         <p className="text-faint">{t('register.hero_subtitle')}</p>
@@ -75,6 +76,6 @@ export default function Page() {
           <p className="text-faint mx-auto">By continuing you agree to our Terms & Privacy.</p>
         </div>
       </form>
-    </div>
+    </PageContainer>
   );
 }
