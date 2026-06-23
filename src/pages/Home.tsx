@@ -11,6 +11,8 @@ import { TbDental } from 'react-icons/tb';
 import { IoMdHeart } from 'react-icons/io';
 import { BiPlusMedical } from 'react-icons/bi';
 import { MdAccessTimeFilled } from 'react-icons/md';
+import { TestimonialCard } from '../components/cards/TestimonialCard';
+import { Footer } from '../components/layout/Footer';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -129,47 +131,80 @@ export default function Home() {
       </PageContainer>
 
       {/* Our Services */}
-      <PageContainer>
-        <div>
-          <h2 className="text-[2rem] font-[600]">{t('home.services.services-title')}</h2>
-          <p className="mb-[3rem] text-[1.125rem] font-[300]">
-            {t('home.services.services-subtitle')}
-          </p>
-        </div>
+      <section className="bg-surface-2 pt-[5rem]">
+        <PageContainer>
+          <div>
+            <h2 className="text-[2rem] font-[600]">{t('home.services.services-title')}</h2>
+            <p className="mb-[3rem] text-[1.125rem] font-[300]">
+              {t('home.services.services-subtitle')}
+            </p>
+          </div>
 
-        <div className="animate-in fade-in slide-in-from-bottom-8 grid grid-cols-1 gap-6 duration-700 md:grid-cols-3">
-          <FeatureCard
-            icon={<Stethoscope className="h-6 w-6" />}
-            title={t('home.services.service1-title')}
-            desc={t('home.services.service1-desc')}
+          <div className="animate-in fade-in slide-in-from-bottom-8 grid grid-cols-1 gap-6 duration-700 md:grid-cols-3">
+            <FeatureCard
+              icon={<Stethoscope className="h-6 w-6" />}
+              title={t('home.services.service1-title')}
+              desc={t('home.services.service1-desc')}
+            />
+            <FeatureCard
+              icon={<HeartPulse className="h-6 w-6" />}
+              title={t('home.services.service2-title')}
+              desc={t('home.services.service2-desc')}
+            />
+            <FeatureCard
+              icon={<ClipboardPlus className="h-6 w-6" />}
+              title={t('home.services.service3-title')}
+              desc={t('home.services.service3-desc')}
+            />
+            <FeatureCard
+              icon={<Brain className="h-6 w-6" />}
+              title={t('home.services.service4-title')}
+              desc={t('home.services.service4-desc')}
+            />
+            <FeatureCard
+              icon={<TbDental className="h-6 w-6" />}
+              title={t('home.services.service5-title')}
+              desc={t('home.services.service5-desc')}
+            />
+            <FeatureCard
+              icon={<Bone className="h-6 w-6" />}
+              title={t('home.services.service6-title')}
+              desc={t('home.services.service6-desc')}
+            />
+          </div>
+        </PageContainer>
+      </section>
+
+      {/* Patient Stories */}
+      <PageContainer className="pt-[10rem]">
+        <section className="flex flex-col items-center justify-center">
+          <h2 className="mb-[1rem] text-[2rem] font-[600]">Patient Stories</h2>
+          <p className="mb-[3rem] max-w-[45rem] text-center text-[1.125rem] font-[300]">
+            Hear from those who have experienced our compassionate care
+          </p>
+        </section>
+
+        <section className="flex gap-[2rem]">
+          <TestimonialCard
+            name="Sarah Jenkins"
+            comment="The care I received at clarity was exceptional. The doctors were attentive and truly listened to my concerns. I felt completely supported throughout my treatment."
+            rating={5}
           />
-          <FeatureCard
-            icon={<HeartPulse className="h-6 w-6" />}
-            title={t('home.services.service2-title')}
-            desc={t('home.services.service2-desc')}
+          <TestimonialCard
+            name="David Chen"
+            comment="The care I received at clarity was exceptional. The doctors were attentive and truly listened to my concerns. I felt completely supported throughout my treatment."
+            rating={5}
           />
-          <FeatureCard
-            icon={<ClipboardPlus className="h-6 w-6" />}
-            title={t('home.services.service3-title')}
-            desc={t('home.services.service3-desc')}
+          <TestimonialCard
+            name="Emily Rodriguez"
+            comment="The care I received at clarity was exceptional. The doctors were attentive and truly listened to my concerns. I felt completely supported throughout my treatment."
+            rating={5}
           />
-          <FeatureCard
-            icon={<Brain className="h-6 w-6" />}
-            title={t('home.services.service4-title')}
-            desc={t('home.services.service4-desc')}
-          />
-          <FeatureCard
-            icon={<TbDental className="h-6 w-6" />}
-            title={t('home.services.service5-title')}
-            desc={t('home.services.service5-desc')}
-          />
-          <FeatureCard
-            icon={<Bone className="h-6 w-6" />}
-            title={t('home.services.service6-title')}
-            desc={t('home.services.service6-desc')}
-          />
-        </div>
+        </section>
       </PageContainer>
+
+      {/* Footer */}
+      <Footer />
     </>
   );
 }

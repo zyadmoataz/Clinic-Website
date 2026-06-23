@@ -12,8 +12,9 @@ export function Navbar() {
   return (
     <header className="border-border bg-surface sticky top-0 z-40 w-full border-b shadow-sm">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <div className="flex items-center gap-2">
-          <span className="text-primary text-xl font-bold">ClinicLogo</span>
+        <div className="text-text flex items-center gap-2 font-bold">
+          <span className="text-primary">✦</span>
+          <span>{t('common.appName', 'Clarity Clinic')}</span>
         </div>
         <nav className="hidden items-center gap-6 md:flex">
           <a
