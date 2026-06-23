@@ -2,8 +2,6 @@
 // OWNER: Othman
 // PURPOSE: Renders testimonials on the home landing page
 // ==========================================
-import React from 'react';
-
 interface TestimonialCardProps {
   name: string;
   comment: string;
@@ -12,7 +10,7 @@ interface TestimonialCardProps {
 
 export function TestimonialCard({ name, comment, rating }: TestimonialCardProps) {
   return (
-    <div className="card border-border bg-surface duration-normal border p-6 shadow-sm transition-all">
+    <div className="card border-border bg-surface duration-normal rounded-[.5rem] border p-6 shadow-sm transition-all">
       <div className="text-warning mb-3 flex items-center gap-1">
         {Array.from({ length: 5 }).map((_, i) => (
           <span key={i} className={i < rating ? 'text-warning' : 'text-border'}>

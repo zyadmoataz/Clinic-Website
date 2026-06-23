@@ -11,6 +11,8 @@ interface PageContainerProps {
 
 export function PageContainer({ children, className = '' }: PageContainerProps) {
   return (
-    <div className={`container mx-auto px-4 py-8 md:py-12 lg:py-16 ${className}`}>{children}</div>
+    <div className={`container mx-auto px-4 pb-8 md:pb-12 lg:pb-[10rem] ${className}`}>
+      {children}
+    </div>
   );
 }
