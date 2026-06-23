@@ -19,7 +19,6 @@ import {
   Activity
 } from 'lucide-react';
 import { TestimonialCard } from '../components/cards/TestimonialCard';
-import { Footer } from '../components/layout/Footer';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -230,9 +229,6 @@ export default function Home() {
           />
         </section>
       </PageContainer>
-
-      {/* Footer */}
-      <Footer />
     </>
   );
 }

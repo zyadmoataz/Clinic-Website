@@ -4,33 +4,32 @@
 // ==========================================
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { ThemeToggle, LanguageToggle } from '../ui';
 import { useTranslation } from 'react-i18next';
 import { useLogoutQuery } from '../../services/api/queries/logout.query';
 import { User, Menu, X } from 'lucide-react';
+import { useAuthStore } from '../../store/authStore';
 
 export function Navbar() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const { mutate: logoutUser } = useLogoutQuery();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const isLoggedIn = !!localStorage.getItem('auth_token');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: '/', label: t('navbar.home') },
-    { href: '/doctors', label: t('navbar.doctors') },
-    { href: '/my-prescriptions', label: t('navbar.prescriptions') },
-    { href: '/my-appointments', label: t('navbar.appointments') }
+    { name: t('navbar.home'), path: '/' },
+    { name: t('navbar.doctors'), path: '/doctors' },
+    { name: t('navbar.prescriptions'), path: '/my-prescriptions' },
+    { name: t('navbar.appointments'), path: '/my-appointments' }
   ];
 
-  const closeMobileMenu = () => setMobileMenuOpen(false);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
   return (
     <header className="bg-surface/80 border-border sticky top-0 z-40 w-full border-b shadow-[0_4px_30px_rgba(0,0,0,0.03)] backdrop-blur-xl transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)]">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        {/* Logo */}
         <div
           className="text-text flex cursor-pointer items-center gap-2 font-bold transition-opacity hover:opacity-80"
           onClick={() => navigate('/')}
@@ -39,27 +38,30 @@ export function Navbar() {
           <span className="text-xl">{t('common.appName', 'Clarity Clinic')}</span>
         </div>
 
-        {/* Desktop Nav */}
-        <nav className="hidden items-center gap-6 lg:flex">
-          {navLinks.map(({ href, label }) => (
-            <a
-              key={href}
-              href={href}
-              className="text-muted hover:text-primary text-sm font-medium transition-colors"
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-6 md:flex">
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className={`text-sm font-medium transition-colors ${
+                pathname === link.path ? 'text-primary' : 'text-muted hover:text-primary'
+              }`}
             >
-              {label}
-            </a>
+              {link.name}
+            </Link>
           ))}
         </nav>
 
-        {/* Desktop Right Controls */}
-        <div className="hidden items-center gap-5 lg:flex">
-          <div className="flex items-center gap-2">
+        {/* Right Actions */}
+        <div className="flex items-center gap-3 md:gap-5">
+          <div className="hidden items-center gap-2 sm:flex">
             <ThemeToggle />
             <LanguageToggle />
           </div>
-          <div className="flex items-center gap-2">
-            {isLoggedIn ? (
+
+          <div className="hidden items-center gap-2 md:flex">
+            {isAuthenticated ? (
               <div className="group relative">
                 <button
                   className="bg-surface-2 text-primary hover:bg-primary/10 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 active:scale-[0.92]"
@@ -67,6 +69,7 @@ export function Navbar() {
                 >
                   <User size={22} />
                 </button>
+
                 {/* Dropdown Menu */}
                 <div className="border-border bg-surface/95 invisible absolute top-full right-0 z-50 mt-3 flex w-56 origin-top-right scale-95 flex-col rounded-3xl border p-2.5 opacity-0 shadow-[0_16px_40px_rgba(0,0,0,0.08)] backdrop-blur-xl transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:visible group-hover:scale-100 group-hover:opacity-100">
                   <div className="border-border mb-2 border-b px-3 pt-2 pb-3">
@@ -87,106 +90,113 @@ export function Navbar() {
                 </div>
               </div>
             ) : (
-              <>
+              <div className="flex items-center">
                 <button
-                  className="text-primary cursor-pointer text-sm font-medium"
+                  className="text-primary cursor-pointer text-sm font-medium transition-opacity hover:opacity-80"
                   onClick={() => navigate('/login')}
                 >
                   {t('navbar.sign_in')}
                 </button>
-                <div className="bg-border mx-2 h-6 w-px" />
+                <div className="bg-border mx-4 h-5 w-px"></div>
                 <button
-                  className="text-primary cursor-pointer text-sm font-medium"
+                  className="text-primary cursor-pointer text-sm font-medium transition-opacity hover:opacity-80"
                   onClick={() => navigate('/register')}
                 >
                   {t('navbar.register')}
                 </button>
-              </>
+              </div>
             )}
           </div>
-        </div>
 
-        {/* Mobile: Toggles + Hamburger */}
-        <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle />
-          <LanguageToggle />
+          {/* Mobile Menu Toggle */}
           <button
-            className="bg-surface-2 text-primary hover:bg-primary/10 flex h-10 w-10 items-center justify-center rounded-full transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.92]"
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-            aria-label="Toggle menu"
+            className="text-text hover:bg-surface-2 -mr-2 flex items-center justify-center rounded-full p-2 transition-colors md:hidden"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Panel */}
+      {/* Mobile Menu Sheet */}
       <div
-        className={`border-border bg-surface/95 overflow-hidden backdrop-blur-xl transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden ${
-          mobileMenuOpen ? 'max-h-[500px] border-t opacity-100' : 'max-h-0 opacity-0'
+        className={`overflow-hidden transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${
+          isMobileMenuOpen
+            ? 'border-border max-h-[400px] border-b opacity-100'
+            : 'max-h-0 opacity-0'
         }`}
       >
-        <nav className="container mx-auto flex flex-col gap-1 px-4 py-3">
-          {navLinks.map(({ href, label }) => (
-            <a
-              key={href}
-              href={href}
-              onClick={closeMobileMenu}
-              className="text-text hover:bg-surface-2 hover:text-primary rounded-2xl px-4 py-3 text-sm font-medium transition-all duration-[250ms]"
+        <div className="bg-surface/95 flex flex-col space-y-2 px-4 py-4 backdrop-blur-xl">
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`rounded-2xl p-3 text-base font-semibold transition-colors ${
+                pathname === link.path
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-text hover:bg-surface-2'
+              }`}
             >
-              {label}
-            </a>
+              {link.name}
+            </Link>
           ))}
 
-          {/* Divider */}
-          <div className="bg-border my-2 h-px w-full" />
+          <div className="bg-border my-2 h-px w-full"></div>
 
-          {/* Auth Buttons */}
-          {isLoggedIn ? (
-            <>
-              <button
-                className="text-text hover:bg-surface-2 hover:text-primary flex items-center rounded-2xl px-4 py-3 text-left text-sm font-semibold transition-all duration-[250ms]"
-                onClick={() => {
-                  navigate('/profile');
-                  closeMobileMenu();
-                }}
-              >
-                <User size={16} className="mr-2" />
-                {t('navbar.profile')}
-              </button>
-              <button
-                className="text-danger hover:bg-danger/10 flex items-center rounded-2xl px-4 py-3 text-left text-sm font-semibold transition-all duration-[250ms]"
-                onClick={() => {
-                  logoutUser();
-                  closeMobileMenu();
-                }}
-              >
-                {t('navbar.sign_out')}
-              </button>
-            </>
-          ) : (
-            <div className="flex gap-3 px-4 py-2">
-              <button
-                className="text-primary border-primary flex-1 rounded-2xl border py-2.5 text-sm font-semibold transition-all duration-[250ms] hover:opacity-80 active:scale-[0.97]"
-                onClick={() => {
-                  navigate('/login');
-                  closeMobileMenu();
-                }}
-              >
-                {t('navbar.sign_in')}
-              </button>
-              <button
-                className="bg-primary flex-1 rounded-2xl py-2.5 text-sm font-semibold text-white transition-all duration-[250ms] hover:opacity-90 active:scale-[0.97]"
-                onClick={() => {
-                  navigate('/register');
-                  closeMobileMenu();
-                }}
-              >
-                {t('navbar.register')}
-              </button>
+          <div className="flex items-center justify-between p-2">
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              <LanguageToggle />
             </div>
-          )}
-        </nav>
+
+            <div className="flex items-center gap-3">
+              {isAuthenticated ? (
+                <>
+                  <button
+                    className="text-text bg-surface-2 rounded-full px-4 py-2 text-sm font-bold"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      navigate('/profile');
+                    }}
+                  >
+                    Profile
+                  </button>
+                  <button
+                    className="bg-danger rounded-full px-4 py-2 text-sm font-bold text-white"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      logoutUser();
+                    }}
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className="text-text bg-surface-2 rounded-full px-4 py-2 text-sm font-bold"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      navigate('/login');
+                    }}
+                  >
+                    Login
+                  </button>
+                  <button
+                    className="bg-primary rounded-full px-4 py-2 text-sm font-bold text-white"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      navigate('/register');
+                    }}
+                  >
+                    Register
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </header>
   );
