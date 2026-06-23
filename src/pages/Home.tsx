@@ -5,9 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '../components/ui';
 import { FeatureCard } from '../components/cards/FeatureCard';
 import { PageContainer } from '../components/layout/PageContainer';
-import { Bone, Brain, ClipboardPlus, HeartPulse, Stethoscope } from 'lucide-react';
+import { Bone, Brain, ClipboardPlus, HeartPulse, Microscope, Stethoscope } from 'lucide-react';
 import { RiVerifiedBadgeLine } from 'react-icons/ri';
 import { TbDental } from 'react-icons/tb';
+import { IoMdHeart } from 'react-icons/io';
+import { BiPlusMedical } from 'react-icons/bi';
+import { MdAccessTimeFilled } from 'react-icons/md';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -52,7 +55,7 @@ export default function Home() {
       </PageContainer>
 
       {/* Metrics */}
-      <section className="bg-border border-y-border-strong mb-16 border-y py-[2rem]">
+      <section className="bg-border border-y-border-strong mb-[10rem] border-y py-[2rem]">
         <div className="item-center container mx-auto flex justify-between px-[1rem]">
           <div className="border-r-border-strong flex flex-1 flex-col items-center justify-center border-r">
             <p className="text-primary text-[2.5rem] font-[600]">{t('home.metrics.patients')}</p>
@@ -76,6 +79,54 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Why Choose Us */}
+      <PageContainer>
+        <section className="flex flex-col items-center justify-center">
+          <h2 className="mb-[1rem] text-[2rem] font-[600]">{t('home.whyUs.whyUs-title')}</h2>
+          <p className="mb-[3rem] max-w-[45rem] text-center text-[1.125rem] font-[300]">
+            {t('home.whyUs.whyUs-subtitle')}
+          </p>
+        </section>
+
+        <section className="flex flex-col gap-[2rem]">
+          <div className="flex items-stretch justify-between gap-[2rem]">
+            <div className="flex flex-2 flex-col gap-[1rem] rounded-[.3rem] p-[2rem] shadow-sm">
+              <div className="bg-primary-soft w-fit rounded-full p-[1rem]">
+                <Microscope className="text-primary" />
+              </div>
+              <h3 className="text-[1.25rem] font-[600]">{t('home.whyUs.whyUs-card1-title')}</h3>
+              <p className="text-muted max-w-[33rem]">{t('home.whyUs.whyUs-card1-text')}</p>
+            </div>
+
+            <div className="flex flex-1 flex-col gap-[1rem] rounded-[.3rem] p-[2rem] shadow-sm">
+              <div className="bg-success-soft w-fit rounded-full p-[1rem]">
+                <IoMdHeart className="text-success text-[24px]" />
+              </div>
+              <h3 className="text-[1.25rem] font-[600]">{t('home.whyUs.whyUs-card2-title')}</h3>
+              <p className="text-muted max-w-[20rem]">{t('home.whyUs.whyUs-card2-text')}</p>
+            </div>
+          </div>
+
+          <div className="flex items-stretch justify-between gap-[2rem]">
+            <div className="flex flex-1 flex-col gap-[1rem] rounded-[.3rem] p-[2rem] shadow-sm">
+              <div className="bg-warning-soft-soft w-fit rounded-full p-[1rem]">
+                <MdAccessTimeFilled className="text-warning text-[24px]" />
+              </div>
+              <h3 className="text-[1.25rem] font-[600]">{t('home.whyUs.whyUs-card3-title')}</h3>
+              <p className="text-muted max-w-[20rem]">{t('home.whyUs.whyUs-card3-text')}</p>
+            </div>
+
+            <div className="flex flex-2 flex-col gap-[1rem] rounded-[.3rem] p-[2rem] shadow-sm">
+              <div className="bg-primary-soft w-fit rounded-full p-[1rem]">
+                <BiPlusMedical className="text-primary text-[24px]" />
+              </div>
+              <h3 className="text-[1.25rem] font-[600]">{t('home.whyUs.whyUs-card4-title')}</h3>
+              <p className="text-muted max-w-[33rem]">{t('home.whyUs.whyUs-card4-text')}</p>
+            </div>
+          </div>
+        </section>
+      </PageContainer>
 
       {/* Our Services */}
       <PageContainer>

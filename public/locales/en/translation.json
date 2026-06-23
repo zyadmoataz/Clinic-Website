@@ -42,6 +42,18 @@
       "service5-desc": "Comprehensive dental services from routine cleanings to complex procedure.",
       "service6-title": "Orthopedics",
       "service6-desc": "Treatment for musculoskeletal injuries and conditions."
+    },
+    "whyUs": {
+      "whyUs-title": "Why Choose Us",
+      "whyUs-subtitle": "We combine advanced medical technology with a compassionate approach to deliver the best possible outcomes for our patients",
+      "whyUs-card1-title": "Advanced Technology",
+      "whyUs-card1-text": "Equipped with state-of-the-art medical equipment for accurate diagnostics and effective treatments, ensuring you receive the highest standard of care.",
+      "whyUs-card2-title": "Compassionate Care",
+      "whyUs-card2-text": "Our dedicated team treats every patient like family, prioritizing your comfort and well-being.",
+      "whyUs-card3-title": "24/7 Support",
+      "whyUs-card3-text": "Round-the-clock medical assistance and consultation for your peace of mind.",
+      "whyUs-card4-title": "Advanced Technology",
+      "whyUs-card4-text": "Equipped with state-of-the-art medical equipment for accurate diagnostics and effective treatments, ensuring you receive the highest standard of care."
     }
   }
 }
