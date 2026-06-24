@@ -3,8 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RootLayout } from './components/layout/RootLayout';
 import { Spinner } from './components/ui/Spinner';
 import { Toaster } from 'react-hot-toast';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ProtectedRoute } from './utils/ProtectedRoute';
+import NotFound from './pages/NotFound';
 
-// Lazy-loaded routes for code splitting and placeholder structure
+const queryClient = new QueryClient();
+
 const Home = lazy(() => import('./pages/Home'));
 const Login = lazy(() =>
   import('./pages/Login').catch(() => ({ default: () => <div>Login Page Shell</div> }))
@@ -31,16 +35,8 @@ const BookingConfirmation = lazy(() =>
     default: () => <div>Booking Success Page Shell</div>
   }))
 );
-const MyAppointments = lazy(() =>
-  import('./pages/MyAppointments').catch(() => ({
-    default: () => <div>My Appointments Page Shell</div>
-  }))
-);
-const MyPrescriptions = lazy(() =>
-  import('./pages/MyPrescriptions').catch(() => ({
-    default: () => <div>My Prescriptions Page Shell</div>
-  }))
-);
+const MyAppointments = lazy(() => import('./pages/MyAppointments'));
+const MyPrescriptions = lazy(() => import('./pages/MyPrescriptions'));
 
 function LoadingFallback() {
   return (
@@ -52,33 +48,29 @@ function LoadingFallback() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Toaster position="top-right" />
-      <Suspense fallback={<LoadingFallback />}>
-        <Routes>
-          <Route element={<RootLayout />}>
-            {/* Othman */}
-            <Route path="/" element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
-
-            {/* Zyad */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-
-            {/* Omar */}
-            <Route path="/doctors" element={<DoctorsList />} />
-            <Route path="/doctors/:id" element={<DoctorDetail />} />
-
-            {/* Doaa */}
-            <Route path="/booking" element={<Booking />} />
-            <Route path="/booking/confirmation" element={<BookingConfirmation />} />
-
-            {/* Helda */}
-            <Route path="/my-appointments" element={<MyAppointments />} />
-            <Route path="/my-prescriptions" element={<MyPrescriptions />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Toaster position="top-right" />
+        <Suspense fallback={<LoadingFallback />}>
+          <Routes>
+            <Route element={<RootLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/doctors" element={<DoctorsList />} />
+                <Route path="/doctors/:id" element={<DoctorDetail />} />
+                <Route path="/booking" element={<Booking />} />
+                <Route path="/booking/confirmation" element={<BookingConfirmation />} />
+                <Route path="/my-appointments" element={<MyAppointments />} />
+                <Route path="/my-prescriptions" element={<MyPrescriptions />} />
+              </Route>
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
