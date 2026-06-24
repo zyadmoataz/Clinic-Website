@@ -9,7 +9,6 @@ import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
 
-// Lazy-loaded routes for code splitting and placeholder structure
 const Home = lazy(() => import('./pages/Home'));
 const Login = lazy(() =>
   import('./pages/Login').catch(() => ({ default: () => <div>Login Page Shell</div> }))
@@ -36,16 +35,8 @@ const BookingConfirmation = lazy(() =>
     default: () => <div>Booking Success Page Shell</div>
   }))
 );
-const MyAppointments = lazy(() =>
-  import('./pages/MyAppointments').catch(() => ({
-    default: () => <div>My Appointments Page Shell</div>
-  }))
-);
-const MyPrescriptions = lazy(() =>
-  import('./pages/MyPrescriptions').catch(() => ({
-    default: () => <div>My Prescriptions Page Shell</div>
-  }))
-);
+const MyAppointments = lazy(() => import('./pages/MyAppointments'));
+const MyPrescriptions = lazy(() => import('./pages/MyPrescriptions'));
 
 function LoadingFallback() {
   return (
