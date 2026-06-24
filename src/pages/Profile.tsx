@@ -15,7 +15,6 @@ export default function Page() {
   return (
     <>
       <PageContainer>
-        {/* Header: avatar + edit button */}
         <section className="mt-20 flex items-center justify-between">
           <div className="relative">
             <img
@@ -28,7 +27,6 @@ export default function Page() {
           <Button variant="ghost">Edit</Button>
         </section>
 
-        {/* Info fields */}
         <section className="border-border bg-surface mt-8 rounded-2xl border shadow-sm">
           <div className="border-border flex items-center justify-between border-b px-6 py-4">
             <span className="text-sm text-gray-500">Name</span>
