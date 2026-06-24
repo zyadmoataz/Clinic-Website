@@ -51,6 +51,20 @@
       "no-show": "Missed",
       "pending": "Pending"
     }
+  },
+  
+  "prescriptions": {
+    "title": "Prescriptions & history",
+    "loading": "Loading history...",
+    "error": "Failed to load history",
+    "no_data": "No prescriptions found",
+    "no_data_desc": "Your prescriptions will appear here once confirmed by the doctor.",
+    "visit_on": "Visit on",
+    "diagnosis": "Diagnosis",
+    "medication": "MEDICATION",
+    "dosage": "DOSAGE",
+    "duration": "DURATION"
   }
-
 }
+
+

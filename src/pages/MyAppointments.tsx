@@ -1,72 +1,18 @@
 import { useState } from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { apiClient } from '../services/api/apiClient';
-import { showToast } from '../lib/toast';
 import { Spinner } from '../components/ui/Spinner';
 import { LoadingState } from '../components/feedback/LoadingState';
 import { EmptyState } from '../components/feedback/EmptyState';
 import { ErrorState } from '../components/feedback/ErrorState';
 import { PageContainer } from '../components/layout/PageContainer';
 import { AppointmentCard } from '../components/cards/AppointmentCard';
-import { AxiosError } from 'axios';
-
-interface Prescription {
-  drug: string;
-  dosage: string;
-  duration: string;
-}
-interface Visit {
-  id: number;
-  appointmentId: number;
-  diagnosis: string;
-  notes: string;
-  createdAt: string;
-  editableUntil: string;
-  isEditable: boolean;
-  prescription: Prescription[];
-}
-interface Payment {
-  id: number;
-  amount: number;
-  method: string;
-  status: string;
-  transactionRef: string;
-  paidAt: string;
-}
-interface Appointment {
-  id: number;
-  patientId: number;
-  patientName: string;
-  doctorId: string;
-  doctorName: string;
-  serviceId: number;
-  serviceName: string;
-  date: string;
-  startTime: string;
-  endTime: string;
-  mode: string;
-  status: string;
-  paymentMethod: string;
-  meetingLink: string;
-  price: number;
-  createdByRole: string;
-  createdAt: string;
-  payment: Payment;
-  visit: Visit | null;
-}
-
-type FilterStatus = 'all' | 'confirmed' | 'arrived' | 'completed' | 'cancelled' | 'NoShow';
-type FilterWhen = 'upcoming' | 'past';
+import type { FilterWhen, FilterStatus } from '../services/resources/appointment.api';
+import { useAppointments, useCancelAppointment } from '../services/queries/appointment.query';
 
 interface StatusDropdownProps {
   value: FilterStatus;
   onChange: (v: FilterStatus) => void;
   t: (key: string) => string;
-}
-
-interface ApiErrorData {
-  message?: string;
 }
 
 function StatusDropdown({ value, onChange, t }: StatusDropdownProps) {
@@ -125,13 +71,20 @@ function StatusDropdown({ value, onChange, t }: StatusDropdownProps) {
 }
 
 export default function MyAppointments() {
-  const queryClient = useQueryClient();
   const { t, i18n } = useTranslation();
   const [whenFilter, setWhenFilter] = useState<FilterWhen>('upcoming');
   const [statusFilter, setStatusFilter] = useState<FilterStatus>('all');
   const [openId, setOpenId] = useState<number | null>(null);
 
   const isRtl = i18n.language === 'ar';
+
+  const {
+    data: appointments,
+    isLoading,
+    isError,
+    refetch
+  } = useAppointments(whenFilter, statusFilter);
+  const cancelMutation = useCancelAppointment(() => setOpenId(null));
 
   const translateTag = (tag: string | undefined): string => {
     if (!tag) return '';
@@ -174,34 +127,6 @@ export default function MyAppointments() {
       return dateStr;
     }
   };
-
-  const {
-    data: appointments,
-    isLoading,
-    isError,
-    refetch
-  } = useQuery<Appointment[]>({
-    queryKey: ['myAppointments', whenFilter, statusFilter],
-    queryFn: async () => {
-      const params: Record<string, string> = { when: whenFilter };
-      if (statusFilter !== 'all') params.status = statusFilter;
-      const response = await apiClient.get('/api/me/appointments', { params });
-      return response.data;
-    }
-  });
-
-  const cancelMutation = useMutation({
-    mutationFn: (id: number) => apiClient.put(`/api/appointments/${id}/cancel`, {}),
-    onSuccess: () => {
-      showToast.success(t('appointments.cancel_success'));
-      queryClient.invalidateQueries({ queryKey: ['myAppointments'] });
-      setOpenId(null);
-    },
-    onError: (error: AxiosError<ApiErrorData>) => {
-      const serverMessage = error?.response?.data?.message || t('appointments.cancel_error');
-      showToast.error(serverMessage);
-    }
-  });
 
   const handleCancel = (id: number) => {
     if (window.confirm(t('appointments.cancel_confirm'))) {
