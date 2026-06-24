@@ -13,8 +13,11 @@ export interface RegisterUser {
 export interface User {
   id: string;
   email: string;
-  displayName: string;
+  name: string;
   role: 'patient' | 'doctor' | 'admin' | 'receptionist';
+  phone: string;
+  avatarUrl: string;
+  isActive: boolean;
 }
 
 export interface Doctor {
