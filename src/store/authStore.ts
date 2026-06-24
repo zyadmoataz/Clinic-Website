@@ -1,22 +1,22 @@
 import { create } from 'zustand';
-import { type UserDto } from '../types';
+import { type User } from '../types';
 
 interface AuthState {
-  user: UserDto | null;
+  user: User | null;
   isAuthenticated: boolean;
-  login: (userData: UserDto, token: string) => void;
+  login: (userData: User, token: string) => void;
   logout: () => void;
 }
 
-export const useAuthStore = create<AuthState>(() => ({
+export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   isAuthenticated: false,
-  login: () => {
-    // TODO: Team should implement saving token to localStorage and updating state
-    console.log('Login called. Team needs to implement this.');
+  login: (userData, token) => {
+    localStorage.setItem('auth_token', token);
+    set({ user: userData, isAuthenticated: true });
   },
   logout: () => {
-    // TODO: Team should implement removing token from localStorage and updating state
-    console.log('Logout called. Team needs to implement this.');
+    localStorage.removeItem('auth_token');
+    set({ user: null, isAuthenticated: false });
   }
 }));
