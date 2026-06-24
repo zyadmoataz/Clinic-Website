@@ -1,5 +1,4 @@
 import axios from 'axios';
-import type { MedicalVisit } from '../../types';
 
 // Base API URL from your Swagger documentation
 const BASE_URL = 'https://api.clinic.kaessam.codes';
@@ -32,7 +31,3 @@ apiClient.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-export const getPrescriptions = async (): Promise<MedicalVisit[]> => {
-  const response = await apiClient.get<MedicalVisit[]>('/api/me/prescriptions');
-  return response.data;
-};

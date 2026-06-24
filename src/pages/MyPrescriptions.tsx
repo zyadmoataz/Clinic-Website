@@ -1,14 +1,15 @@
-import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { getPrescriptions } from '../services/api/apiClient';
 import { LoadingState } from '../components/feedback/LoadingState';
 import { EmptyState } from '../components/feedback/EmptyState';
 import { ErrorState } from '../components/feedback/ErrorState';
 import { PageContainer } from '../components/layout/PageContainer';
+import { usePrescriptions } from '../services/queries/prescriptions.query';
 
 export default function MyPrescriptions() {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === 'ar';
+
+  const { data: visits, isLoading, isError, refetch } = usePrescriptions();
 
   const toLocalizedNumbers = (input: string | number) => {
     if (input == null) return '';
@@ -33,16 +34,6 @@ export default function MyPrescriptions() {
       return dateStr;
     }
   };
-
-  const {
-    data: visits,
-    isLoading,
-    isError,
-    refetch
-  } = useQuery({
-    queryKey: ['myPrescriptions'],
-    queryFn: getPrescriptions
-  });
 
   return (
     <PageContainer>
