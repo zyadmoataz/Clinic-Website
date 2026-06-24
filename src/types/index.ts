@@ -15,7 +15,7 @@ export interface User {
   email: string;
   name: string;
   role: 'patient' | 'doctor' | 'admin' | 'receptionist';
-  phone: number;
+  phone: string;
   avatarUrl: string;
   isActive: boolean;
 }

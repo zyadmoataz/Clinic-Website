@@ -1,11 +1,6 @@
+// mutations/updateProfile.mutation.ts
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { apiClient } from '../apiClient';
-import type { User } from '../../../types';
-
-const updateProfileAPI = async (data: Partial<User>): Promise<User> => {
-  const response = await apiClient.patch<User>('/auth/me', data);
-  return response.data;
-};
+import { updateProfileAPI } from '../resources/updateProfile.api';
 
 export const useUpdateProfileMutation = () => {
   const queryClient = useQueryClient();
