@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base API URL from your Swagger documentation
-const BASE_URL = 'https://api.clinic.kaessam.codes';
+const BASE_URL = 'https://api.clinic.kaessam.codes/api';
 
 export const apiClient = axios.create({
   baseURL: BASE_URL,
