@@ -184,7 +184,11 @@
     "summaryService": "الخدمة",
     "summaryDate": "التاريخ",
     "summaryTimeSlot": "الوقت",
-    "summaryTotal": "المبلغ الإجمالي"
+    "summaryTotal": "المبلغ الإجمالي",
+    "book_success": "تم حجز الموعد بنجاح.",
+    "book_error": "تعذر حجز الموعد.",
+    "payment_success": "تم الدفع بنجاح.",
+    "payment_error": "فشلت عملية الدفع."
   },
   "common": {
     "error": "خطأ",

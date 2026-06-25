@@ -184,7 +184,11 @@
     "summaryService": "Service",
     "summaryDate": "Date",
     "summaryTimeSlot": "Time Slot",
-    "summaryTotal": "Total Amount"
+    "summaryTotal": "Total Amount",
+    "book_success": "Appointment booked successfully.",
+    "book_error": "Could not book appointment.",
+    "payment_success": "Payment completed successfully.",
+    "payment_error": "Payment failed."
   },
   "common": {
     "error": "Error",
