@@ -51,3 +51,19 @@ export interface Appointment {
   paymentStatus: 'Paid' | 'Pending';
   mode: 'online' | 'cash';
 }
+export interface PrescriptionItem {
+  drug: string;
+  dosage: string;
+  duration: string;
+}
+
+export interface MedicalVisit {
+  id: number;
+  appointmentId: number;
+  diagnosis: string;
+  notes: string;
+  createdAt: string;
+  editableUntil: string;
+  isEditable: boolean;
+  prescription: PrescriptionItem[];
+}
