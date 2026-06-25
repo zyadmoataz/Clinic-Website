@@ -77,8 +77,8 @@ export function AppointmentCard({
         </div>
 
         <div className="mt-1 flex shrink-0 items-center gap-1.5">
-          <span className={`h-2 w-2 rounded-full ${STATUS_DOT[key] ?? 'bg-gray-400'}`} />
-          <span className={`text-sm font-medium ${STATUS_TEXT[key] ?? 'text-gray-500'}`}>
+          <span className={`h-2 w-2 rounded-full ${STATUS_DOT[key] ?? 'bg-muted'}`} />
+          <span className={`text-sm font-medium ${STATUS_TEXT[key] ?? 'text-muted'}`}>
             {statusLabel}
           </span>
         </div>

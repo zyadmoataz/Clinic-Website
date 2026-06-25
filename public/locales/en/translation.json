@@ -114,7 +114,9 @@
     "forgot": "Forgot?",
     "email_validation": "Invalid email address",
     "password_validation": "Password must be at least 8 characters",
-    "logout": "You have been logged out"
+    "logout": "You have been logged out",
+    "email_placeholder": "you@email.com",
+    "password_placeholder": "••••••••"
   },
   "register": {
     "success_register": "You have successfully registered",
@@ -132,7 +134,11 @@
     "email_already_registered": "This email is already registered. Sign in instead?",
     "password_validation": "Password must be at least 8 characters",
     "full_name_validation": "Full name must be at least 3 characters",
-    "terms_privacy": "By continuing you agree to our Terms & Privacy."
+    "terms_privacy": "By continuing you agree to our Terms & Privacy.",
+    "name_placeholder": "e.g. Sara Al-Amri",
+    "phone_placeholder": "01012345678",
+    "email_placeholder": "you@email.com",
+    "password_placeholder": "••••••••"
   },
   "profile": {
     "edit": "Edit",
@@ -144,7 +150,9 @@
     "save": "Save",
     "saving": "saving",
     "name_required": "Name is required",
-    "phone_required": "Phone is required"
+    "phone_required": "Phone is required",
+    "update_success": "Your changes have been saved successfully.",
+    "update_error": "Something went wrong. Please try again."
   },
   "prescriptions": {
     "title": "Prescriptions",

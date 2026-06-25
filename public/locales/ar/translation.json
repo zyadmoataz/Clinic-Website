@@ -114,7 +114,9 @@
     "forgot": "هل نسيت كلمة المرور؟",
     "email_validation": "عنوان البريد الإلكتروني غير صالح",
     "password_validation": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
-    "logout": "لقد قمت بتسجيل الخروج"
+    "logout": "لقد قمت بتسجيل الخروج",
+    "email_placeholder": "you@email.com",
+    "password_placeholder": "••••••••"
   },
   "register": {
     "success_register": "لقد قمت بالتسجيل بنجاح",
@@ -132,7 +134,11 @@
     "email_already_registered": "هذا البريد الإلكتروني مسجل بالفعل. هل تريد تسجيل الدخول بدلاً من ذلك؟",
     "password_validation": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
     "full_name_validation": "يجب أن يتكون الاسم الكامل من 3 أحرف على الأقل",
-    "terms_privacy": "بالمتابعة، فإنك توافق على الشروط والخصوصية الخاصة بنا."
+    "terms_privacy": "بالمتابعة، فإنك توافق على الشروط والخصوصية الخاصة بنا.",
+    "name_placeholder": "مثال: سارة العمري",
+    "phone_placeholder": "01012345678",
+    "email_placeholder": "you@email.com",
+    "password_placeholder": "••••••••"
   },
   "profile": {
     "edit": "تعديل",
@@ -144,7 +150,9 @@
     "save": "حفظ",
     "saving": "جاري الحفظ",
     "name_required": "الاسم مطلوب",
-    "phone_required": "الهاتف مطلوب"
+    "phone_required": "الهاتف مطلوب",
+    "update_success": "تم حفظ التغييرات بنجاح.",
+    "update_error": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
   },
   "prescriptions": {
     "title": "الوصفات الطبية",

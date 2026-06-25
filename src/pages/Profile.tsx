@@ -18,7 +18,7 @@ export default function Page() {
   const { t } = useTranslation();
   const updateProfileSchema = getUpdateProfileSchema(t);
 
-  const { data: user, isLoading, isError } = useAuthMeQuery(true);
+  const { data: user, isLoading, isError } = useAuthMeQuery();
   const { mutate: updateProfile, isPending } = useUpdateProfileMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -45,10 +45,10 @@ export default function Page() {
     updateProfile(data, {
       onSuccess: () => {
         setIsModalOpen(false);
-        showToast.success('Your changes have been saved.');
+        showToast.success(t('profile.update_success'));
       },
       onError: () => {
-        showToast.error('Something went wrong. Please try again.');
+        showToast.error(t('profile.update_error'));
       }
     });
   };
@@ -56,48 +56,50 @@ export default function Page() {
   return (
     <>
       <PageContainer>
-        {/* Header: avatar + edit button */}
-        <section className="mt-20 flex items-center justify-between">
-          <div className="relative">
-            <img
-              src={user.avatarUrl}
-              alt={`${user.name}'s profile photo`}
-              className="h-24 w-24 rounded-full border-4 border-blue-100 object-cover"
-            />
-            <span className="absolute right-1 bottom-1 h-4 w-4 rounded-full border-2 border-white bg-green-400" />
-          </div>
-          <Button variant="ghost" onClick={handleOpenModal}>
-            {t('profile.edit')}
-          </Button>
-        </section>
+        <div className="mx-auto max-w-xl pt-10 pb-30">
+          {/* Header: avatar + edit button */}
+          <section className="mt-20 flex items-center justify-between">
+            <div className="relative">
+              <img
+                src={user.avatarUrl}
+                alt={`${user.name}'s profile photo`}
+                className="border-primary-soft h-24 w-24 rounded-full border-4 object-cover"
+              />
+              <span className="border-surface bg-success absolute right-1 bottom-1 h-4 w-4 rounded-full border-2" />
+            </div>
+            <Button variant="ghost" onClick={handleOpenModal}>
+              {t('profile.edit')}
+            </Button>
+          </section>
 
-        {/* Info fields */}
-        <section className="mt-8 rounded-2xl border border-gray-100 bg-white shadow-sm">
-          <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4">
-            <span className="text-sm text-gray-500">{t('profile.name')}</span>
-            <span className="text-sm font-medium text-gray-900">{user.name}</span>
-          </div>
-          <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4">
-            <span className="text-sm text-gray-500">{t('profile.email')}</span>
-            <span className="text-sm font-medium text-gray-900">{user.email}</span>
-          </div>
-          <div className="flex items-center justify-between px-6 py-4">
-            <span className="text-sm text-gray-500">{t('profile.phone')}</span>
-            <span className="text-sm font-medium text-gray-900">{user.phone}</span>
-          </div>
-        </section>
+          {/* Info fields */}
+          <section className="bg-surface border-border mt-8 rounded-2xl border shadow-sm">
+            <div className="border-border flex items-center justify-between border-b px-6 py-4">
+              <span className="text-muted text-sm">{t('profile.name')}</span>
+              <span className="text-text text-sm font-medium">{user.name}</span>
+            </div>
+            <div className="border-border flex items-center justify-between border-b px-6 py-4">
+              <span className="text-muted text-sm">{t('profile.email')}</span>
+              <span className="text-text text-sm font-medium">{user.email}</span>
+            </div>
+            <div className="flex items-center justify-between px-6 py-4">
+              <span className="text-muted text-sm">{t('profile.phone')}</span>
+              <span className="text-text text-sm font-medium">{user.phone}</span>
+            </div>
+          </section>
+        </div>
       </PageContainer>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Edit profile">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
           <div className="flex flex-col gap-3">
-            <label className="font-600">{t('profile.profile-image')}</label>
+            <label className="text-text font-semibold">{t('profile.profile-image')}</label>
             <Input type="text" {...register('avatarUrl')} />
             {errors.avatarUrl && <p className="text-danger">{String(errors.avatarUrl.message)}</p>}
           </div>
 
           <div className="flex flex-col gap-3">
-            <label className="font-600">{t('profile.name')}</label>
+            <label className="text-text font-semibold">{t('profile.name')}</label>
             <Input type="text" {...register('displayName')} />
             {errors.displayName && (
               <p className="text-danger">{String(errors.displayName.message)}</p>
@@ -105,7 +107,7 @@ export default function Page() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <label className="font-600">{t('profile.phone')}</label>
+            <label className="text-text font-semibold">{t('profile.phone')}</label>
             <Input type="tel" {...register('phone')} />
             {errors.phone && <p className="text-danger">{String(errors.phone.message)}</p>}
           </div>

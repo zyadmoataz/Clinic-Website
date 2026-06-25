@@ -222,29 +222,27 @@ export default function MyAppointments() {
 
         {selectedAppointment && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
-            <div className="animate-in fade-in zoom-in-95 w-full max-w-md rounded-3xl bg-white p-8 text-gray-900 shadow-xl duration-150">
+            <div className="animate-in fade-in zoom-in-95 bg-surface text-text w-full max-w-md rounded-3xl p-8 shadow-xl duration-150">
               <div className="mb-6">
-                <h2 className="text-xl font-bold text-gray-900">
-                  {t('appointments.details_title')}
-                </h2>
-                <p className="mt-1 text-sm text-gray-500 capitalize">
+                <h2 className="text-text text-xl font-bold">{t('appointments.details_title')}</h2>
+                <p className="text-muted mt-1 text-sm capitalize">
                   {selectedAppointment.doctorName} · {selectedAppointment.serviceName}
                 </p>
               </div>
 
-              <div className="mb-6 space-y-4 rounded-2xl border border-gray-100 bg-white p-5 text-sm">
+              <div className="bg-surface border-border mb-6 space-y-4 rounded-2xl border p-5 text-sm">
                 <div className="flex items-center justify-between py-1">
-                  <span className="font-medium text-gray-400">{t('appointments.date')}</span>
-                  <span className="font-bold text-gray-900">
+                  <span className="text-faint font-medium">{t('appointments.date')}</span>
+                  <span className="text-text font-bold">
                     {formatDate(selectedAppointment.date)}
                   </span>
                 </div>
 
-                <hr className="border-gray-100" />
+                <hr className="border-border" />
 
                 <div className="flex items-center justify-between py-1">
-                  <span className="font-medium text-gray-400">{t('appointments.time')}</span>
-                  <span className="font-bold text-gray-900">
+                  <span className="text-faint font-medium">{t('appointments.time')}</span>
+                  <span className="text-text font-bold">
                     {toLocalizedNumbers(selectedAppointment.startTime)}{' '}
                     {selectedAppointment.endTime
                       ? `– ${toLocalizedNumbers(selectedAppointment.endTime)}`
@@ -252,15 +250,15 @@ export default function MyAppointments() {
                   </span>
                 </div>
 
-                <hr className="border-gray-100" />
+                <hr className="border-border" />
 
                 <div className="flex items-center justify-between py-1">
-                  <span className="font-medium text-gray-400">{t('appointments.status')}</span>
+                  <span className="text-faint font-medium">{t('appointments.status')}</span>
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-bold capitalize ${
                       selectedAppointment.status?.toLowerCase() === 'cancelled'
-                        ? 'border border-red-100 bg-red-50 text-red-600'
-                        : 'border border-emerald-100 bg-emerald-50 text-emerald-700'
+                        ? 'border-danger-soft bg-danger-soft text-danger border'
+                        : 'border-success-soft bg-success-soft text-success border'
                     }`}
                   >
                     ●{' '}
@@ -269,20 +267,20 @@ export default function MyAppointments() {
                   </span>
                 </div>
 
-                <hr className="border-gray-100" />
+                <hr className="border-border" />
 
                 <div className="flex items-center justify-between py-1">
-                  <span className="font-medium text-gray-400">{t('appointments.payment')}</span>
+                  <span className="text-faint font-medium">{t('appointments.payment')}</span>
                   <span className="rounded-lg border border-orange-100 bg-orange-50 px-3 py-0.5 text-xs font-bold text-orange-600 capitalize">
                     {translateTag(selectedAppointment.payment?.status || 'Pending')}
                   </span>
                 </div>
 
-                <hr className="border-gray-100" />
+                <hr className="border-border" />
 
                 <div className="flex items-center justify-between py-1">
-                  <span className="font-medium text-gray-400">{t('appointments.amount')}</span>
-                  <span className="font-bold text-gray-900">
+                  <span className="text-faint font-medium">{t('appointments.amount')}</span>
+                  <span className="text-text font-bold">
                     {toLocalizedNumbers(selectedAppointment.price)} {t('appointments.currency')}
                   </span>
                 </div>
@@ -293,7 +291,7 @@ export default function MyAppointments() {
                   <button
                     onClick={() => handleCancel(selectedAppointment.id)}
                     disabled={cancelMutation.isPending}
-                    className="flex items-center gap-2 rounded-xl border border-red-200 bg-white px-5 py-2.5 text-sm font-semibold text-red-500 shadow-sm transition hover:bg-red-50 disabled:opacity-60"
+                    className="border-danger/30 bg-surface text-danger hover:bg-danger-soft flex items-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-semibold shadow-sm transition disabled:opacity-60"
                   >
                     {cancelMutation.isPending && <Spinner className="h-4 w-4" />}
                     {t('appointments.cancel_btn')}
@@ -303,7 +301,7 @@ export default function MyAppointments() {
                 <button
                   onClick={() => setOpenId(null)}
                   disabled={cancelMutation.isPending}
-                  className="rounded-xl border border-gray-200 bg-white px-6 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50 disabled:opacity-50"
+                  className="border-border-strong bg-surface text-text hover:bg-surface-2 rounded-xl border px-6 py-2.5 text-sm font-semibold shadow-sm transition disabled:opacity-50"
                 >
                   {t('appointments.close_btn')}
                 </button>

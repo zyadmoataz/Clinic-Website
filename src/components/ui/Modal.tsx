@@ -29,14 +29,14 @@ export function Modal({ isOpen, onClose, title, children, className = '' }: Moda
     >
       <div className="pointer-events-none fixed inset-0 bg-black/50" />
       <div
-        className={`relative z-50 w-full max-w-lg rounded-xl bg-white p-6 shadow-lg ${className}`}
+        className={`bg-surface text-text relative z-50 w-full max-w-lg rounded-xl p-6 shadow-lg ${className}`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold">{title}</h2>
           <button
             onClick={onClose}
-            className="cursor-pointer rounded-full p-[.5rem] hover:bg-gray-100"
+            className="hover:bg-surface-2 text-muted hover:text-text cursor-pointer rounded-full p-[.5rem]"
           >
             X
           </button>

@@ -1,9 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
 import { registerAPI } from '../resources/register.api';
-import toast from 'react-hot-toast';
+import { showToast } from '@/lib/toast';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuthStore } from '@/store/authStore';
+import { AxiosError } from 'axios';
+import type { ApiErrorData } from '@/types';
 
 export const useRegisterQuery = () => {
   const { t } = useTranslation();
@@ -12,14 +14,16 @@ export const useRegisterQuery = () => {
     mutationKey: ['register'],
     mutationFn: registerAPI,
     onSuccess: (data) => {
-      toast.success(t('login.success_login'));
+      showToast.success(t('register.success_register'));
       setTimeout(() => {
         useAuthStore.getState().login(data.user, data.token);
         navigate('/');
       }, 2000);
     },
-    onError: (error: Error) => {
-      toast.error(error.message);
+    onError: (error: AxiosError<ApiErrorData>) => {
+      const serverMessage =
+        error?.response?.data?.message || t('register.correct_email_or_password');
+      showToast.error(serverMessage);
     }
   });
 };

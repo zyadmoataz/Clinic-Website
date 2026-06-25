@@ -3,20 +3,13 @@
 // PURPOSE: Doctor Discovery - React Query hooks
 // ==========================================
 import { useQuery } from '@tanstack/react-query';
-import {
-  getDoctorsAPI,
-  getDoctorByIdAPI,
-  getDoctorSlotsAPI,
-  type DoctorSummary,
-  type DoctorDetail,
-  type DoctorFilters
-} from '../resources/doctors.api';
+import { getDoctorsAPI, getDoctorByIdAPI, getDoctorSlotsAPI } from '../resources/doctors.api';
+import type { DoctorSummary, DoctorDetail, DoctorFilters } from '@/types';
 
 export const useDoctorsQuery = (filters: DoctorFilters = {}) => {
   return useQuery<DoctorSummary[]>({
     queryKey: ['doctors', filters],
-    queryFn: () => getDoctorsAPI(filters),
-    staleTime: 1000 * 60 // 1 minute
+    queryFn: () => getDoctorsAPI(filters)
   });
 };
 

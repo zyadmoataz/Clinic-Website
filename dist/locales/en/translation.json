@@ -114,7 +114,9 @@
     "forgot": "Forgot?",
     "email_validation": "Invalid email address",
     "password_validation": "Password must be at least 8 characters",
-    "logout": "You have been logged out"
+    "logout": "You have been logged out",
+    "email_placeholder": "you@email.com",
+    "password_placeholder": "••••••••"
   },
   "register": {
     "success_register": "You have successfully registered",
@@ -132,7 +134,11 @@
     "email_already_registered": "This email is already registered. Sign in instead?",
     "password_validation": "Password must be at least 8 characters",
     "full_name_validation": "Full name must be at least 3 characters",
-    "terms_privacy": "By continuing you agree to our Terms & Privacy."
+    "terms_privacy": "By continuing you agree to our Terms & Privacy.",
+    "name_placeholder": "e.g. Sara Al-Amri",
+    "phone_placeholder": "+201012345678",
+    "email_placeholder": "you@email.com",
+    "password_placeholder": "••••••••"
   },
   "profile": {
     "edit": "Edit",
@@ -170,7 +176,13 @@
     "thu": "Thu",
     "fri": "Fri",
     "sat": "Sat",
-    "sun": "Sun"
+    "sun": "Sun",
+    "summaryTitle": "Booking Summary",
+    "summaryDoctor": "Doctor",
+    "summaryService": "Service",
+    "summaryDate": "Date",
+    "summaryTimeSlot": "Time Slot",
+    "summaryTotal": "Total Amount"
   },
   "common": {
     "error": "Error",
@@ -180,6 +192,52 @@
     "page_shell": "Page Loading...",
     "not_found": "The page you are looking for does not exist.",
     "option_1": "Option 1",
-    "option_2": "Option 2"
+    "option_2": "Option 2",
+    "appName": "Clarity Clinic"
+  },
+  "doctors": {
+    "list_title": "Find Your Doctor",
+    "list_subtitle": "Browse our specialists, check their availability, and book the right care in minutes.",
+    "search_placeholder": "Search by name or specialty…",
+    "filter_specialty": "Filter by specialty",
+    "all_specialties": "All specialties",
+    "loading": "Loading doctors…",
+    "error": "We could not load the doctors list right now.",
+    "empty_title": "No doctors found",
+    "empty_desc": "Try adjusting your search keywords or clearing the specialty filter.",
+    "results_count": "{{count}} doctor(s) available",
+    "view_profile": "View Profile",
+    "book_now": "Book Now",
+    "detail_loading": "Loading doctor details…",
+    "detail_error": "We could not load the doctor details.",
+    "back_to_list": "Back to doctors list",
+    "general_practice": "General Practice",
+    "years_experience": "{{count}} Years Experience",
+    "services_title": "Services & Pricing",
+    "services_subtitle": "Select a service to see available time slots.",
+    "no_services_title": "No services available",
+    "no_services_desc": "This doctor has not listed any services yet.",
+    "schedule_title": "Schedule Appointment",
+    "schedule_subtitle": "Choose an available date and time slot.",
+    "select_service_first": "Please select a service first to view available dates.",
+    "available_dates": "Available Dates",
+    "no_dates_title": "No dates available",
+    "no_dates_desc": "There are no available dates for this service.",
+    "available_times": "Available Times",
+    "loading_slots": "Loading time slots…",
+    "slots_error": "Could not load time slots.",
+    "no_slots_title": "No slots available",
+    "no_slots_desc": "There are no available slots for this date.",
+    "continue_to_booking": "Continue to Booking"
+  },
+  "footer": {
+    "allRightsReserved": "All Rights Reserved"
+  },
+  "hero": {
+    "eyebrow": "Welcome to",
+    "title": "Your Health is Our Priority",
+    "description": "Book your next appointment seamlessly.",
+    "cta": "Get Started",
+    "illustrationPlaceholder": "Illustration Placeholder"
   }
 }

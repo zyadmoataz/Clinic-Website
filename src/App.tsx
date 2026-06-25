@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RootLayout } from './components/layout/RootLayout';
 import { Spinner } from './components/ui/Spinner';
 import { Toaster } from 'react-hot-toast';
-import { ProtectedRoute } from './utils/ProtectedRoute';
+import { ProtectedRoute } from './components/layout/ProtectedRoute';
 import NotFound from './pages/NotFound';
 
 const Home = lazy(() => import('./pages/Home'));

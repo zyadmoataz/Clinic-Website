@@ -4,10 +4,7 @@ import type { Appointment, FilterWhen, FilterStatus } from '../resources/appoint
 import { showToast } from '@/lib/toast';
 import { useTranslation } from 'react-i18next';
 import { AxiosError } from 'axios';
-
-interface ApiErrorData {
-  message?: string;
-}
+import type { ApiErrorData } from '@/types';
 
 export const useAppointments = (whenFilter: FilterWhen, statusFilter: FilterStatus) => {
   return useQuery<Appointment[]>({

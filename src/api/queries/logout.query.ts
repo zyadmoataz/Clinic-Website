@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { showToast } from '@/lib/toast';
 import { useTranslation } from 'react-i18next';
 import { useAuthStore } from '@/store/authStore';
 
@@ -14,10 +14,10 @@ export const useLogoutQuery = () => {
       navigate('/');
     },
     onSuccess: () => {
-      toast.success(t('login.logout'));
+      showToast.success(t('login.logout'));
     },
-    onError: (error: Error) => {
-      toast.error(error.message);
+    onError: () => {
+      showToast.error(t('common.error_occurred'));
     }
   });
 };

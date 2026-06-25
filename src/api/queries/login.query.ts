@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
-import { loginAPI } from '../resources/loigin.api';
+import { loginAPI } from '../resources/login.api';
 import type { LoginUser } from '@/types';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { showToast } from '@/lib/toast';
 import { useAuthStore } from '@/store/authStore';
 
 export const useLoginQuery = () => {
@@ -12,12 +12,9 @@ export const useLoginQuery = () => {
   return useMutation({
     mutationFn: (data: LoginUser) => loginAPI(data),
     onSuccess: (data) => {
-      toast.success(t('login.success_login'));
+      showToast.success(t('login.success_login'));
       useAuthStore.getState().login(data.user, data.token);
       navigate('/');
-    },
-    onError: (error) => {
-      toast.error(error.message);
     }
   });
 };

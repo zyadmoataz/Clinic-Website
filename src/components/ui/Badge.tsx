@@ -10,7 +10,7 @@ export function Badge({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={`inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-semibold text-gray-800 ${className}`}
+      className={`bg-surface-2 border-border text-text inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold ${className}`}
       {...props}
     >
       {children}

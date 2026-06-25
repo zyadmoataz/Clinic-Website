@@ -114,7 +114,9 @@
     "forgot": "هل نسيت كلمة المرور؟",
     "email_validation": "عنوان البريد الإلكتروني غير صالح",
     "password_validation": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
-    "logout": "لقد قمت بتسجيل الخروج"
+    "logout": "لقد قمت بتسجيل الخروج",
+    "email_placeholder": "you@email.com",
+    "password_placeholder": "••••••••"
   },
   "register": {
     "success_register": "لقد قمت بالتسجيل بنجاح",
@@ -132,7 +134,11 @@
     "email_already_registered": "هذا البريد الإلكتروني مسجل بالفعل. هل تريد تسجيل الدخول بدلاً من ذلك؟",
     "password_validation": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
     "full_name_validation": "يجب أن يتكون الاسم الكامل من 3 أحرف على الأقل",
-    "terms_privacy": "بالمتابعة، فإنك توافق على الشروط والخصوصية الخاصة بنا."
+    "terms_privacy": "بالمتابعة، فإنك توافق على الشروط والخصوصية الخاصة بنا.",
+    "name_placeholder": "مثال: سارة العمري",
+    "phone_placeholder": "+201012345678",
+    "email_placeholder": "you@email.com",
+    "password_placeholder": "••••••••"
   },
   "profile": {
     "edit": "تعديل",
@@ -170,7 +176,13 @@
     "thu": "الخميس",
     "fri": "الجمعة",
     "sat": "السبت",
-    "sun": "الأحد"
+    "sun": "الأحد",
+    "summaryTitle": "ملخص الحجز",
+    "summaryDoctor": "الطبيب",
+    "summaryService": "الخدمة",
+    "summaryDate": "التاريخ",
+    "summaryTimeSlot": "الوقت",
+    "summaryTotal": "المبلغ الإجمالي"
   },
   "common": {
     "error": "خطأ",
@@ -180,6 +192,52 @@
     "page_shell": "جاري التحميل...",
     "not_found": "الصفحة التي تبحث عنها غير موجودة.",
     "option_1": "الخيار الأول",
-    "option_2": "الخيار الثاني"
+    "option_2": "الخيار الثاني",
+    "appName": "عيادة كلاريتي"
+  },
+  "doctors": {
+    "list_title": "ابحث عن طبيبك",
+    "list_subtitle": "تصفح أطبائنا، وتحقق من المواعيد المتاحة، واحجز الرعاية المناسبة في دقائق.",
+    "search_placeholder": "ابحث بالاسم أو التخصص…",
+    "filter_specialty": "تصفية حسب التخصص",
+    "all_specialties": "جميع التخصصات",
+    "loading": "جاري تحميل الأطباء…",
+    "error": "لم نتمكن من تحميل قائمة الأطباء في الوقت الحالي.",
+    "empty_title": "لم يتم العثور على أطباء",
+    "empty_desc": "حاول تعديل كلمات البحث أو مسح تصفية التخصص.",
+    "results_count": "{{count}} طبيب متاح",
+    "view_profile": "عرض الملف الشخصي",
+    "book_now": "احجز الآن",
+    "detail_loading": "جاري تحميل تفاصيل الطبيب…",
+    "detail_error": "لم نتمكن من تحميل تفاصيل الطبيب.",
+    "back_to_list": "العودة لقائمة الأطباء",
+    "general_practice": "ممارسة عامة",
+    "years_experience": "{{count}} سنوات خبرة",
+    "services_title": "الخدمات والأسعار",
+    "services_subtitle": "حدد خدمة لرؤية الأوقات المتاحة.",
+    "no_services_title": "لا توجد خدمات متاحة",
+    "no_services_desc": "لم يقم هذا الطبيب بإدراج أي خدمات بعد.",
+    "schedule_title": "حجز موعد",
+    "schedule_subtitle": "اختر تاريخ ووقت متاحين.",
+    "select_service_first": "الرجاء تحديد خدمة أولاً لعرض التواريخ المتاحة.",
+    "available_dates": "التواريخ المتاحة",
+    "no_dates_title": "لا توجد تواريخ متاحة",
+    "no_dates_desc": "لا توجد تواريخ متاحة لهذه الخدمة.",
+    "available_times": "الأوقات المتاحة",
+    "loading_slots": "جاري تحميل الأوقات…",
+    "slots_error": "تعذر تحميل الأوقات المتاحة.",
+    "no_slots_title": "لا توجد أوقات متاحة",
+    "no_slots_desc": "لا توجد أوقات متاحة في هذا التاريخ.",
+    "continue_to_booking": "المتابعة للحجز"
+  },
+  "footer": {
+    "allRightsReserved": "جميع الحقوق محفوظة"
+  },
+  "hero": {
+    "eyebrow": "مرحباً بكم في",
+    "title": "صحتك هي أولويتنا",
+    "description": "احجز موعدك القادم بكل سهولة.",
+    "cta": "ابدأ الآن",
+    "illustrationPlaceholder": "مكان الصورة"
   }
 }

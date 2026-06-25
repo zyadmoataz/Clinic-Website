@@ -46,19 +46,31 @@ export default function Page() {
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
         <div className="flex flex-col gap-3">
           <label className="font-600">{t('register.full_name')}</label>
-          <Input placeholder="e.g. Sara Al-Amri" type="text" {...register('displayName')} />
+          <Input
+            placeholder={t('register.name_placeholder')}
+            type="text"
+            {...register('displayName')}
+          />
           {errors.displayName && (
             <p className="text-danger">{String(errors.displayName.message)}</p>
           )}
         </div>
         <div className="flex flex-col gap-3">
           <label className="font-600">{t('register.phone')}</label>
-          <Input placeholder="+201012345678" type="tel" {...register('phone')} />
+          <Input
+            placeholder={t('register.phone_placeholder')}
+            type="number"
+            {...register('phone')}
+          />
           {errors.phone && <p className="text-danger">{String(errors.phone.message)}</p>}
         </div>
         <div className="flex flex-col gap-3">
           <label className="font-600">{t('register.email')}</label>
-          <Input placeholder="you@email.com" type="email" {...register('email')} />
+          <Input
+            placeholder={t('register.email_placeholder')}
+            type="email"
+            {...register('email')}
+          />
           {errors.email && <p className="text-danger">{String(errors.email.message)} </p>}
           {/* {errors.email?.type === 'email' && (
             <p className="text-danger">{t('register.email_already_registered')}</p>
@@ -66,7 +78,11 @@ export default function Page() {
         </div>
         <div className="flex flex-col gap-3">
           <label className="font-600">{t('register.password')}</label>
-          <Input placeholder="••••••••" type="password" {...register('password')} />
+          <Input
+            placeholder={t('register.password_placeholder')}
+            type="password"
+            {...register('password')}
+          />
           {errors.password && <p className="text-danger">{errors.password.message}</p>}
         </div>
         <div className="mt-5 flex flex-col gap-3">

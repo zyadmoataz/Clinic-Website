@@ -4,6 +4,7 @@
 
 import { Button, Input } from '../components/ui';
 import { useTranslation } from 'react-i18next';
+import { AlertCircle } from 'lucide-react';
 import { getLoginSchema } from '../schemas/auth.schema';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -35,17 +36,27 @@ export default function Page() {
 
   return (
     <PageContainer className="mx-auto max-w-xl py-24">
-      <div className="flex flex-col gap-1 pb-16">
+      <div className="flex flex-col gap-1 pb-10">
         <h1 className="text-[32px] font-extrabold">{t('login.hero_title')}</h1>
         <p className="text-faint">{t('login.hero_subtitle')}</p>
       </div>
-      {errors.password && loginError && (
-        <p className="text-danger">{t('login.correct_email_or_password')}</p>
+
+      {loginError && (
+        <div className="bg-danger-soft border-danger/20 text-text mb-6 flex items-start gap-3 rounded-xl border p-4 text-sm font-semibold">
+          <AlertCircle className="text-danger mt-0.5 h-5 w-5 shrink-0" />
+          <p>{t('login.correct_email_or_password')}</p>
+        </div>
       )}
+
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
         <div className="flex flex-col gap-3">
           <label className="font-600">{t('login.email')}</label>
-          <Input placeholder="you@email.com" type="email" {...register('email')} />
+          <Input
+            placeholder={t('login.email_placeholder')}
+            type="email"
+            {...register('email')}
+            className={loginError ? 'ring-danger bg-surface ring-1' : ''}
+          />
           {errors.email && <p className="text-danger">{String(errors.email.message)}</p>}
         </div>
         <div className="flex flex-col gap-3">
@@ -55,7 +66,12 @@ export default function Page() {
               {t('login.forgot')}
             </button>
           </div>
-          <Input placeholder="••••••••" type="password" {...register('password')} />
+          <Input
+            placeholder={t('login.password_placeholder')}
+            type="password"
+            {...register('password')}
+            className={loginError ? 'ring-danger bg-surface ring-1' : ''}
+          />
         </div>
         {errors.password && <p className="text-danger">{String(errors.password.message)}</p>}
         <div className="mt-5">

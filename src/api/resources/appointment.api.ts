@@ -57,10 +57,10 @@ export const getAppointments = async (
 ): Promise<Appointment[]> => {
   const params: Record<string, string> = { when };
   if (status !== 'all') params.status = status;
-  const response = await apiClient.get('me/appointments', { params });
+  const response = await apiClient.get('/me/appointments', { params });
   return response.data;
 };
 
 export const cancelAppointment = async (id: number): Promise<void> => {
-  await apiClient.put(`/api/appointments/${id}/cancel`, {});
+  await apiClient.put(`/appointments/${id}/cancel`, {});
 };

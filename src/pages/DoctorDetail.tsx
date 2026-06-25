@@ -1,7 +1,5 @@
 // ==========================================
 // OWNER: Omar
-// PURPOSE: Doctor Discovery - Doctor profile, services & slot scheduling
-// Navigates to /booking with a routing contract consumed by Doaa.
 // ==========================================
 import { useMemo, useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
@@ -25,7 +23,7 @@ import { LoadingState } from '../components/feedback/LoadingState';
 import { ErrorState } from '../components/feedback/ErrorState';
 import { EmptyState } from '../components/feedback/EmptyState';
 import { useDoctorQuery, useDoctorSlotsQuery } from '@/api/queries/doctors.query';
-import { formatDate } from '../utils/FormatDate';
+import { formatDate } from '../utils/formatDate';
 
 function getInitials(name: string): string {
   const cleaned = name.replace(/^dr\.?\s*/i, '').trim();
