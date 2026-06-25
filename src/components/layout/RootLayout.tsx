@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
-import { useAuthMeQuery } from '../../services/api/queries/authMe.query';
+import { useAuthMeQuery } from '@/api/queries/authMe.query';
 import { useAuthStore } from '../../store/authStore';
 
 export function RootLayout() {

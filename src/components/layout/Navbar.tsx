@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { ThemeToggle, LanguageToggle } from '../ui';
 import { useTranslation } from 'react-i18next';
-import { useLogoutQuery } from '../../services/api/queries/logout.query';
+import { useLogoutQuery } from '@/api/queries/logout.query';
 import { User, Menu, X } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 
@@ -73,7 +73,7 @@ export function Navbar() {
                 {/* Dropdown Menu */}
                 <div className="border-border bg-surface/95 invisible absolute top-full right-0 z-50 mt-3 flex w-56 origin-top-right scale-95 flex-col rounded-3xl border p-2.5 opacity-0 shadow-[0_16px_40px_rgba(0,0,0,0.08)] backdrop-blur-xl transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:visible group-hover:scale-100 group-hover:opacity-100">
                   <div className="border-border mb-2 border-b px-3 pt-2 pb-3">
-                    <p className="text-text text-sm font-bold">My Account</p>
+                    <p className="text-text text-sm font-bold">{t('common.my_account')}</p>
                   </div>
                   <button
                     className="text-text hover:bg-surface-2 hover:text-primary flex w-full items-center rounded-2xl px-4 py-2.5 text-left text-sm font-semibold transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.97]"

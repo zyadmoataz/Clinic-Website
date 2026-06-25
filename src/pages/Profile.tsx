@@ -5,9 +5,9 @@
 import { PageContainer } from '../components/layout/PageContainer';
 import { Button, Input, Spinner } from '../components/ui';
 import { Modal } from '../components/ui/Modal';
-import { useAuthMeQuery } from '../services/api/queries/authMe.query';
-import { useUpdateProfileMutation } from '../services/api/mutations/updateProfile.mutation';
-import { showToast } from '../lib/toast';
+import { useAuthMeQuery } from '@/api/queries/authMe.query';
+import { useUpdateProfileMutation } from '@/api/queries/updateProfile.mutation';
+import { showToast } from '@/lib/toast';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { getUpdateProfileSchema, type UpdateProfileFormData } from '../schemas/profile.schema';
@@ -33,7 +33,7 @@ export default function Page() {
   });
 
   if (isLoading) return <Spinner />;
-  if (isError) return <p>error</p>;
+  if (isError) return <p>{t('common.error')}</p>;
   if (!user) return null;
 
   const handleOpenModal = () => {
@@ -97,7 +97,7 @@ export default function Page() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <label className="font-600">Full {t('profile.name')}</label>
+            <label className="font-600">{t('profile.name')}</label>
             <Input type="text" {...register('displayName')} />
             {errors.displayName && (
               <p className="text-danger">{String(errors.displayName.message)}</p>

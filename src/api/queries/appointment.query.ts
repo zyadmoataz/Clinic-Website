@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getAppointments, cancelAppointment } from '../resources/appointment.api';
 import type { Appointment, FilterWhen, FilterStatus } from '../resources/appointment.api';
-import { showToast } from '../../lib/toast';
+import { showToast } from '@/lib/toast';
 import { useTranslation } from 'react-i18next';
 import { AxiosError } from 'axios';
 

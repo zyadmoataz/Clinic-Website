@@ -2,7 +2,6 @@
 // OWNER: Othman
 // PURPOSE: Renders profile card with stats/details
 // ==========================================
-import React from 'react';
 
 interface ProfileCardProps {
   displayName: string;

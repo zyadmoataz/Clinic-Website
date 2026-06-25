@@ -1,0 +1,1 @@
+import{n as e,t}from"./jsx-runtime-DZ0TqwlS.js";var n=t();function r(){let{t}=e();return(0,n.jsx)(`div`,{children:t(`common.page_shell`)})}export{r as default};

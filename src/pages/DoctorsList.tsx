@@ -12,7 +12,7 @@ import { DoctorCard } from '../components/cards/DoctorCard';
 import { LoadingState } from '../components/feedback/LoadingState';
 import { ErrorState } from '../components/feedback/ErrorState';
 import { EmptyState } from '../components/feedback/EmptyState';
-import { useDoctorsQuery } from '../services/api/queries/doctors.query';
+import { useDoctorsQuery } from '@/api/queries/doctors.query';
 
 export default function DoctorsList() {
   const { t } = useTranslation();

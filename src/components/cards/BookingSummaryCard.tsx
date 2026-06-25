@@ -2,7 +2,7 @@
 // OWNER: Doaa
 // PURPOSE: Renders details summary during checkout/booking
 // ==========================================
-import React from 'react';
+
 import { useTranslation } from 'react-i18next';
 
 interface BookingSummaryCardProps {

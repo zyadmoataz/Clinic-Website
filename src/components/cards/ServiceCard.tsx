@@ -2,7 +2,6 @@
 // OWNER: Omar, Doaa
 // PURPOSE: Renders service card for clinic services
 // ==========================================
-import React from 'react';
 
 interface Service {
   id: number;

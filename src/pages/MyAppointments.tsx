@@ -6,8 +6,8 @@ import { EmptyState } from '../components/feedback/EmptyState';
 import { ErrorState } from '../components/feedback/ErrorState';
 import { PageContainer } from '../components/layout/PageContainer';
 import { AppointmentCard } from '../components/cards/AppointmentCard';
-import type { FilterWhen, FilterStatus } from '../services/resources/appointment.api';
-import { useAppointments, useCancelAppointment } from '../services/queries/appointment.query';
+import type { FilterWhen, FilterStatus } from '@/api/resources/appointment.api';
+import { useAppointments, useCancelAppointment } from '@/api/queries/appointment.query';
 
 interface StatusDropdownProps {
   value: FilterStatus;

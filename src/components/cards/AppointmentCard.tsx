@@ -1,4 +1,4 @@
-type Props = {
+export interface AppointmentCardProps {
   statusLabel: string;
   currencyLabel: string;
   appointment: {
@@ -15,7 +15,7 @@ type Props = {
   };
   toLocalizedNumbers: (input: string | number) => string;
   onClick?: () => void;
-};
+}
 
 const STATUS_DOT: Record<string, string> = {
   confirmed: 'bg-emerald-500',
@@ -41,7 +41,7 @@ export function AppointmentCard({
   statusLabel,
   currencyLabel,
   toLocalizedNumbers
-}: Props) {
+}: AppointmentCardProps) {
   const key = appointment.status?.toLowerCase();
 
   return (

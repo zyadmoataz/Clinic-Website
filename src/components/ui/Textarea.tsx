@@ -2,7 +2,7 @@
 // OWNER: Othman, Doaa
 // PURPOSE: Textarea component for forms
 // ==========================================
-import React, { forwardRef, type TextareaHTMLAttributes } from 'react';
+import { forwardRef, type TextareaHTMLAttributes } from 'react';
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;

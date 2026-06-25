@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 // ==========================================
 // OWNER: Omar, Doaa
 // ==========================================
@@ -7,6 +8,7 @@ export function Select({
   className = '',
   ...props
 }: React.SelectHTMLAttributes<HTMLSelectElement>) {
+  const { t } = useTranslation();
   return (
     <div className="w-full">
       <select
@@ -16,8 +18,8 @@ export function Select({
         <option value="" disabled hidden>
           Select an option
         </option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
+        <option value="1">{t('common.option_1')}</option>
+        <option value="2">{t('common.option_2')}</option>
       </select>
     </div>
   );

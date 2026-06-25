@@ -6,6 +6,7 @@
     "sign_in": "Login",
     "sign_out": "Logout",
     "create_account": "Create account",
+    "subtitle": "Care, booked simply",
     "prescriptions": "Prescriptions",
     "appointments": "Appointments",
     "doctors": "Doctors",
@@ -13,15 +14,6 @@
     "profile": "Profile"
   },
   "home": {
-    "hero_title": "Calm, clear care — booked in a minute",
-    "hero_subtitle": "Find the right doctor, pick a free time, and book online or pay at the clinic.",
-    "cta": "Find a doctor",
-    "feature_1_title": "Real availability",
-    "feature_1_desc": "See only free slots, on a clean 15-minute grid.",
-    "feature_2_title": "Pay your way",
-    "feature_2_desc": "Securely online now, or in cash at the clinic.",
-    "feature_3_title": "Everything in one place",
-    "feature_3_desc": "Appointments, prescriptions and history, always with you.",
     "hero": {
       "hero_title": "Compassionate Care for a ",
       "hero_title-colored": "Healthier Tomorrow",
@@ -150,8 +142,96 @@
     "profile-image": "Profile Image",
     "cancel": "cancel",
     "save": "Save",
-    "saving": "saving"
+    "saving": "saving",
+    "name_required": "Name is required",
+    "phone_required": "Phone is required"
+  },
+  "prescriptions": {
+    "title": "Prescriptions",
+    "loading": "Loading prescriptions...",
+    "error": "Error loading prescriptions",
+    "no_data": "No Prescriptions",
+    "no_data_desc": "You have no prescriptions at this time.",
+    "visit_on": "Visit on",
+    "diagnosis": "Diagnosis",
+    "medication": "Medication",
+    "dosage": "Dosage",
+    "duration": "Duration"
+  },
+  "booking": {
+    "select_date": "Select Date",
+    "select_service": "Select Service",
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "general_checkup": "General Checkup",
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "sun": "Sun",
+    "summaryTitle": "Booking Summary",
+    "summaryDoctor": "Doctor",
+    "summaryService": "Service",
+    "summaryDate": "Date",
+    "summaryTimeSlot": "Time Slot",
+    "summaryTotal": "Total Amount"
+  },
+  "common": {
+    "error": "Error",
+    "error_occurred": "Error Occurred",
+    "close_menu": "Close Menu",
+    "my_account": "My Account",
+    "page_shell": "Page Loading...",
+    "not_found": "The page you are looking for does not exist.",
+    "option_1": "Option 1",
+    "option_2": "Option 2",
+    "appName": "Clarity Clinic"
+  },
+  "doctors": {
+    "list_title": "Find Your Doctor",
+    "list_subtitle": "Browse our specialists, check their availability, and book the right care in minutes.",
+    "search_placeholder": "Search by name or specialty…",
+    "filter_specialty": "Filter by specialty",
+    "all_specialties": "All specialties",
+    "loading": "Loading doctors…",
+    "error": "We could not load the doctors list right now.",
+    "empty_title": "No doctors found",
+    "empty_desc": "Try adjusting your search keywords or clearing the specialty filter.",
+    "results_count": "{{count}} doctor(s) available",
+    "view_profile": "View Profile",
+    "book_now": "Book Now",
+    "detail_loading": "Loading doctor details…",
+    "detail_error": "We could not load the doctor details.",
+    "back_to_list": "Back to doctors list",
+    "general_practice": "General Practice",
+    "years_experience": "{{count}} Years Experience",
+    "services_title": "Services & Pricing",
+    "services_subtitle": "Select a service to see available time slots.",
+    "no_services_title": "No services available",
+    "no_services_desc": "This doctor has not listed any services yet.",
+    "schedule_title": "Schedule Appointment",
+    "schedule_subtitle": "Choose an available date and time slot.",
+    "select_service_first": "Please select a service first to view available dates.",
+    "available_dates": "Available Dates",
+    "no_dates_title": "No dates available",
+    "no_dates_desc": "There are no available dates for this service.",
+    "available_times": "Available Times",
+    "loading_slots": "Loading time slots…",
+    "slots_error": "Could not load time slots.",
+    "no_slots_title": "No slots available",
+    "no_slots_desc": "There are no available slots for this date.",
+    "continue_to_booking": "Continue to Booking"
+  },
+  "footer": {
+    "allRightsReserved": "All Rights Reserved"
+  },
+  "hero": {
+    "eyebrow": "Welcome to",
+    "title": "Your Health is Our Priority",
+    "description": "Book your next appointment seamlessly.",
+    "cta": "Get Started",
+    "illustrationPlaceholder": "Illustration Placeholder"
   }
 }
-
-

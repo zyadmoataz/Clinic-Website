@@ -14,48 +14,6 @@
     "profile": "الصفحة الشخصية"
   },
   "home": {
-    "hero_title": "رعاية هادئة وواضحة — تُحجز في دقيقة",
-    "hero_subtitle": "ابحث عن الطبيب المناسب، اختر وقتًا متاحًا، واحجز عبر الإنترنت أو ادفع في العيادة.",
-    "cta": "ابحث عن طبيب",
-    "feature_1_title": "مواعيد حقيقية",
-    "feature_1_desc": "شاهد المواعيد المتاحة فقط، في جدول زمني واضح.",
-    "feature_2_title": "ادفع بطريقتك",
-    "feature_2_desc": "بشكل آمن عبر الإنترنت الآن، أو نقدًا في العيادة.",
-    "feature_3_title": "كل شيء في مكان واحد",
-    "feature_3_desc": "المواعيد، الوصفات الطبية والسجل، دائماً معك."
-  },
-  
- "appointments": {
-    "title": "مواعيدي",
-    "upcoming": "القادمة",
-    "past": "السابقة",
-    "status_label": "الحالة",
-    "loading": "جاري تحميل مواعيدك...",
-    "error": "حدث خطأ أثناء تحميل المواعيد.",
-    "no_appointments": "لا توجد مواعيد",
-    "no_upcoming_desc": "ليس لديك أي مواعيد قادمة.",
-    "no_past_desc": "ليس لديك أي مواعيد سابقة.",
-    "details_title": "تفاصيل الموعد",
-    "date": "التاريخ",
-    "time": "الوقت",
-    "status": "الحالة",
-    "payment": "الدفع",
-    "amount": "المبلغ",
-    "currency": "جنيه",
-    "cancel_btn": "إلغاء الموعد",
-    "close_btn": "إغلاق",
-    "cancel_confirm": "هل أنت متأكد من رغبتك في إلغاء هذا الموعد؟",
-    "cancel_success": "تم إلغاء الموعد بنجاح.",
-    "cancel_error": "تعذر الإلغاء. يرجى المحاولة مرة أخرى.",
-    "statuses": {
-      "all": "الكل",
-      "confirmed": "مؤكد",
-      "arrived": "تم تسجيل الحضور",
-      "completed": "مكتمل",
-      "cancelled": "ملغي",
-      "no-show": "فائت",
-      "pending": "قيد الانتظار"
-    }
     "hero": {
       "hero_title": "رعاية هادئة من أجل ",
       "hero_title-colored": "غداً أفضل",
@@ -64,7 +22,6 @@
       "main-cta": "إحجز معاد معنا",
       "sec-cta": "خدماتنا"
     },
-
     "metrics": {
       "patients": "10K+",
       "patients-text": "عملاء راضون",
@@ -114,6 +71,38 @@
       "testimonial-card3-text": "الرعاية التي تلقيتها في الوضوح كانت استثنائية. كان الأطباء منتبهين واستمعوا حقًا لمخاوفي. شعرت بالدعم الكامل طوال فترة علاجي."
     }
   },
+  "appointments": {
+    "title": "مواعيدي",
+    "upcoming": "القادمة",
+    "past": "السابقة",
+    "status_label": "الحالة",
+    "loading": "جاري تحميل مواعيدك...",
+    "error": "حدث خطأ أثناء تحميل المواعيد.",
+    "no_appointments": "لا توجد مواعيد",
+    "no_upcoming_desc": "ليس لديك أي مواعيد قادمة.",
+    "no_past_desc": "ليس لديك أي مواعيد سابقة.",
+    "details_title": "تفاصيل الموعد",
+    "date": "التاريخ",
+    "time": "الوقت",
+    "status": "الحالة",
+    "payment": "الدفع",
+    "amount": "المبلغ",
+    "currency": "جنيه",
+    "cancel_btn": "إلغاء الموعد",
+    "close_btn": "إغلاق",
+    "cancel_confirm": "هل أنت متأكد من رغبتك في إلغاء هذا الموعد؟",
+    "cancel_success": "تم إلغاء الموعد بنجاح.",
+    "cancel_error": "تعذر الإلغاء. يرجى المحاولة مرة أخرى.",
+    "statuses": {
+      "all": "الكل",
+      "confirmed": "مؤكد",
+      "arrived": "تم تسجيل الحضور",
+      "completed": "مكتمل",
+      "cancelled": "ملغي",
+      "no-show": "فائت",
+      "pending": "قيد الانتظار"
+    }
+  },
   "login": {
     "success_login": "لقد قمت بتسجيل الدخول بنجاح",
     "correct_email_or_password": "البريد الإلكتروني أو كلمة المرور غير صحيحة. تحقق وحاول مرة أخرى، أو قم بإعادة تعيين كلمة المرور.",
@@ -153,7 +142,96 @@
     "profile-image": "الصورة الشخصية",
     "cancel": "إالغاء",
     "save": "حفظ",
-    "saving": "جاري الحفظ"
+    "saving": "جاري الحفظ",
+    "name_required": "الاسم مطلوب",
+    "phone_required": "الهاتف مطلوب"
+  },
+  "prescriptions": {
+    "title": "الوصفات الطبية",
+    "loading": "جاري تحميل الوصفات الطبية...",
+    "error": "حدث خطأ أثناء تحميل الوصفات الطبية",
+    "no_data": "لا توجد وصفات طبية",
+    "no_data_desc": "ليس لديك أي وصفات طبية في الوقت الحالي.",
+    "visit_on": "زيارة يوم",
+    "diagnosis": "التشخيص",
+    "medication": "الدواء",
+    "dosage": "الجرعة",
+    "duration": "المدة"
+  },
+  "booking": {
+    "select_date": "اختر التاريخ",
+    "select_service": "اختر الخدمة",
+    "morning": "صباحاً",
+    "afternoon": "مساءً",
+    "general_checkup": "فحص عام",
+    "mon": "الاثنين",
+    "tue": "الثلاثاء",
+    "wed": "الأربعاء",
+    "thu": "الخميس",
+    "fri": "الجمعة",
+    "sat": "السبت",
+    "sun": "الأحد",
+    "summaryTitle": "ملخص الحجز",
+    "summaryDoctor": "الطبيب",
+    "summaryService": "الخدمة",
+    "summaryDate": "التاريخ",
+    "summaryTimeSlot": "الوقت",
+    "summaryTotal": "المبلغ الإجمالي"
+  },
+  "common": {
+    "error": "خطأ",
+    "error_occurred": "حدث خطأ",
+    "close_menu": "إغلاق القائمة",
+    "my_account": "حسابي",
+    "page_shell": "جاري التحميل...",
+    "not_found": "الصفحة التي تبحث عنها غير موجودة.",
+    "option_1": "الخيار الأول",
+    "option_2": "الخيار الثاني",
+    "appName": "عيادة كلاريتي"
+  },
+  "doctors": {
+    "list_title": "ابحث عن طبيبك",
+    "list_subtitle": "تصفح أطبائنا، وتحقق من المواعيد المتاحة، واحجز الرعاية المناسبة في دقائق.",
+    "search_placeholder": "ابحث بالاسم أو التخصص…",
+    "filter_specialty": "تصفية حسب التخصص",
+    "all_specialties": "جميع التخصصات",
+    "loading": "جاري تحميل الأطباء…",
+    "error": "لم نتمكن من تحميل قائمة الأطباء في الوقت الحالي.",
+    "empty_title": "لم يتم العثور على أطباء",
+    "empty_desc": "حاول تعديل كلمات البحث أو مسح تصفية التخصص.",
+    "results_count": "{{count}} طبيب متاح",
+    "view_profile": "عرض الملف الشخصي",
+    "book_now": "احجز الآن",
+    "detail_loading": "جاري تحميل تفاصيل الطبيب…",
+    "detail_error": "لم نتمكن من تحميل تفاصيل الطبيب.",
+    "back_to_list": "العودة لقائمة الأطباء",
+    "general_practice": "ممارسة عامة",
+    "years_experience": "{{count}} سنوات خبرة",
+    "services_title": "الخدمات والأسعار",
+    "services_subtitle": "حدد خدمة لرؤية الأوقات المتاحة.",
+    "no_services_title": "لا توجد خدمات متاحة",
+    "no_services_desc": "لم يقم هذا الطبيب بإدراج أي خدمات بعد.",
+    "schedule_title": "حجز موعد",
+    "schedule_subtitle": "اختر تاريخ ووقت متاحين.",
+    "select_service_first": "الرجاء تحديد خدمة أولاً لعرض التواريخ المتاحة.",
+    "available_dates": "التواريخ المتاحة",
+    "no_dates_title": "لا توجد تواريخ متاحة",
+    "no_dates_desc": "لا توجد تواريخ متاحة لهذه الخدمة.",
+    "available_times": "الأوقات المتاحة",
+    "loading_slots": "جاري تحميل الأوقات…",
+    "slots_error": "تعذر تحميل الأوقات المتاحة.",
+    "no_slots_title": "لا توجد أوقات متاحة",
+    "no_slots_desc": "لا توجد أوقات متاحة في هذا التاريخ.",
+    "continue_to_booking": "المتابعة للحجز"
+  },
+  "footer": {
+    "allRightsReserved": "جميع الحقوق محفوظة"
+  },
+  "hero": {
+    "eyebrow": "مرحباً بكم في",
+    "title": "صحتك هي أولويتنا",
+    "description": "احجز موعدك القادم بكل سهولة.",
+    "cta": "ابدأ الآن",
+    "illustrationPlaceholder": "مكان الصورة"
   }
-
 }

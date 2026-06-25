@@ -1,4 +1,4 @@
-import type { RegisterUser } from '../../../types';
+import type { RegisterUser } from '@/types';
 import { apiClient } from '../apiClient';
 
 export const registerAPI = async (data: RegisterUser) => {

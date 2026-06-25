@@ -2,7 +2,7 @@
 // OWNER: Omar, Helda
 // PURPOSE: Full container loading feedback
 // ==========================================
-import React from 'react';
+
 import { Spinner } from '../ui/Spinner';
 
 interface LoadingStateProps {

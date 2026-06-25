@@ -1,4 +1,4 @@
-import type { LoginUser } from '../../../types';
+import type { LoginUser } from '@/types';
 import { apiClient } from '../apiClient';
 
 export const loginAPI = async (data: LoginUser) => {

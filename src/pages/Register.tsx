@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { getRegisterSchema } from '../schemas/auth.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
-import { useRegisterQuery } from '../services/api/queries/register.query';
+import { useRegisterQuery } from '@/api/queries/register.query';
 import type { RegisterUser } from '../types';
 import { PageContainer } from '../components/layout/PageContainer';
 
@@ -37,7 +37,7 @@ export default function Page() {
   };
 
   return (
-    <PageContainer className="mx-auto max-w-xl pt-24">
+    <PageContainer className="mx-auto max-w-xl py-24">
       <div className="flex flex-col gap-1 pb-16">
         <h1 className="text-[32px] font-extrabold">{t('register.hero_title')}</h1>
         <p className="text-faint">{t('register.hero_subtitle')}</p>
@@ -57,15 +57,15 @@ export default function Page() {
           {errors.phone && <p className="text-danger">{String(errors.phone.message)}</p>}
         </div>
         <div className="flex flex-col gap-3">
-          <label className="font-600">Email</label>
+          <label className="font-600">{t('register.email')}</label>
           <Input placeholder="you@email.com" type="email" {...register('email')} />
           {errors.email && <p className="text-danger">{String(errors.email.message)} </p>}
           {/* {errors.email?.type === 'email' && (
-            <p className="text-danger">{t('register.this_email_is_already_registered')}</p>
+            <p className="text-danger">{t('register.email_already_registered')}</p>
           )} */}
         </div>
         <div className="flex flex-col gap-3">
-          <label className="font-600">Password</label>
+          <label className="font-600">{t('register.password')}</label>
           <Input placeholder="••••••••" type="password" {...register('password')} />
           {errors.password && <p className="text-danger">{errors.password.message}</p>}
         </div>
@@ -73,7 +73,7 @@ export default function Page() {
           <Button className="w-full py-4" disabled={isPending}>
             <p> {isPending ? t('register.cta') + '...' : t('register.cta')} </p>
           </Button>
-          <p className="text-faint mx-auto">By continuing you agree to our Terms & Privacy.</p>
+          <p className="text-faint mx-auto">{t('register.terms_privacy')}</p>
         </div>
       </form>
     </PageContainer>

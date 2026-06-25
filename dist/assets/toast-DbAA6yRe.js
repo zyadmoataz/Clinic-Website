@@ -1,0 +1,1 @@
+import{i as e}from"./index-BYb7zimy.js";var t={success:t=>e.success(t,{duration:4e3}),error:t=>e.error(t,{duration:5e3}),loading:t=>e.loading(t)};export{t};

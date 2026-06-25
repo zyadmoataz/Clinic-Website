@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next';
 // ==========================================
 // OWNER: Doaa
 // ==========================================
 export default function Page() {
-  return <div>Page Shell</div>;
+  const { t } = useTranslation();
+  return <div>{t('common.page_shell')}</div>;
 }

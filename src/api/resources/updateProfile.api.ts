@@ -1,11 +1,5 @@
 import { apiClient } from '../apiClient';
-import type { User } from '../../../types';
-
-interface UpdateProfilePayload {
-  displayName: string;
-  phone: string;
-  avatarUrl?: string;
-}
+import type { User, UpdateProfilePayload } from '@/types';
 
 export const updateProfileAPI = async (data: UpdateProfilePayload): Promise<User> => {
   const response = await apiClient.put<User>('/auth/profile', data);

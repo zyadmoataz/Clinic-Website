@@ -8,7 +8,7 @@ import { getLoginSchema } from '../schemas/auth.schema';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { LoginUser } from '../types';
-import { useLoginQuery } from '../services/api/queries/login.query';
+import { useLoginQuery } from '@/api/queries/login.query';
 import { PageContainer } from '../components/layout/PageContainer';
 
 export default function Page() {
@@ -34,7 +34,7 @@ export default function Page() {
   };
 
   return (
-    <PageContainer className="mx-auto max-w-xl pt-24">
+    <PageContainer className="mx-auto max-w-xl py-24">
       <div className="flex flex-col gap-1 pb-16">
         <h1 className="text-[32px] font-extrabold">{t('login.hero_title')}</h1>
         <p className="text-faint">{t('login.hero_subtitle')}</p>

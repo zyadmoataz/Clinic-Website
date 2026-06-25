@@ -24,7 +24,7 @@ import { Spinner } from '../components/ui/Spinner';
 import { LoadingState } from '../components/feedback/LoadingState';
 import { ErrorState } from '../components/feedback/ErrorState';
 import { EmptyState } from '../components/feedback/EmptyState';
-import { useDoctorQuery, useDoctorSlotsQuery } from '../services/api/queries/doctors.query';
+import { useDoctorQuery, useDoctorSlotsQuery } from '@/api/queries/doctors.query';
 import { formatDate } from '../utils/FormatDate';
 
 function getInitials(name: string): string {

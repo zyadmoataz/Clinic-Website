@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { loginAPI } from '../resources/loigin.api';
-import type { LoginUser } from '../../../types';
+import type { LoginUser } from '@/types';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { useAuthStore } from '../../../store/authStore';
+import { useAuthStore } from '@/store/authStore';
 
 export const useLoginQuery = () => {
   const { t } = useTranslation();

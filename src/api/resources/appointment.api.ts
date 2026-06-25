@@ -1,4 +1,4 @@
-import { apiClient } from '../api/apiClient';
+import { apiClient } from '../apiClient';
 
 export interface Prescription {
   drug: string;
@@ -57,7 +57,7 @@ export const getAppointments = async (
 ): Promise<Appointment[]> => {
   const params: Record<string, string> = { when };
   if (status !== 'all') params.status = status;
-  const response = await apiClient.get('/api/me/appointments', { params });
+  const response = await apiClient.get('me/appointments', { params });
   return response.data;
 };
 

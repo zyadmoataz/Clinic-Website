@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 // ==========================================
 // OWNER: Doaa
 // PURPOSE: Booking Flow - Time Selection
@@ -5,10 +6,11 @@
 // ==========================================
 
 export function TimeSlotGrid() {
+  const { t } = useTranslation();
   return (
     <div className="mb-6">
       <div className="mb-3 flex items-center gap-2 text-sm font-medium text-gray-800">
-        <span>Morning</span>
+        <span>{t('booking.morning')}</span>
       </div>
       <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
         {/* Doaa: Duplicate this button for your slots */}
@@ -21,7 +23,7 @@ export function TimeSlotGrid() {
       </div>
 
       <div className="mt-6 mb-3 flex items-center gap-2 text-sm font-medium text-gray-800">
-        <span>Afternoon</span>
+        <span>{t('booking.afternoon')}</span>
       </div>
       <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
         <button className="h-10 rounded-lg bg-blue-600 text-sm font-medium text-white shadow-sm ring-2 ring-blue-600 ring-offset-2">

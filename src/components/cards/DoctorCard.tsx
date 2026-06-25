@@ -4,7 +4,7 @@
 // ==========================================
 import { Star, Stethoscope } from 'lucide-react';
 import { Button } from '../ui/Button';
-import type { DoctorSummary } from '../../services/api/resources/doctors.api';
+import type { DoctorSummary } from '@/api/resources/doctors.api';
 
 interface DoctorCardProps {
   doctor: DoctorSummary;
