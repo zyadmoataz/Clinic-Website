@@ -67,22 +67,22 @@ export default function Page() {
             <span className="absolute right-1 bottom-1 h-4 w-4 rounded-full border-2 border-white bg-green-400" />
           </div>
           <Button variant="ghost" onClick={handleOpenModal}>
-            Edit
+            {t('profile.edit')}
           </Button>
         </section>
 
         {/* Info fields */}
         <section className="mt-8 rounded-2xl border border-gray-100 bg-white shadow-sm">
           <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4">
-            <span className="text-sm text-gray-500">Name</span>
+            <span className="text-sm text-gray-500">{t('profile.name')}</span>
             <span className="text-sm font-medium text-gray-900">{user.name}</span>
           </div>
           <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4">
-            <span className="text-sm text-gray-500">Email</span>
+            <span className="text-sm text-gray-500">{t('profile.email')}</span>
             <span className="text-sm font-medium text-gray-900">{user.email}</span>
           </div>
           <div className="flex items-center justify-between px-6 py-4">
-            <span className="text-sm text-gray-500">Phone</span>
+            <span className="text-sm text-gray-500">{t('profile.phone')}</span>
             <span className="text-sm font-medium text-gray-900">{user.phone}</span>
           </div>
         </section>
@@ -91,13 +91,13 @@ export default function Page() {
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Edit profile">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
           <div className="flex flex-col gap-3">
-            <label className="font-600">Profile image URL</label>
+            <label className="font-600">{t('profile.profile-image')}</label>
             <Input type="text" {...register('avatarUrl')} />
             {errors.avatarUrl && <p className="text-danger">{String(errors.avatarUrl.message)}</p>}
           </div>
 
           <div className="flex flex-col gap-3">
-            <label className="font-600">Full name</label>
+            <label className="font-600">Full {t('profile.name')}</label>
             <Input type="text" {...register('displayName')} />
             {errors.displayName && (
               <p className="text-danger">{String(errors.displayName.message)}</p>
@@ -105,7 +105,7 @@ export default function Page() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <label className="font-600">Phone</label>
+            <label className="font-600">{t('profile.phone')}</label>
             <Input type="tel" {...register('phone')} />
             {errors.phone && <p className="text-danger">{String(errors.phone.message)}</p>}
           </div>
@@ -117,10 +117,10 @@ export default function Page() {
               onClick={() => setIsModalOpen(false)}
               disabled={isPending}
             >
-              Cancel
+              {t('profile.cancel')}
             </Button>
             <Button type="submit" disabled={isPending}>
-              {isPending ? t('common.saving') + '...' : t('save')}
+              {isPending ? t('profile.saving') + '...' : t('profile.save')}
             </Button>
           </div>
         </form>
