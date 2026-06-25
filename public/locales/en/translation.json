@@ -141,5 +141,15 @@
     "password_validation": "Password must be at least 8 characters",
     "full_name_validation": "Full name must be at least 3 characters",
     "terms_privacy": "By continuing you agree to our Terms & Privacy."
+  },
+  "profile": {
+    "edit": "Edit",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "profile-image": "Profile Image",
+    "cancel": "cancel",
+    "save": "Save",
+    "saving": "saving"
   }
 }
