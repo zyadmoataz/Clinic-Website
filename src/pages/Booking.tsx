@@ -11,9 +11,11 @@ import { Button, Spinner } from '@/components/ui';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CalendarX } from 'lucide-react';
+import { Banknote, CalendarX, CreditCard } from 'lucide-react';
 import type { AppointmentMode, PaymentMethod } from '@/api/resources/booking.api';
 import { formatTimeLabel } from '@/utils/formatTimeLabel';
+import { Monitor, Building2 } from 'lucide-react';
+import { OptionCard } from './../components/cards/OptionCard';
 
 interface BookingLocationState {
   doctorId: string;
@@ -25,16 +27,14 @@ interface BookingLocationState {
   timeSlot: string;
 }
 
-export default function Page() {
+export default function BookingPage() {
   const state = useLocation().state as BookingLocationState | undefined;
 
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  // const [mode, setMode] = useState<AppointmentMode>('Online');
-  // const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('Online');
-  const [mode] = useState<AppointmentMode>('InClinic');
-  const [paymentMethod] = useState<PaymentMethod>('Cash');
+  const [mode, setMode] = useState<AppointmentMode>('Online');
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('Online');
   const [error, setError] = useState(false);
 
   const { mutate: bookAppointment, isPending } = useBookAppointmentMutation();
@@ -100,6 +100,48 @@ export default function Page() {
               date={state.date}
               timeSlot={formatTimeLabel(state.timeSlot)}
             />
+            <div className="flex items-center justify-center gap-5">
+              <div className="border-border rounded-2xl border p-5 shadow-sm">
+                <h3 className="text-text mb-4 text-lg font-semibold">{t('booking.mode')}</h3>
+                <OptionCard<AppointmentMode>
+                  value={mode}
+                  onChange={setMode}
+                  options={[
+                    {
+                      value: 'InClinic',
+                      title: t('booking.in_clinic'),
+                      icon: <Building2 className="inline h-6 w-6" />
+                    },
+                    {
+                      value: 'Online',
+                      title: t('booking.online'),
+                      icon: <Monitor className="inline h-6 w-6" />
+                    }
+                  ]}
+                />
+              </div>
+              <div className="border-border rounded-2xl border p-5 shadow-sm">
+                <h3 className="text-text mb-4 text-lg font-semibold">
+                  {t('booking.payment_method')}
+                </h3>
+                <OptionCard<PaymentMethod>
+                  value={paymentMethod}
+                  onChange={setPaymentMethod}
+                  options={[
+                    {
+                      value: 'Cash',
+                      title: t('booking.cash'),
+                      icon: <Banknote className="inline h-6 w-6" />
+                    },
+                    {
+                      value: 'Online',
+                      title: t('booking.pay_online'),
+                      icon: <CreditCard className="inline h-6 w-6" />
+                    }
+                  ]}
+                />
+              </div>
+            </div>
 
             <Button
               type="button"
