@@ -19,6 +19,7 @@ import {
   Activity
 } from 'lucide-react';
 import { TestimonialCard } from '../components/cards/TestimonialCard';
+import InfoCard from '@/components/cards/InfoCard';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -118,40 +119,38 @@ export default function Home() {
 
         <section className="animate-in fade-in slide-in-from-bottom-12 grid grid-cols-1 gap-6 delay-200 duration-700 md:grid-cols-2 lg:grid-cols-3">
           {/* Card 1 */}
-          <div className="group bg-surface border-border/50 flex flex-col gap-4 rounded-[2rem] border p-8 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:shadow-md lg:col-span-2">
-            <div className="bg-primary/10 group-hover:bg-primary/20 w-fit rounded-full p-4 transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110">
-              <Microscope className="text-primary h-6 w-6" />
-            </div>
-            <h3 className="text-xl font-bold">{t('home.whyUs.whyUs-card1-title')}</h3>
-            <p className="text-muted leading-relaxed">{t('home.whyUs.whyUs-card1-text')}</p>
-          </div>
+          <InfoCard
+            icon={<Microscope className="text-primary h-6 w-6" />}
+            title={t('home.whyUs.whyUs-card1-title')}
+            text={t('home.whyUs.whyUs-card1-text')}
+            variant="primary"
+            className="lg:col-span-2"
+          />
 
           {/* Card 2 */}
-          <div className="group bg-surface border-border/50 flex flex-col gap-4 rounded-[2rem] border p-8 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:shadow-md">
-            <div className="bg-success/10 group-hover:bg-success/20 w-fit rounded-full p-4 transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110">
-              <Heart className="text-success h-6 w-6" />
-            </div>
-            <h3 className="text-xl font-bold">{t('home.whyUs.whyUs-card2-title')}</h3>
-            <p className="text-muted leading-relaxed">{t('home.whyUs.whyUs-card2-text')}</p>
-          </div>
+          <InfoCard
+            icon={<Heart className="text-success h-6 w-6" />}
+            title={t('home.whyUs.whyUs-card2-title')}
+            text={t('home.whyUs.whyUs-card2-text')}
+            variant="success"
+          />
 
           {/* Card 3 */}
-          <div className="group bg-surface border-border/50 flex flex-col gap-4 rounded-[2rem] border p-8 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:shadow-md">
-            <div className="bg-warning/10 group-hover:bg-warning/20 w-fit rounded-full p-4 transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110">
-              <Clock className="text-warning h-6 w-6" />
-            </div>
-            <h3 className="text-xl font-bold">{t('home.whyUs.whyUs-card3-title')}</h3>
-            <p className="text-muted leading-relaxed">{t('home.whyUs.whyUs-card3-text')}</p>
-          </div>
+          <InfoCard
+            icon={<Clock className="text-warning h-6 w-6" />}
+            title={t('home.whyUs.whyUs-card3-title')}
+            text={t('home.whyUs.whyUs-card3-text')}
+            variant="warning"
+          />
 
           {/* Card 4 */}
-          <div className="group bg-surface border-border/50 flex flex-col gap-4 rounded-[2rem] border p-8 shadow-sm transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:shadow-md lg:col-span-2">
-            <div className="bg-primary/10 group-hover:bg-primary/20 w-fit rounded-full p-4 transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110">
-              <Activity className="text-primary h-6 w-6" />
-            </div>
-            <h3 className="text-xl font-bold">{t('home.whyUs.whyUs-card4-title')}</h3>
-            <p className="text-muted leading-relaxed">{t('home.whyUs.whyUs-card4-text')}</p>
-          </div>
+          <InfoCard
+            icon={<Activity className="text-primary h-6 w-6" />}
+            title={t('home.whyUs.whyUs-card4-title')}
+            text={t('home.whyUs.whyUs-card4-text')}
+            variant="primary"
+            className="lg:col-span-2"
+          />
         </section>
       </PageContainer>
 
