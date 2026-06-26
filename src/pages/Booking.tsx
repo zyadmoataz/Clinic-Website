@@ -66,13 +66,18 @@ export default function BookingPage() {
       },
       {
         onSuccess: (response) => {
+          if (paymentMethod === 'Cash') {
+            navigate('/my-appointments');
+            return;
+          }
+
           mockPayment(
             {
               appointmentId: response.appointment.id,
               status: 'Paid'
             },
             {
-              onSuccess: () => navigate('/appointments'),
+              onSuccess: () => navigate('/my-appointments'),
               onError: () => setError(true)
             }
           );
@@ -100,8 +105,8 @@ export default function BookingPage() {
               date={state.date}
               timeSlot={formatTimeLabel(state.timeSlot)}
             />
-            <div className="flex items-center justify-center gap-5">
-              <div className="border-border rounded-2xl border p-5 shadow-sm">
+            <div className="flex flex-col items-center justify-center">
+              <div className="border-border w-11/12 rounded-2xl border p-5 shadow-sm md:w-1/2">
                 <h3 className="text-text mb-4 text-lg font-semibold">{t('booking.mode')}</h3>
                 <OptionCard<AppointmentMode>
                   value={mode}
@@ -120,7 +125,7 @@ export default function BookingPage() {
                   ]}
                 />
               </div>
-              <div className="border-border rounded-2xl border p-5 shadow-sm">
+              <div className="border-border my-10 w-11/12 rounded-2xl border p-5 shadow-sm md:w-1/2">
                 <h3 className="text-text mb-4 text-lg font-semibold">
                   {t('booking.payment_method')}
                 </h3>
@@ -147,7 +152,7 @@ export default function BookingPage() {
               type="button"
               onClick={handleBook}
               disabled={isPending}
-              className="mt-6 w-1/2 md:w-1/5"
+              className="mt-6 w-2/3 md:w-3/5"
             >
               {isPending ? (
                 <span className="flex items-center justify-center gap-2">
