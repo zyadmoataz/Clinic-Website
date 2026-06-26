@@ -188,7 +188,17 @@
     "book_success": "Appointment booked successfully.",
     "book_error": "Could not book appointment.",
     "payment_success": "Payment completed successfully.",
-    "payment_error": "Payment failed."
+    "payment_error": "Payment failed.",
+    "confirm_booking": "Confirm Booking",
+    "booking": "Booking...",
+    "mode": "Appointment Type",
+    "payment_method": "Payment Method",
+    "online": "Online",
+    "in_clinic": "In Clinic",
+    "cash": "Cash",
+    "pay_online": "Online Payment",
+    "no_data": "No booking information",
+    "no_data_desc": "Please select a doctor and appointment time before continuing."
   },
   "common": {
     "error": "Error",
@@ -199,7 +209,8 @@
     "not_found": "The page you are looking for does not exist.",
     "option_1": "Option 1",
     "option_2": "Option 2",
-    "appName": "Clarity Clinic"
+    "appName": "Clarity Clinic",
+    "try_again": "Try Again"
   },
   "doctors": {
     "list_title": "Find Your Doctor",

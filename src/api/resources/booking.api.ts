@@ -6,13 +6,19 @@ export interface PaymentCheckout {
   checkoutUrl: string;
 }
 
+export type AppointmentMode = 'Online' | 'InClinic';
+
+export type PaymentMethod = 'Cash' | 'Online';
+
+export type PaymentStatus = 'Paid' | 'Refunded' | 'Pending';
+
 export interface CreateAppointmentPayload {
   doctorId: string;
   serviceId: number;
   date: string;
   startTime: string;
-  mode: string;
-  paymentMethod: string;
+  mode: AppointmentMode;
+  paymentMethod: PaymentMethod;
 }
 
 export interface BookAppointmentResponse {
@@ -22,7 +28,7 @@ export interface BookAppointmentResponse {
 
 export interface MockPaymentPayload {
   appointmentId: number;
-  status: string;
+  status: PaymentStatus;
 }
 
 export interface MockPaymentResponse {

@@ -24,6 +24,7 @@ import { ErrorState } from '../components/feedback/ErrorState';
 import { EmptyState } from '../components/feedback/EmptyState';
 import { useDoctorQuery, useDoctorSlotsQuery } from '@/api/queries/doctors.query';
 import { formatDate } from '../utils/formatDate';
+import { formatTimeLabel } from '@/utils/formatTimeLabel';
 
 function getInitials(name: string): string {
   const cleaned = name.replace(/^dr\.?\s*/i, '').trim();
@@ -31,13 +32,6 @@ function getInitials(name: string): string {
   if (parts.length === 0) return 'DR';
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
   return (parts[0][0] + parts[1][0]).toUpperCase();
-}
-
-function formatTimeLabel(time: string): string {
-  const [h, m] = time.split(':').map(Number);
-  const period = h >= 12 ? 'PM' : 'AM';
-  const hour12 = h % 12 === 0 ? 12 : h % 12;
-  return `${hour12}:${String(m).padStart(2, '0')} ${period}`;
 }
 
 function shortDate(date: string): { weekday: string; day: string; month: string } {
@@ -80,11 +74,11 @@ export default function DoctorDetail() {
       state: {
         doctorId: doctor.id,
         doctorName: doctor.displayName,
-        serviceId: String(selectedService.id),
+        serviceId: selectedService.id,
         serviceName: selectedService.name,
         price: selectedService.price,
         date: selectedDate,
-        timeSlot: formatTimeLabel(selectedTime)
+        timeSlot: selectedTime
       }
     });
   };
