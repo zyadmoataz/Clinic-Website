@@ -2,9 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import { getAuthMeAPI } from '../resources/authMe.api';
 import type { User } from '@/types';
 
-export const useAuthMeQuery = () => {
+export const useAuthMeQuery = (enabled: boolean = true) => {
   return useQuery<User>({
     queryKey: ['authMe'],
-    queryFn: getAuthMeAPI
+    queryFn: getAuthMeAPI,
+    enabled
   });
 };

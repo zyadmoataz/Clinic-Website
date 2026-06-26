@@ -1,1 +1,0 @@
-import{i as e,t}from"./jsx-runtime-DZ0TqwlS.js";e();var n=t();function r({children:e,className:t=``}){return(0,n.jsx)(`div`,{className:`container mx-auto w-full px-4 ${t}`,children:e})}export{r as t};

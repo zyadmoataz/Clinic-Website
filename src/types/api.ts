@@ -1,3 +1,5 @@
+import type { Appointment } from './models';
+
 export interface LoginUser {
   email: string;
   password: string;
@@ -78,4 +80,38 @@ export interface DoctorFilters {
 
 export interface ApiErrorData {
   message?: string;
+}
+
+export interface PaymentCheckout {
+  id: number;
+  checkoutUrl: string;
+}
+
+export type AppointmentMode = 'Online' | 'InClinic';
+
+export type PaymentMethod = 'Cash' | 'Online';
+
+export type PaymentStatus = 'Paid' | 'Refunded' | 'Pending';
+
+export interface CreateAppointmentPayload {
+  doctorId: string;
+  serviceId: number;
+  date: string;
+  startTime: string;
+  mode: AppointmentMode;
+  paymentMethod: PaymentMethod;
+}
+
+export interface BookAppointmentResponse {
+  appointment: Appointment;
+  payment: PaymentCheckout;
+}
+
+export interface MockPaymentPayload {
+  appointmentId: number;
+  status: PaymentStatus;
+}
+
+export interface MockPaymentResponse {
+  paid: boolean;
 }

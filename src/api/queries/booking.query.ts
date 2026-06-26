@@ -1,11 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import {
-  bookAppointmentAPI,
-  mockPaymentAPI,
-  type CreateAppointmentPayload,
-  type MockPaymentPayload
-} from '../resources/booking.api';
+import { bookAppointmentAPI, mockPaymentAPI } from '../resources/booking.api';
+import type { CreateAppointmentPayload, MockPaymentPayload } from '@/types';
 import { showToast } from '@/lib/toast';
 import type { ApiErrorData } from '@/types';
 import type { AxiosError } from 'axios';

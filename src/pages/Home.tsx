@@ -2,9 +2,9 @@
 // OWNER: Othman
 // ==========================================
 import { useTranslation } from 'react-i18next';
-import { Button } from '../components/ui';
-import { FeatureCard } from '../components/cards/FeatureCard';
-import { PageContainer } from '../components/layout/PageContainer';
+import { Button } from '@/components/ui';
+import { FeatureCard } from '@/components/cards/FeatureCard';
+import { PageContainer } from '@/components/layout/PageContainer';
 import {
   Bone,
   Brain,
@@ -18,7 +18,7 @@ import {
   Clock,
   Activity
 } from 'lucide-react';
-import { TestimonialCard } from '../components/cards/TestimonialCard';
+import { TestimonialCard } from '@/components/cards/TestimonialCard';
 import InfoCard from '@/components/cards/InfoCard';
 
 export default function Home() {

@@ -9,34 +9,40 @@ import NotFound from './pages/NotFound';
 
 const Home = lazy(() => import('./pages/Home'));
 const Login = lazy(() =>
-  import('./pages/Login').catch(() => ({ default: () => <div>{t('common.page_shell')}</div> }))
+  import('./pages/auth/Login').catch(() => ({ default: () => <div>{t('common.page_shell')}</div> }))
 );
 const Register = lazy(() =>
-  import('./pages/Register').catch(() => ({ default: () => <div>{t('common.page_shell')}</div> }))
+  import('./pages/auth/Register').catch(() => ({
+    default: () => <div>{t('common.page_shell')}</div>
+  }))
 );
 const Profile = lazy(() =>
-  import('./pages/Profile').catch(() => ({ default: () => <div>{t('common.page_shell')}</div> }))
+  import('./pages/profile/Profile').catch(() => ({
+    default: () => <div>{t('common.page_shell')}</div>
+  }))
 );
 const DoctorsList = lazy(() =>
-  import('./pages/DoctorsList').catch(() => ({
+  import('./pages/doctors/DoctorsList').catch(() => ({
     default: () => <div>{t('common.page_shell')}</div>
   }))
 );
 const DoctorDetail = lazy(() =>
-  import('./pages/DoctorDetail').catch(() => ({
+  import('./pages/doctors/DoctorDetail').catch(() => ({
     default: () => <div>{t('common.page_shell')}</div>
   }))
 );
 const Booking = lazy(() =>
-  import('./pages/Booking').catch(() => ({ default: () => <div>{t('common.page_shell')}</div> }))
-);
-const BookingConfirmation = lazy(() =>
-  import('./pages/BookingConfirmation').catch(() => ({
+  import('./pages/booking/Booking').catch(() => ({
     default: () => <div>{t('common.page_shell')}</div>
   }))
 );
-const MyAppointments = lazy(() => import('./pages/MyAppointments'));
-const MyPrescriptions = lazy(() => import('./pages/MyPrescriptions'));
+const BookingConfirmation = lazy(() =>
+  import('./pages/booking/BookingConfirmation').catch(() => ({
+    default: () => <div>{t('common.page_shell')}</div>
+  }))
+);
+const MyAppointments = lazy(() => import('./pages/appointments/MyAppointments'));
+const MyPrescriptions = lazy(() => import('./pages/prescriptions/MyPrescriptions'));
 
 function LoadingFallback() {
   return (
