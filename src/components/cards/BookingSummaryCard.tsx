@@ -3,6 +3,7 @@
 // PURPOSE: Renders details summary during checkout/booking
 // ==========================================
 
+import { formatDate } from '@/utils/formatDate';
 import { useTranslation } from 'react-i18next';
 
 interface BookingSummaryCardProps {
@@ -23,7 +24,7 @@ export function BookingSummaryCard({
   const { t } = useTranslation();
 
   return (
-    <div className="card border-border bg-surface border p-6 shadow-sm">
+    <div className="card border-border bg-surface mx-auto my-10 w-11/12 rounded-2xl border p-6 shadow-sm md:w-1/2">
       <h3 className="text-text mb-4 text-lg font-bold">
         {t('booking.summaryTitle', 'Booking Summary')}
       </h3>
@@ -38,7 +39,7 @@ export function BookingSummaryCard({
         </div>
         <div className="flex justify-between py-2">
           <span className="text-muted">{t('booking.summaryDate', 'Date')}</span>
-          <span className="text-text font-semibold">{date}</span>
+          <span className="text-text font-semibold">{formatDate(date)}</span>
         </div>
         <div className="flex justify-between py-2">
           <span className="text-muted">{t('booking.summaryTimeSlot', 'Time')}</span>

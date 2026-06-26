@@ -23,7 +23,7 @@ export function ErrorState({
       <p className="text-danger/80 mb-6 max-w-sm text-sm">{message}</p>
       {onRetry && (
         <Button className="bg-red-500 text-white hover:bg-red-600" onClick={onRetry}>
-          Try Again
+          {t('common.try_again')}
         </Button>
       )}
     </div>
