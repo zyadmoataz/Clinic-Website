@@ -2,7 +2,7 @@
 // OWNER: Doaa
 // ==========================================
 
-import { useBookAppointmentMutation, useMockPaymentMutation } from '@/api/queries/booking.query';
+import { useBookAppointmentMutation } from '@/api/queries/booking.query';
 import { BookingSummaryCard } from '@/components/cards/BookingSummaryCard';
 import { EmptyState } from '@/components/feedback/EmptyState';
 import { ErrorState } from '@/components/feedback/ErrorState';
@@ -38,7 +38,6 @@ export default function BookingPage() {
   const [error, setError] = useState(false);
 
   const { mutate: bookAppointment, isPending } = useBookAppointmentMutation();
-  const { mutate: mockPayment } = useMockPaymentMutation();
 
   if (!state) {
     return (
@@ -66,21 +65,15 @@ export default function BookingPage() {
       },
       {
         onSuccess: (response) => {
-          if (paymentMethod === 'Cash') {
-            navigate('/my-appointments');
-            return;
-          }
-
-          mockPayment(
-            {
-              appointmentId: response.appointment.id,
-              status: 'Paid'
-            },
-            {
-              onSuccess: () => navigate('/my-appointments'),
-              onError: () => setError(true)
+          navigate('/booking/confirmation', {
+            state: {
+              appointment: response.appointment,
+              payment: response.payment,
+              mode,
+              paymentMethod,
+              amount: state.price
             }
-          );
+          });
         },
         onError: () => setError(true)
       }
