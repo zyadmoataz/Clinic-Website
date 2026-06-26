@@ -3,7 +3,7 @@
 // ==========================================
 
 import { PageContainer } from '../components/layout/PageContainer';
-import { Button, Input, Spinner } from '../components/ui';
+import { Button, Input } from '../components/ui';
 import { Modal } from '../components/ui/Modal';
 import { useAuthMeQuery } from '@/api/queries/authMe.query';
 import { useUpdateProfileMutation } from '@/api/queries/updateProfile.mutation';
@@ -18,7 +18,7 @@ export default function Page() {
   const { t } = useTranslation();
   const updateProfileSchema = getUpdateProfileSchema(t);
 
-  const { data: user, isLoading, isError } = useAuthMeQuery();
+  const { data: user, isError } = useAuthMeQuery();
   const { mutate: updateProfile, isPending } = useUpdateProfileMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -32,7 +32,7 @@ export default function Page() {
     resolver: zodResolver(updateProfileSchema)
   });
 
-  if (isLoading) return <Spinner />;
+  // if (isLoading) return <Spinner />;
   if (isError) return <p>{t('common.error')}</p>;
   if (!user) return null;
 
