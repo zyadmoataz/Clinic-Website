@@ -1,7 +1,3 @@
-// ==========================================
-// OWNER: Zyad, Othman
-// PURPOSE: Global Shared Layout - Root Layout
-// ==========================================
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Navbar } from './Navbar';

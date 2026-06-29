@@ -1,6 +1,3 @@
-// ==========================================
-// OWNER: Zyad, Othman, Omar, Doaa, Helda
-// ==========================================
 import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

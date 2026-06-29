@@ -1,6 +1,3 @@
-// ==========================================
-// OWNER: Omar, Doaa, Helda
-// ==========================================
 import React from 'react';
 
 export function Spinner({ className = '', ...props }: React.SVGProps<SVGSVGElement>) {

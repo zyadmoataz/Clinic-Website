@@ -1,7 +1,3 @@
-// ==========================================
-// OWNER: Omar, Helda
-// PURPOSE: Shared UI Component - Empty State
-// ==========================================
 import React from 'react';
 
 export interface EmptyStateProps {

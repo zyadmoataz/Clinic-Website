@@ -1,6 +1,3 @@
-// ==========================================
-// OWNER: Zyad, Othman
-// ==========================================
 import { useTranslation } from 'react-i18next';
 import { Globe } from 'lucide-react';
 import { useEffect } from 'react';

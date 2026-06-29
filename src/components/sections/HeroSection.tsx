@@ -1,7 +1,3 @@
-// ==========================================
-// OWNER: Othman
-// PURPOSE: Hero section for landing page
-// ==========================================
 import { useTranslation } from 'react-i18next';
 import { Button } from '../ui/Button';
 

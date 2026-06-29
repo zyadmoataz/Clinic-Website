@@ -1,7 +1,3 @@
-// ==========================================
-// OWNER: Zyad
-// ==========================================
-
 import { Button, Input } from '@/components/ui';
 import { useForm } from 'react-hook-form';
 import { getRegisterSchema } from '@/schemas/auth.schema';

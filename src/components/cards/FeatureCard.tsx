@@ -1,9 +1,3 @@
-// ==========================================
-// OWNER: Othman
-// PURPOSE: Landing Page - Feature Card
-// ACTION: Replace this static layout with your own!
-// ==========================================
-
 import React from 'react';
 
 interface FeatureCardProps {

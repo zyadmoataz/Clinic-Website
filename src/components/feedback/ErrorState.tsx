@@ -1,8 +1,4 @@
 import { useTranslation } from 'react-i18next';
-// ==========================================
-// OWNER: Omar, Helda
-// PURPOSE: Shared UI Component - Error State
-// ==========================================
 import { AlertCircle } from 'lucide-react';
 import { Button } from '../ui/Button';
 

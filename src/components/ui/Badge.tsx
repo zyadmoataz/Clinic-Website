@@ -1,6 +1,3 @@
-// ==========================================
-// OWNER: Omar, Helda
-// ==========================================
 import React from 'react';
 
 export function Badge({

@@ -1,7 +1,3 @@
-// ==========================================
-// OWNER: Zyad, Othman
-// PURPOSE: Footer Component (Shared layout)
-// ==========================================
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Share2, MessageCircle, Globe, Mail, Phone, MapPin } from 'lucide-react';

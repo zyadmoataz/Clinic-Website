@@ -1,7 +1,3 @@
-// ==========================================
-// OWNER: Doaa
-// ==========================================
-
 import { useBookAppointmentMutation } from '@/api/queries/booking.query';
 import { BookingSummaryCard } from '@/components/cards/BookingSummaryCard';
 import { EmptyState } from '@/components/feedback/EmptyState';

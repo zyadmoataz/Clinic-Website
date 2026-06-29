@@ -5,9 +5,13 @@ import { LoadingState } from '@/components/feedback/LoadingState';
 import { EmptyState } from '@/components/feedback/EmptyState';
 import { ErrorState } from '@/components/feedback/ErrorState';
 import { PageContainer } from '@/components/layout/PageContainer';
+import { Modal } from '@/components/ui/Modal';
+import { Button } from '@/components/ui/Button';
 import { AppointmentCard } from '@/components/cards/AppointmentCard';
 import type { FilterWhen, FilterStatus } from '@/api/resources/appointment.api';
 import { useAppointments, useCancelAppointment } from '@/api/queries/appointment.query';
+import { formatDate } from '@/utils/formatDate';
+import { translateTag, toLocalizedNumbers } from '@/utils/localization';
 
 interface StatusDropdownProps {
   value: FilterStatus;
@@ -75,6 +79,7 @@ export default function MyAppointments() {
   const [whenFilter, setWhenFilter] = useState<FilterWhen>('upcoming');
   const [statusFilter, setStatusFilter] = useState<FilterStatus>('all');
   const [openId, setOpenId] = useState<number | null>(null);
+  const [cancelConfirmId, setCancelConfirmId] = useState<number | null>(null);
 
   const isRtl = i18n.language === 'ar';
 
@@ -86,51 +91,14 @@ export default function MyAppointments() {
   } = useAppointments(whenFilter, statusFilter);
   const cancelMutation = useCancelAppointment(() => setOpenId(null));
 
-  const translateTag = (tag: string | undefined): string => {
-    if (!tag) return '';
-    if (i18n.language !== 'ar') return tag;
-
-    const translations: Record<string, string> = {
-      cash: 'نقدي',
-      clinic: 'في العيادة',
-      inclinic: 'في العيادة',
-      online: 'أونلاين',
-      paid: 'تم الدفع',
-      pending: 'قيد الانتظار'
-    };
-
-    return translations[tag.toLowerCase().replace(/\s+/g, '')] || tag;
-  };
-
-  const toLocalizedNumbers = (input: string | number) => {
-    if (input == null) return '';
-    const str = input.toString();
-    if (i18n.language !== 'ar') return str;
-
-    const formatter = new Intl.NumberFormat('ar-u-nu-arab', { useGrouping: false });
-    return str.replace(/\d+/g, (match) => formatter.format(Number(match)));
-  };
-
-  const formatDate = (dateStr: string) => {
-    try {
-      const dateObj = new Date(dateStr);
-      if (isNaN(dateObj.getTime())) return dateStr;
-
-      const localeWithCalendar = i18n.language === 'ar' ? 'ar-u-nu-arab' : i18n.language;
-
-      return new Intl.DateTimeFormat(localeWithCalendar, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      }).format(dateObj);
-    } catch {
-      return dateStr;
-    }
-  };
-
   const handleCancel = (id: number) => {
-    if (window.confirm(t('appointments.cancel_confirm'))) {
-      cancelMutation.mutate(id);
+    setCancelConfirmId(id);
+  };
+
+  const executeCancel = () => {
+    if (cancelConfirmId) {
+      cancelMutation.mutate(cancelConfirmId);
+      setCancelConfirmId(null);
     }
   };
 
@@ -310,6 +278,36 @@ export default function MyAppointments() {
           </div>
         )}
       </div>
+
+      <Modal
+        isOpen={!!cancelConfirmId}
+        onClose={() => setCancelConfirmId(null)}
+        title={t('appointments.cancel_title', 'Cancel Appointment')}
+      >
+        <div className="space-y-6 pt-2">
+          <p className="text-muted text-sm leading-relaxed">
+            {t('appointments.cancel_confirm', 'Are you sure you want to cancel this appointment?')}
+          </p>
+          <div className="flex justify-end gap-3 pt-2">
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => setCancelConfirmId(null)}
+              disabled={cancelMutation.isPending}
+            >
+              {t('common.cancel', 'Cancel')}
+            </Button>
+            <Button
+              type="button"
+              onClick={executeCancel}
+              disabled={cancelMutation.isPending}
+              className="bg-danger hover:bg-danger/90 border-transparent text-white"
+            >
+              {t('appointments.cancel_btn', 'Cancel Appointment')}
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </PageContainer>
   );
 }

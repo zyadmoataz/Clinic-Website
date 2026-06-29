@@ -1,8 +1,4 @@
 import { useTranslation } from 'react-i18next';
-// ==========================================
-// OWNER: Zyad, Othman
-// PURPOSE: Global Shared Layout - Mobile Menu
-// ==========================================
 interface MobileMenuProps {
   onClose: () => void;
 }

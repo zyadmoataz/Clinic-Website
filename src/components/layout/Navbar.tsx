@@ -1,8 +1,3 @@
-// ==========================================
-// OWNER: Zyad, Othman
-// PURPOSE: Global Shared Layout - Navbar
-// ==========================================
-
 import { useState } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { ThemeToggle, LanguageToggle } from '../ui';

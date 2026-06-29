@@ -1,7 +1,4 @@
 import { useTranslation } from 'react-i18next';
-// ==========================================
-// OWNER: Omar, Doaa
-// ==========================================
 import React from 'react';
 
 export function Select({

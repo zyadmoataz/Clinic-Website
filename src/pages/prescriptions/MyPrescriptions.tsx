@@ -4,36 +4,14 @@ import { EmptyState } from '@/components/feedback/EmptyState';
 import { ErrorState } from '@/components/feedback/ErrorState';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { usePrescriptions } from '@/api/queries/prescriptions.query';
+import { formatDate } from '@/utils/formatDate';
+import { toLocalizedNumbers } from '@/utils/localization';
 
 export default function MyPrescriptions() {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === 'ar';
 
   const { data: visits, isLoading, isError, refetch } = usePrescriptions();
-
-  const toLocalizedNumbers = (input: string | number) => {
-    if (input == null) return '';
-    const str = input.toString();
-    if (i18n.language !== 'ar') return str;
-    const formatter = new Intl.NumberFormat('ar-u-nu-arab', { useGrouping: false });
-    return str.replace(/\d+/g, (match) => formatter.format(Number(match)));
-  };
-
-  const formatDate = (dateStr: string) => {
-    try {
-      const dateObj = new Date(dateStr);
-      if (isNaN(dateObj.getTime())) return dateStr;
-      const localeWithCalendar = i18n.language === 'ar' ? 'ar-u-nu-arab' : i18n.language;
-      return new Intl.DateTimeFormat(localeWithCalendar, {
-        weekday: 'short',
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      }).format(dateObj);
-    } catch {
-      return dateStr;
-    }
-  };
 
   return (
     <PageContainer>

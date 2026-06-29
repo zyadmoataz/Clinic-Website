@@ -1,6 +1,3 @@
-// ==========================================
-// OWNER: Zyad, Othman
-// ==========================================
 import { Moon, Sun } from 'lucide-react';
 import { useEffect, useState } from 'react';
 

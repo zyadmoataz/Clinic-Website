@@ -1,8 +1,3 @@
-// ==========================================
-// OWNER: Omar, Doaa
-// PURPOSE: Renders service card for clinic services
-// ==========================================
-
 interface Service {
   id: number;
   name: string;

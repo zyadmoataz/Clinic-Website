@@ -1,7 +1,3 @@
-// ==========================================
-// OWNER: Zyad
-// ==========================================
-
 import { Button, Input } from '@/components/ui';
 import { useTranslation } from 'react-i18next';
 import { AlertCircle } from 'lucide-react';

@@ -1,7 +1,3 @@
-// ==========================================
-// OWNER: Othman
-// PURPOSE: Renders testimonials on the home landing page
-// ==========================================
 interface TestimonialCardProps {
   name: string;
   comment: string;

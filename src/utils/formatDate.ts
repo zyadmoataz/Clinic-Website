@@ -1,12 +1,20 @@
 import i18n from '@/i18n';
 
 // Shared utility functions for Patient Website
-export const formatDate = (date: string | Date): string => {
-  const lang = i18n.language || 'en';
-  const locale = lang === 'ar' ? 'ar-EG' : 'en-US';
-  return new Date(date).toLocaleDateString(locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+export const formatDate = (dateStr: string | Date): string => {
+  try {
+    const dateObj = new Date(dateStr);
+    if (isNaN(dateObj.getTime())) return String(dateStr);
+
+    const lang = i18n.language || 'en';
+    const localeWithCalendar = lang === 'ar' ? 'ar-u-nu-arab' : lang;
+
+    return new Intl.DateTimeFormat(localeWithCalendar, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }).format(dateObj);
+  } catch {
+    return String(dateStr);
+  }
 };

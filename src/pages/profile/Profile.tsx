@@ -1,7 +1,3 @@
-// ==========================================
-// OWNER: Othman
-// ==========================================
-
 import { PageContainer } from '@/components/layout/PageContainer';
 import { Button, Input } from '@/components/ui';
 import { User } from 'lucide-react';

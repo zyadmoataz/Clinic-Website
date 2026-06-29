@@ -1,6 +1,3 @@
-// ==========================================
-// OWNER: Omar
-// ==========================================
 import { useQuery } from '@tanstack/react-query';
 import { getDoctorsAPI, getDoctorByIdAPI, getDoctorSlotsAPI } from '../resources/doctors.api';
 import type { DoctorDetail, DoctorFilters, DoctorSummary } from '@/types';

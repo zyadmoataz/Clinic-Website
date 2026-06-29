@@ -1,8 +1,3 @@
-// ==========================================
-// OWNER: Omar, Helda
-// PURPOSE: Full container loading feedback
-// ==========================================
-
 import { Spinner } from '../ui/Spinner';
 
 interface LoadingStateProps {

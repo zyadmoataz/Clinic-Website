@@ -1,7 +1,3 @@
-// ==========================================
-// OWNER: Zyad, Othman
-// PURPOSE: Global Shared Layout - Page Container
-// ==========================================
 import { type ReactNode } from 'react';
 
 interface PageContainerProps {

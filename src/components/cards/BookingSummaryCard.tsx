@@ -1,8 +1,3 @@
-// ==========================================
-// OWNER: Doaa
-// PURPOSE: Renders details summary during checkout/booking
-// ==========================================
-
 import { formatDate } from '@/utils/formatDate';
 import { useTranslation } from 'react-i18next';
 

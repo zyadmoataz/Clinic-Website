@@ -1,8 +1,3 @@
-// ==========================================
-// OWNER: Othman, Omar
-// PURPOSE: Standard section header
-// ==========================================
-
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;

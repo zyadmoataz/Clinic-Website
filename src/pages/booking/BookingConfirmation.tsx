@@ -1,7 +1,3 @@
-// ==========================================
-// OWNER: Doaa
-// ==========================================
-
 import { useMockPaymentMutation } from '@/api/queries/booking.query';
 import type { AppointmentMode, PaymentCheckout, PaymentMethod, Appointment } from '@/types';
 import { PageContainer } from '@/components/layout/PageContainer';
