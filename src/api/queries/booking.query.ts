@@ -18,6 +18,9 @@ export const useBookAppointmentMutation = () => {
       queryClient.invalidateQueries({
         queryKey: ['myAppointments']
       });
+      queryClient.invalidateQueries({
+        queryKey: ['doctor-slots']
+      });
     },
 
     onError: (error: AxiosError<ApiErrorData>) => {
@@ -38,6 +41,9 @@ export const useMockPaymentMutation = () => {
       showToast.success(t('booking.payment_success'));
       queryClient.invalidateQueries({
         queryKey: ['myAppointments']
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['doctor-slots']
       });
     },
 

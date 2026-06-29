@@ -20,8 +20,7 @@ export function Footer() {
               <span className="text-xl">{t('common.appName', 'Clarity Clinic')}</span>
             </div>
             <p className="text-muted max-w-xs text-sm leading-relaxed">
-              Experience world-class healthcare tailored to your needs. Dedicated to your
-              well-being, providing personalized attention every step of the way.
+              {t('footer.brandDescription')}
             </p>
             <div className="mt-2 flex items-center gap-3">
               <a
@@ -48,82 +47,82 @@ export function Footer() {
           {/* Quick Links */}
           <div className="flex flex-col gap-4">
             <h3 className="text-text mb-1 text-sm font-bold tracking-wider uppercase">
-              Quick Links
+              {t('footer.quickLinks')}
             </h3>
             <Link
               to="/"
               className="text-muted hover:text-primary w-fit text-sm font-medium transition-colors"
             >
-              Home
+              {t('navbar.home')}
             </Link>
             <Link
               to="/doctors"
               className="text-muted hover:text-primary w-fit text-sm font-medium transition-colors"
             >
-              Find a Doctor
+              {t('navbar.find_doctor')}
             </Link>
             <Link
               to="/booking"
               className="text-muted hover:text-primary w-fit text-sm font-medium transition-colors"
             >
-              Book Appointment
+              {t('footer.bookAppointment')}
             </Link>
             <Link
               to="#"
               className="text-muted hover:text-primary w-fit text-sm font-medium transition-colors"
             >
-              About Us
+              {t('footer.aboutUs')}
             </Link>
           </div>
 
           {/* Patient Portal */}
           <div className="flex flex-col gap-4">
             <h3 className="text-text mb-1 text-sm font-bold tracking-wider uppercase">
-              Patient Portal
+              {t('footer.patientPortal')}
             </h3>
             <Link
               to="/login"
               className="text-muted hover:text-primary w-fit text-sm font-medium transition-colors"
             >
-              Login to Portal
+              {t('footer.loginToPortal')}
             </Link>
             <Link
               to="/register"
               className="text-muted hover:text-primary w-fit text-sm font-medium transition-colors"
             >
-              Register Account
+              {t('navbar.create_account')}
             </Link>
             <Link
               to="/my-prescriptions"
               className="text-muted hover:text-primary w-fit text-sm font-medium transition-colors"
             >
-              My Prescriptions
+              {t('navbar.prescriptions')}
             </Link>
             <Link
               to="/my-appointments"
               className="text-muted hover:text-primary w-fit text-sm font-medium transition-colors"
             >
-              My Appointments
+              {t('navbar.appointments')}
             </Link>
             <Link
               to="/profile"
               className="text-muted hover:text-primary w-fit text-sm font-medium transition-colors"
             >
-              My Profile
+              {t('navbar.profile')}
             </Link>
           </div>
 
           {/* Contact Info */}
           <div className="flex flex-col gap-4">
             <h3 className="text-text mb-1 text-sm font-bold tracking-wider uppercase">
-              Contact Us
+              {t('footer.contactUs')}
             </h3>
             <div className="flex items-start gap-3">
               <MapPin className="text-primary mt-0.5 shrink-0" size={18} />
               <span className="text-muted text-sm leading-relaxed">
-                123 Health Avenue, Medical District
+                {t('footer.address1')}
                 <br />
-                New York, NY 10001
+                {t('footer.address2')}
               </span>
             </div>
             <div className="mt-1 flex items-center gap-3">
@@ -148,14 +147,14 @@ export function Footer() {
               href="#"
               className="text-muted hover:text-primary text-xs font-medium transition-colors"
             >
-              Privacy Policy
+              {t('footer.privacyPolicy')}
             </a>
             <span className="text-border text-xs">•</span>
             <a
               href="#"
               className="text-muted hover:text-primary text-xs font-medium transition-colors"
             >
-              Terms of Service
+              {t('footer.termsOfService')}
             </a>
           </div>
         </div>

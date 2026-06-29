@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base API URL from your Swagger documentation, overridden by local .env
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.clinic.kaessam.codes/api';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const apiClient = axios.create({
   baseURL: BASE_URL,

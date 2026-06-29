@@ -4,7 +4,7 @@
 // ==========================================
 
 import { useState } from 'react';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { ThemeToggle, LanguageToggle } from '../ui';
 import { useTranslation } from 'react-i18next';
 import { useLogoutQuery } from '@/api/queries/logout.query';
@@ -25,7 +25,7 @@ export function Navbar() {
     { name: t('navbar.appointments'), path: '/my-appointments' }
   ];
 
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const { isAuthenticated, user } = useAuthStore();
 
   return (
     <header className="bg-surface/80 border-border sticky top-0 z-40 w-full border-b shadow-[0_4px_30px_rgba(0,0,0,0.03)] backdrop-blur-xl transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)]">
@@ -64,14 +64,30 @@ export function Navbar() {
             {isAuthenticated ? (
               <div className="group relative">
                 <button
-                  className="bg-surface-2 text-primary hover:bg-primary/10 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 active:scale-[0.92]"
+                  className="bg-surface-2 text-primary hover:bg-primary/10 flex h-11 w-11 cursor-pointer items-center justify-center overflow-hidden rounded-full transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 active:scale-[0.92]"
                   onClick={() => navigate('/profile')}
                 >
-                  <User size={22} />
+                  {user?.avatarUrl ? (
+                    <img
+                      src={user.avatarUrl}
+                      alt="User Avatar"
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <img
+                      src="/default-avatar.png"
+                      className="h-full w-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.parentElement?.classList.add('fallback-icon');
+                      }}
+                    />
+                  )}
+                  {!user?.avatarUrl && <User size={22} className="pointer-events-none absolute" />}
                 </button>
 
                 {/* Dropdown Menu */}
-                <div className="border-border bg-surface/95 invisible absolute top-full right-0 z-50 mt-3 flex w-56 origin-top-right scale-95 flex-col rounded-3xl border p-2.5 opacity-0 shadow-[0_16px_40px_rgba(0,0,0,0.08)] backdrop-blur-xl transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:visible group-hover:scale-100 group-hover:opacity-100">
+                <div className="border-border bg-surface/95 invisible absolute end-0 top-full z-50 mt-3 flex w-56 origin-top-right scale-95 flex-col rounded-3xl border p-2.5 opacity-0 shadow-[0_16px_40px_rgba(0,0,0,0.08)] backdrop-blur-xl transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:visible group-hover:scale-100 group-hover:opacity-100 rtl:origin-top-left">
                   <div className="border-border mb-2 border-b px-3 pt-2 pb-3">
                     <p className="text-text text-sm font-bold">{t('common.my_account')}</p>
                   </div>

@@ -25,6 +25,7 @@ import { EmptyState } from '@/components/feedback/EmptyState';
 import { useDoctorQuery, useDoctorSlotsQuery } from '@/api/queries/doctors.query';
 import { formatDate } from '@/utils/formatDate';
 import { formatTimeLabel } from '@/utils/formatTimeLabel';
+import i18n from '@/i18n';
 
 function getInitials(name: string): string {
   const cleaned = name.replace(/^dr\.?\s*/i, '').trim();
@@ -36,10 +37,12 @@ function getInitials(name: string): string {
 
 function shortDate(date: string): { weekday: string; day: string; month: string } {
   const d = new Date(date);
+  const lang = i18n.language || 'en';
+  const locale = lang === 'ar' ? 'ar-EG' : 'en-US';
   return {
-    weekday: d.toLocaleDateString('en-US', { weekday: 'short' }),
-    day: d.toLocaleDateString('en-US', { day: 'numeric' }),
-    month: d.toLocaleDateString('en-US', { month: 'short' })
+    weekday: d.toLocaleDateString(locale, { weekday: 'short' }),
+    day: d.toLocaleDateString(locale, { day: 'numeric' }),
+    month: d.toLocaleDateString(locale, { month: 'short' })
   };
 }
 

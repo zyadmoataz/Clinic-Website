@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui';
 import { FeatureCard } from '@/components/cards/FeatureCard';
 import { PageContainer } from '@/components/layout/PageContainer';
+import { useNavigate } from 'react-router-dom';
 import {
   Bone,
   Brain,
@@ -22,7 +23,10 @@ import { TestimonialCard } from '@/components/cards/TestimonialCard';
 import InfoCard from '@/components/cards/InfoCard';
 
 export default function Home() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const isRtl = i18n.language === 'ar';
+  const arrow = isRtl ? '←' : '→';
 
   return (
     <>
@@ -47,11 +51,18 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Button className="hover:shadow-glow h-12 rounded-full px-8 text-lg shadow-md hover:-translate-y-1">
-                {t('home.hero.main-cta')} →
+              <Button
+                onClick={() => navigate('/booking')}
+                className="hover:shadow-glow h-12 rounded-full px-8 text-lg shadow-md hover:-translate-y-1"
+              >
+                {t('home.hero.main-cta')} {arrow}
               </Button>
-              <Button className="h-12 rounded-full px-8 text-lg" variant="secondary">
-                {t('home.hero.sec-cta')} →
+              <Button
+                onClick={() => navigate('/doctors')}
+                className="h-12 rounded-full px-8 text-lg"
+                variant="secondary"
+              >
+                {t('home.hero.sec-cta')} {arrow}
               </Button>
             </div>
           </section>

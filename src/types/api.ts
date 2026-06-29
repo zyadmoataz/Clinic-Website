@@ -115,3 +115,8 @@ export interface MockPaymentPayload {
 export interface MockPaymentResponse {
   paid: boolean;
 }
+
+export interface ChangePasswordPayload {
+  current: string;
+  new: string;
+}

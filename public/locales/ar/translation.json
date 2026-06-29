@@ -100,7 +100,8 @@
       "completed": "مكتمل",
       "cancelled": "ملغي",
       "no-show": "فائت",
-      "pending": "قيد الانتظار"
+      "pending": "قيد الانتظار",
+      "pendingpayment": "في انتظار الدفع"
     }
   },
   "login": {
@@ -153,7 +154,14 @@
     "name_required": "الاسم مطلوب",
     "phone_required": "الهاتف مطلوب",
     "update_success": "تم حفظ التغييرات بنجاح.",
-    "update_error": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+    "update_error": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "password_changed": "تم تغيير كلمة المرور بنجاح",
+    "same_password": "يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمة المرور الحالية",
+    "security": "الأمان",
+    "security_desc": "إدارة كلمة المرور وإعدادات الأمان الخاصة بك.",
+    "change_password": "تغيير كلمة المرور",
+    "current_password": "كلمة المرور الحالية",
+    "new_password": "كلمة المرور الجديدة"
   },
   "prescriptions": {
     "title": "الوصفات الطبية",
@@ -270,7 +278,18 @@
     "continue_to_booking": "المتابعة للحجز"
   },
   "footer": {
-    "allRightsReserved": "جميع الحقوق محفوظة"
+    "allRightsReserved": "جميع الحقوق محفوظة",
+    "brandDescription": "اختبر رعاية صحية عالمية المستوى مصممة خصيصًا لاحتياجاتك. مكرسون لرفاهيتك، ونقدم اهتمامًا شخصيًا في كل خطوة.",
+    "quickLinks": "روابط سريعة",
+    "patientPortal": "بوابة المريض",
+    "contactUs": "تواصل معنا",
+    "address1": "123 شارع الصحة، الحي الطبي",
+    "address2": "نيويورك، نيويورك 10001",
+    "privacyPolicy": "سياسة الخصوصية",
+    "termsOfService": "شروط الخدمة",
+    "aboutUs": "معلومات عنا",
+    "loginToPortal": "الدخول إلى البوابة",
+    "bookAppointment": "حجز موعد"
   },
   "hero": {
     "eyebrow": "مرحباً بكم في",
