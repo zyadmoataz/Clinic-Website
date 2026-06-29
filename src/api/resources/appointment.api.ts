@@ -57,8 +57,8 @@ export const getAppointments = async (
 ): Promise<Appointment[]> => {
   const params: Record<string, string> = { when };
   if (status !== 'all') params.status = status;
-  const response = await apiClient.get('/me/appointments', { params });
-  return response.data;
+  const appointmentsResponse = await apiClient.get('/me/appointments', { params });
+  return appointmentsResponse.data;
 };
 
 export const cancelAppointment = async (id: number): Promise<void> => {

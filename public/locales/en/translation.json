@@ -119,6 +119,7 @@
     "password_placeholder": "••••••••"
   },
   "register": {
+    "password_complexity_validation": "Password must contain at least one letter and one number",
     "success_register": "You have successfully registered",
     "correct_email_or_password": "This email or password didn't match. Check and try again, or reset your password.",
     "hero_title": "Create your account",

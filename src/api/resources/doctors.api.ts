@@ -15,13 +15,13 @@ export const getDoctorsAPI = async (filters: DoctorFilters = {}): Promise<Doctor
   if (filters.search) params.search = filters.search;
   if (filters.specialization) params.specialization = filters.specialization;
 
-  const response = await apiClient.get<DoctorsListResponse>('/doctors', { params });
-  return response.data.items ?? [];
+  const doctorsListResponse = await apiClient.get<DoctorsListResponse>('/doctors', { params });
+  return doctorsListResponse.data.items ?? [];
 };
 
 export const getDoctorByIdAPI = async (id: string): Promise<DoctorDetail> => {
-  const response = await apiClient.get<DoctorDetail>(`/doctors/${id}`);
-  return response.data;
+  const doctorDetailResponse = await apiClient.get<DoctorDetail>(`/doctors/${id}`);
+  return doctorDetailResponse.data;
 };
 
 export const getDoctorSlotsAPI = async (
@@ -29,8 +29,8 @@ export const getDoctorSlotsAPI = async (
   date: string,
   serviceId: number
 ): Promise<string[]> => {
-  const response = await apiClient.get<DoctorSlotsResponse>(`/doctors/${id}/slots`, {
+  const slotsResponse = await apiClient.get<DoctorSlotsResponse>(`/doctors/${id}/slots`, {
     params: { date, serviceId }
   });
-  return response.data.slots ?? [];
+  return slotsResponse.data.slots ?? [];
 };

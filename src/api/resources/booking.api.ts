@@ -7,13 +7,15 @@ import type {
 import { apiClient } from '../apiClient';
 
 export const bookAppointmentAPI = async (
-  payload: CreateAppointmentPayload
+  bookingPayload: CreateAppointmentPayload
 ): Promise<BookAppointmentResponse> => {
-  const response = await apiClient.post('/appointments', payload);
-  return response.data;
+  const bookingResponse = await apiClient.post('/appointments', bookingPayload);
+  return bookingResponse.data;
 };
 
-export const mockPaymentAPI = async (payload: MockPaymentPayload): Promise<MockPaymentResponse> => {
-  const response = await apiClient.post('/payments/mock/pay', payload);
-  return response.data;
+export const mockPaymentAPI = async (
+  paymentPayload: MockPaymentPayload
+): Promise<MockPaymentResponse> => {
+  const paymentResponse = await apiClient.post('/payments/mock/pay', paymentPayload);
+  return paymentResponse.data;
 };
