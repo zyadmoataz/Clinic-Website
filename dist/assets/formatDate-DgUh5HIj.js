@@ -1,0 +1,1 @@
+import{v as e}from"./index-H71AHYHE.js";var t=t=>{try{let n=new Date(t);if(isNaN(n.getTime()))return String(t);let r=e.language||`en`,i=r===`ar`?`ar-u-nu-arab`:r;return new Intl.DateTimeFormat(i,{year:`numeric`,month:`long`,day:`numeric`}).format(n)}catch{return String(t)}};export{t};

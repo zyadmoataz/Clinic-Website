@@ -100,7 +100,8 @@
       "completed": "Completed",
       "cancelled": "Cancelled",
       "no-show": "Missed",
-      "pending": "Pending"
+      "pending": "Pending",
+      "pendingpayment": "Pending Payment"
     }
   },
   "login": {
@@ -153,7 +154,15 @@
     "name_required": "Name is required",
     "phone_required": "Phone is required",
     "update_success": "Your changes have been saved successfully.",
-    "update_error": "Something went wrong. Please try again."
+    "update_success": "Your changes have been saved successfully.",
+    "update_error": "Something went wrong. Please try again.",
+    "password_changed": "Password changed successfully",
+    "same_password": "New password must be different from current password",
+    "security": "Security",
+    "security_desc": "Manage your password and security settings.",
+    "change_password": "Change Password",
+    "current_password": "Current Password",
+    "new_password": "New Password"
   },
   "prescriptions": {
     "title": "Prescriptions",
@@ -268,7 +277,18 @@
     "continue_to_booking": "Continue to Booking"
   },
   "footer": {
-    "allRightsReserved": "All Rights Reserved"
+    "allRightsReserved": "All Rights Reserved",
+    "brandDescription": "Experience world-class healthcare tailored to your needs. Dedicated to your well-being, providing personalized attention every step of the way.",
+    "quickLinks": "Quick Links",
+    "patientPortal": "Patient Portal",
+    "contactUs": "Contact Us",
+    "address1": "123 Health Avenue, Medical District",
+    "address2": "New York, NY 10001",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "aboutUs": "About Us",
+    "loginToPortal": "Login to Portal",
+    "bookAppointment": "Book Appointment"
   },
   "hero": {
     "eyebrow": "Welcome to",
