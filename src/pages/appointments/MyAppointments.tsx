@@ -239,7 +239,13 @@ export default function MyAppointments() {
 
                 <div className="flex items-center justify-between py-1">
                   <span className="text-faint font-medium">{t('appointments.payment')}</span>
-                  <span className="rounded-lg border border-orange-100 bg-orange-50 px-3 py-0.5 text-xs font-bold text-orange-600 capitalize">
+                  <span
+                    className={`rounded-lg border px-3 py-0.5 text-xs font-bold capitalize ${
+                      selectedAppointment.payment?.status?.toLowerCase() === 'paid'
+                        ? 'border-success-soft bg-success-soft text-success'
+                        : 'border-orange-200 bg-orange-50 text-orange-600 dark:border-orange-500/20 dark:bg-orange-500/10 dark:text-orange-400'
+                    }`}
+                  >
                     {translateTag(selectedAppointment.payment?.status || 'Pending')}
                   </span>
                 </div>

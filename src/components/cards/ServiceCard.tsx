@@ -15,7 +15,7 @@ export function ServiceCard({ service, onClick, selected = false }: ServiceCardP
   return (
     <div
       onClick={onClick}
-      className={`card duration-normal cursor-pointer border p-6 transition-all hover:shadow-md ${
+      className={`card duration-normal cursor-pointer rounded-2xl border p-6 transition-all hover:shadow-md ${
         selected
           ? 'border-primary ring-primary-ring bg-primary-soft ring-2'
           : 'border-border bg-surface'

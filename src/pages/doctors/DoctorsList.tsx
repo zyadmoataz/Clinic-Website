@@ -113,9 +113,7 @@ export default function DoctorsList() {
               <DoctorCard
                 key={doctor.id}
                 doctor={doctor}
-                viewLabel={t('doctors.view_profile', 'View Profile')}
                 bookLabel={t('doctors.book_now', 'Book Now')}
-                onView={() => navigate(`/doctors/${doctor.id}`)}
                 onBook={() => navigate(`/doctors/${doctor.id}`)}
               />
             ))}

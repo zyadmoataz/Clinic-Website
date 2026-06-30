@@ -4,9 +4,7 @@ import type { DoctorSummary } from '@/types';
 
 interface DoctorCardProps {
   doctor: DoctorSummary;
-  onView?: () => void;
   onBook?: () => void;
-  viewLabel?: string;
   bookLabel?: string;
 }
 
@@ -18,13 +16,7 @@ function getInitials(name: string): string {
   return (parts[0][0] + parts[1][0]).toUpperCase();
 }
 
-export function DoctorCard({
-  doctor,
-  onView,
-  onBook,
-  viewLabel = 'View Profile',
-  bookLabel = 'Book Now'
-}: DoctorCardProps) {
+export function DoctorCard({ doctor, onBook, bookLabel = 'Book Now' }: DoctorCardProps) {
   const { displayName, specialization, photoUrl, bio, rating, yearsExperience } = doctor;
 
   return (
@@ -69,16 +61,8 @@ export function DoctorCard({
         </div>
       </div>
 
-      <div className="border-border mt-auto flex gap-2 border-t pt-4">
-        <Button
-          type="button"
-          variant="secondary"
-          onClick={onView}
-          className="flex-1 rounded-lg px-3 py-2 text-sm"
-        >
-          {viewLabel}
-        </Button>
-        <Button type="button" onClick={onBook} className="flex-1 rounded-lg px-3 py-2 text-sm">
+      <div className="border-border mt-auto pt-4">
+        <Button type="button" onClick={onBook} className="w-full rounded-lg px-3 py-2 text-sm">
           {bookLabel}
         </Button>
       </div>

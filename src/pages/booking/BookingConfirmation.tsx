@@ -23,15 +23,31 @@ export default function BookingConfirmation() {
 
   const { mutate: mockPayment, isPending } = useMockPaymentMutation();
 
-  const { state } = useLocation() as {
-    state: BookingConfirmationState;
-  };
+  const locationState = useLocation().state as BookingConfirmationState | null;
 
-  const { appointment, mode, paymentMethod, amount } = state;
+  const appointment = locationState?.appointment;
+  const mode = locationState?.mode;
+  const paymentMethod = locationState?.paymentMethod;
+  const amount = locationState?.amount;
 
   const [status, setStatus] = useState<ConfirmationState>(
     paymentMethod === 'Online' ? 'checkout' : 'success'
   );
+
+  if (!locationState || !appointment) {
+    return (
+      <PageContainer className="py-12 text-center">
+        <div className="bg-surface border-border mx-auto max-w-xl rounded-3xl border p-8 shadow-sm">
+          <CircleX className="text-danger mx-auto mb-5 h-14 w-14" />
+          <h1 className="text-text text-2xl font-bold">{t('common.error')}</h1>
+          <p className="text-muted mt-2">{t('booking.no_data_desc')}</p>
+          <Button className="mt-8 w-full" onClick={() => navigate('/')}>
+            {t('common.go_home')}
+          </Button>
+        </div>
+      </PageContainer>
+    );
+  }
 
   const handlePay = () => {
     mockPayment(
@@ -120,13 +136,16 @@ export default function BookingConfirmation() {
             </p>
 
             {mode === 'Online' && appointment.meetingLink && (
-              <div className="bg-primary/5 border-primary/20 mt-8 flex items-center justify-between rounded-2xl border p-5 text-left">
-                <div className="mb-3 flex items-center gap-2">
-                  <Video className="text-primary h-5 w-5" />
+              <div className="bg-primary/5 border-primary/20 mt-8 flex flex-col items-start gap-4 rounded-2xl border p-5 text-left sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-2">
+                  <Video className="text-primary h-5 w-5 shrink-0" />
                   <span className="font-semibold">{t('booking.join_link')}</span>
                 </div>
 
-                <Button onClick={() => window.open(appointment.meetingLink, '_blank')}>
+                <Button
+                  className="w-full sm:w-auto"
+                  onClick={() => window.open(appointment.meetingLink, '_blank')}
+                >
                   {t('booking.join_meeting')}
                 </Button>
               </div>

@@ -137,26 +137,28 @@ export default function DoctorDetail() {
             {doctor.specialization || t('doctors.general_practice', 'General Practice')}
           </p>
 
-          <div className="mt-4 flex flex-wrap items-center gap-2">
-            {doctor.rating > 0 && (
-              <Badge className="bg-warning-soft text-warning gap-1">
-                <Star className="h-3 w-3 fill-current" />
-                {doctor.rating.toFixed(1)}
-                <span className="text-warning/70 font-normal">({doctor.reviewCount})</span>
-              </Badge>
-            )}
-            {doctor.yearsExperience > 0 && (
-              <Badge className="bg-primary-soft text-primary gap-1">
-                <Briefcase className="h-3 w-3" />
-                {t('doctors.years_experience', '{{count}} yrs experience', {
-                  count: doctor.yearsExperience
-                })}
-              </Badge>
-            )}
-          </div>
+          {(doctor.rating > 0 || doctor.yearsExperience > 0) && (
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              {doctor.rating > 0 && (
+                <Badge className="bg-warning-soft text-warning gap-1">
+                  <Star className="h-3 w-3 fill-current" />
+                  {doctor.rating.toFixed(1)}
+                  <span className="text-warning/70 font-normal">({doctor.reviewCount})</span>
+                </Badge>
+              )}
+              {doctor.yearsExperience > 0 && (
+                <Badge className="bg-primary-soft text-primary gap-1">
+                  <Briefcase className="h-3 w-3" />
+                  {t('doctors.years_experience', '{{count}} yrs experience', {
+                    count: doctor.yearsExperience
+                  })}
+                </Badge>
+              )}
+            </div>
+          )}
 
-          {doctor.bio && (
-            <p className="text-muted mt-4 max-w-2xl text-sm leading-relaxed">{doctor.bio}</p>
+          {doctor.bio?.trim() && (
+            <p className="text-muted mt-4 max-w-2xl text-sm leading-relaxed">{doctor.bio.trim()}</p>
           )}
         </div>
       </header>
