@@ -59,5 +59,3 @@ Commits follow [Conventional Commits](https://www.conventionalcommits.org/), enf
 - `fix: correct language switch on first load`
 - `style: align doctor card spacing`
 
-## Next steps
-- Add a mock API mode (for example with Mock Service Worker) so the demo runs without a backend
