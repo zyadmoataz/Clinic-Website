@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { Outlet } from 'react-router-dom';
 import { useAuthMeQuery } from '@/api/queries/authMe.query';
 import { useAuthStore } from '@/store/authStore';
@@ -8,6 +9,7 @@ import { Footer } from './Footer';
 import { Navbar } from './Navbar';
 
 export function RootLayout() {
+  const queryClient = useQueryClient();
   const token = useAuthStore((s) => s.token);
   const { updateUser, logout, isAuthenticated } = useAuthStore();
   const setOnline = useTransportStore((s) => s.setOnline);
@@ -25,13 +27,20 @@ export function RootLayout() {
   useEffect(() => {
     const handleOnline = () => setOnline(true);
     const handleOffline = () => setOnline(false);
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'medora_clinic_mock_db_v3') {
+        void queryClient.invalidateQueries();
+      }
+    };
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
+    window.addEventListener('storage', handleStorage);
     return () => {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
+      window.removeEventListener('storage', handleStorage);
     };
-  }, [setOnline]);
+  }, [queryClient, setOnline]);
 
   return (
     <div className="selection:bg-primary-soft selection:text-primary flex min-h-screen flex-col font-sans">
