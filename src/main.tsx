@@ -1,23 +1,27 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './index.css';
-import './i18n';
-import App from './App.tsx';
-import { ErrorBoundary } from './components/feedback/ErrorBoundary.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
+import './index.css';
+import './i18n';
+import App from './App';
+import { ErrorBoundary } from './components/feedback/ErrorBoundary';
 import { smartRetry } from './lib/react-query';
+
+if (typeof window !== 'undefined') {
+  const savedTheme = localStorage.getItem('medora_theme');
+  const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.classList.add('dark');
+  }
+}
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // Data is considered fresh for 1 minute (prevents immediate refetching)
-      staleTime: 60 * 1000,
-      // Unused data is garbage collected after 5 minutes (default)
+      staleTime: 30 * 1000,
       gcTime: 5 * 60 * 1000,
-      // Do not refetch aggressively every time the browser window is focused
-      refetchOnWindowFocus: false,
-      // Retry transient failures (5xx, network, 408, 429) up to 2 times.
+      refetchOnWindowFocus: true,
       retry: smartRetry
     }
   }

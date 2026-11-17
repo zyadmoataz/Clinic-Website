@@ -1,81 +1,134 @@
-import { Button, Input } from '@/components/ui';
-import { useTranslation } from 'react-i18next';
-import { AlertCircle } from 'lucide-react';
-import { getLoginSchema } from '@/schemas/auth.schema';
+import { useState } from 'react';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslation } from 'react-i18next';
+import { Sparkles } from 'lucide-react';
+import { Button, Input } from '@/components/ui';
+import { getLoginSchema } from '@/schemas/auth.schema';
 import type { LoginUser } from '@/types';
 import { useLoginQuery } from '@/api/queries/login.query';
-import { PageContainer } from '@/components/layout/PageContainer';
+import { getSafeRedirectPath } from '@/utils/safeRedirect';
+import { useBookingDraftStore } from '@/store/bookingDraftStore';
+import { AuthCardShell } from '@/features/auth/AuthCardShell';
+import { ForgotPasswordModal } from '@/features/auth/ForgotPasswordModal';
 
-export default function Page() {
+export default function LoginPage() {
   const { t } = useTranslation();
-  const loginSchema = getLoginSchema(t);
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
+  const fromState = (location.state as { from?: { pathname: string; search?: string } } | null)
+    ?.from;
+  const rawRedirect =
+    searchParams.get('redirect') ||
+    (fromState ? `${fromState.pathname}${fromState.search || ''}` : '/');
+  const redirectTo = getSafeRedirectPath(rawRedirect, '/');
+  const pendingDraft = useBookingDraftStore((s) => s.draft);
+  const [forgotOpen, setForgotOpen] = useState(false);
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors }
-  } = useForm({
+  } = useForm<LoginUser>({
     mode: 'onChange',
-    defaultValues: {
-      email: '',
-      password: ''
-    },
-    resolver: zodResolver(loginSchema)
+    defaultValues: { email: '', password: '' },
+    resolver: zodResolver(getLoginSchema(t))
   });
 
-  const { mutate: loginUser, isPending, error: loginError } = useLoginQuery();
+  const { mutate: loginUser, isPending, error: loginError } = useLoginQuery(redirectTo);
 
-  const onSubmit = (data: LoginUser) => {
-    loginUser(data);
-  };
+  const heldSlotText =
+    redirectTo.startsWith('/booking') || pendingDraft
+      ? pendingDraft?.doctorName
+        ? `${t('login.booking_held_title')}: ${pendingDraft.doctorName} · ${pendingDraft.date} (${pendingDraft.timeSlot})`
+        : t('login.booking_held_desc')
+      : null;
+
+  const registerHref =
+    redirectTo !== '/' ? `/register?redirect=${encodeURIComponent(redirectTo)}` : '/register';
 
   return (
-    <PageContainer className="mx-auto max-w-xl py-24">
-      <div className="flex flex-col gap-1 pb-10">
-        <h1 className="text-[32px] font-extrabold">{t('login.hero_title')}</h1>
-        <p className="text-faint">{t('login.hero_subtitle')}</p>
-      </div>
-
-      {loginError && (
-        <div className="bg-danger-soft border-danger/20 text-text mb-6 flex items-start gap-3 rounded-xl border p-4 text-sm font-semibold">
-          <AlertCircle className="text-danger mt-0.5 h-5 w-5 shrink-0" />
-          <p>{t('login.correct_email_or_password')}</p>
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
-        <div className="flex flex-col gap-3">
-          <label className="font-600">{t('login.email')}</label>
-          <Input
-            placeholder={t('login.email_placeholder')}
-            type="email"
-            {...register('email')}
-            className={loginError ? 'ring-danger bg-surface ring-1' : ''}
-          />
-          {errors.email && <p className="text-danger">{String(errors.email.message)}</p>}
-        </div>
-        <div className="flex flex-col gap-3">
-          <div>
-            <label className="font-600"> {t('login.password')} </label>
-            <button className="text-primary hover:text-primary-hover cursor-pointer">
-              {t('login.forgot')}
+    <>
+      <AuthCardShell
+        title={t('login.hero_title')}
+        subtitle={t('login.hero_subtitle')}
+        heldSlotBanner={heldSlotText}
+        errorBanner={loginError ? t('login.correct_email_or_password') : null}
+        footer={
+          <>
+            <button
+              type="button"
+              disabled={isPending}
+              onClick={() => {
+                setValue('email', 'patient@medoraclinics.com', { shouldValidate: true });
+                setValue('password', 'Password123', { shouldValidate: true });
+                loginUser({ email: 'patient@medoraclinics.com', password: 'Password123' });
+              }}
+              className="bg-accent-soft text-accent border-accent/25 hover:bg-accent/15 flex w-full cursor-pointer items-center justify-center gap-2 rounded-full border px-4 py-2.5 text-xs font-bold transition-colors disabled:opacity-50"
+            >
+              <Sparkles className="h-4 w-4" />
+              {t('login.demo_patient_cta')}
             </button>
+            <p className="text-muted mt-4 text-center text-sm">
+              {t('login.no_account')}{' '}
+              <Link to={registerHref} className="text-primary font-semibold hover:underline">
+                {t('navbar.create_account')}
+              </Link>
+            </p>
+          </>
+        }
+      >
+        <form onSubmit={handleSubmit((data) => loginUser(data))} className="flex flex-col gap-4">
+          <div>
+            <label htmlFor="login-email" className="text-text mb-1.5 block text-sm font-semibold">
+              {t('login.email')}
+            </label>
+            <Input
+              id="login-email"
+              placeholder={t('login.email_placeholder')}
+              type="email"
+              autoComplete="email"
+              {...register('email')}
+            />
+            {errors.email && (
+              <p className="text-danger mt-1 text-xs">{String(errors.email.message)}</p>
+            )}
           </div>
-          <Input
-            placeholder={t('login.password_placeholder')}
-            type="password"
-            {...register('password')}
-            className={loginError ? 'ring-danger bg-surface ring-1' : ''}
-          />
-        </div>
-        {errors.password && <p className="text-danger">{String(errors.password.message)}</p>}
-        <div className="mt-5">
-          <Button className="w-full py-4" disabled={isPending}>
-            <p>{isPending ? t('login.cta') + '...' : t('login.cta')}</p>
-          </Button>{' '}
-        </div>
-      </form>
-    </PageContainer>
+
+          <div>
+            <div className="mb-1.5 flex items-center justify-between">
+              <label htmlFor="login-password" className="text-text text-sm font-semibold">
+                {t('login.password')}
+              </label>
+              <button
+                type="button"
+                onClick={() => setForgotOpen(true)}
+                className="text-primary hover:text-primary-hover cursor-pointer text-xs font-semibold"
+              >
+                {t('login.forgot')}
+              </button>
+            </div>
+            <Input
+              id="login-password"
+              placeholder={t('login.password_placeholder')}
+              type="password"
+              autoComplete="current-password"
+              {...register('password')}
+            />
+            {errors.password && (
+              <p className="text-danger mt-1 text-xs">{String(errors.password.message)}</p>
+            )}
+          </div>
+
+          <Button type="submit" className="mt-2 w-full py-3.5" disabled={isPending}>
+            {isPending ? `${t('login.cta')}...` : t('login.cta')}
+          </Button>
+        </form>
+      </AuthCardShell>
+
+      <ForgotPasswordModal isOpen={forgotOpen} onClose={() => setForgotOpen(false)} />
+    </>
   );
 }

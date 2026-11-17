@@ -17,9 +17,12 @@ export function LanguageToggle() {
 
   return (
     <button
+      type="button"
       className="text-text hover:bg-surface-2 flex h-10 cursor-pointer items-center justify-center rounded-full px-4 text-sm font-semibold transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.92]"
       onClick={toggleLanguage}
-      aria-label="Toggle language"
+      aria-label={
+        i18n.language === 'en' ? 'AR, switch language to Arabic' : 'EN, switch language to English'
+      }
     >
       <Globe className="mx-1 h-4 w-4" />
       {i18n.language === 'en' ? 'AR' : 'EN'}

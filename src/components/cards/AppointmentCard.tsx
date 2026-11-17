@@ -1,8 +1,13 @@
+import { MapPin, Ticket } from 'lucide-react';
+import { StatusBadge } from '../ui/StatusBadge';
+
 export interface AppointmentCardProps {
-  statusLabel: string;
   currencyLabel: string;
   appointment: {
     id: number;
+    ticketCode?: string;
+    queueToken?: string;
+    roomNumber?: string;
     doctorName: string;
     serviceName: string;
     status: string;
@@ -17,72 +22,67 @@ export interface AppointmentCardProps {
   onClick?: () => void;
 }
 
-const STATUS_DOT: Record<string, string> = {
-  confirmed: 'bg-emerald-500',
-  completed: 'bg-blue-500',
-  cancelled: 'bg-red-400',
-  'no-show': 'bg-yellow-400',
-  arrived: 'bg-purple-500',
-  pending: 'bg-orange-400'
-};
-
-const STATUS_TEXT: Record<string, string> = {
-  confirmed: 'text-emerald-600',
-  completed: 'text-blue-600',
-  cancelled: 'text-red-500',
-  'no-show': 'text-yellow-600',
-  arrived: 'text-purple-600',
-  pending: 'text-orange-500'
-};
-
 export function AppointmentCard({
   appointment,
   onClick,
-  statusLabel,
   currencyLabel,
   toLocalizedNumbers
 }: AppointmentCardProps) {
-  const key = appointment.status?.toLowerCase();
-
   return (
-    <div
+    <button
+      type="button"
       onClick={onClick}
-      className="bg-surface border-border cursor-pointer rounded-2xl border px-6 py-5 transition-shadow hover:shadow-sm"
+      className="bg-surface border-border hover:border-primary/40 w-full cursor-pointer rounded-2xl border p-5 text-start transition-all hover:shadow-md"
     >
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
         <div className="min-w-0 flex-1">
-          <p className="text-text text-base leading-snug font-semibold">{appointment.doctorName}</p>
-          <p className="text-text mt-0.5 text-sm opacity-50">
+          <div className="mb-2 flex flex-wrap items-center gap-2">
+            <span className="bg-primary-soft text-primary inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-bold tabular-nums">
+              <Ticket className="h-3 w-3" />
+              {appointment.ticketCode || `MDR-${appointment.id}`}
+            </span>
+            {appointment.queueToken && (
+              <span className="bg-accent-soft text-accent rounded-full px-2.5 py-0.5 text-xs font-extrabold tabular-nums">
+                #{toLocalizedNumbers(appointment.queueToken)}
+              </span>
+            )}
+          </div>
+
+          <p className="text-text text-base font-bold">{appointment.doctorName}</p>
+          <p className="text-muted mt-0.5 text-sm tabular-nums">
             {appointment.serviceName} · {appointment.date} · {appointment.startTime}
             {appointment.endTime ? ` – ${appointment.endTime}` : ''}
           </p>
 
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2 text-xs">
+            {appointment.roomNumber && (
+              <span className="bg-surface-2 text-muted inline-flex items-center gap-1 rounded-full px-3 py-1 font-medium">
+                <MapPin className="h-3 w-3" />
+                {appointment.roomNumber}
+              </span>
+            )}
             {appointment.mode && (
-              <span className="bg-border text-text rounded-full px-3 py-1 text-xs opacity-70">
+              <span className="bg-surface-2 text-muted rounded-full px-3 py-1 font-medium">
                 {appointment.mode}
               </span>
             )}
             {appointment.paymentMethod && (
-              <span className="bg-border text-text rounded-full px-3 py-1 text-xs opacity-70">
+              <span className="bg-surface-2 text-muted rounded-full px-3 py-1 font-medium">
                 {appointment.paymentMethod}
               </span>
             )}
             {appointment.price != null && appointment.price > 0 && (
-              <span className="bg-border text-text rounded-full px-3 py-1 text-xs opacity-70">
+              <span className="bg-surface-2 text-text rounded-full px-3 py-1 font-bold tabular-nums">
                 {toLocalizedNumbers(appointment.price)} {currencyLabel}
               </span>
             )}
           </div>
         </div>
 
-        <div className="mt-1 flex shrink-0 items-center gap-1.5">
-          <span className={`h-2 w-2 rounded-full ${STATUS_DOT[key] ?? 'bg-muted'}`} />
-          <span className={`text-sm font-medium ${STATUS_TEXT[key] ?? 'text-muted'}`}>
-            {statusLabel}
-          </span>
+        <div className="shrink-0">
+          <StatusBadge status={appointment.status} />
         </div>
       </div>
-    </div>
+    </button>
   );
 }

@@ -13,19 +13,23 @@ interface ServiceCardProps {
 
 export function ServiceCard({ service, onClick, selected = false }: ServiceCardProps) {
   return (
-    <div
+    <button
+      type="button"
       onClick={onClick}
-      className={`card duration-normal cursor-pointer rounded-2xl border p-6 transition-all hover:shadow-md ${
+      aria-pressed={selected}
+      className={`w-full cursor-pointer rounded-2xl border p-5 text-start transition-all duration-200 hover:shadow-md ${
         selected
           ? 'border-primary ring-primary-ring bg-primary-soft ring-2'
-          : 'border-border bg-surface'
+          : 'border-border bg-surface hover:border-primary/40'
       }`}
     >
-      <h3 className="text-text mb-2 text-lg font-bold">{service.name}</h3>
-      <div className="text-muted flex items-center justify-between text-sm">
-        <span>{service.durationMinutes} mins</span>
-        <span className="text-primary font-semibold">{service.price} EGP</span>
+      <h3 className="text-text mb-2 text-base font-bold">{service.name}</h3>
+      <div className="text-muted flex items-center justify-between text-xs font-medium">
+        <span className="tabular-nums">{service.durationMinutes} mins</span>
+        <span className="text-primary font-display text-sm font-extrabold tabular-nums">
+          {service.price} EGP
+        </span>
       </div>
-    </div>
+    </button>
   );
 }

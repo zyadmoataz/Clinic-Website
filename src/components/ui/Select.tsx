@@ -1,23 +1,31 @@
-import { useTranslation } from 'react-i18next';
 import React from 'react';
+import { ChevronDown } from 'lucide-react';
 
-export function Select({
-  className = '',
-  ...props
-}: React.SelectHTMLAttributes<HTMLSelectElement>) {
-  const { t } = useTranslation();
+export interface SelectOption {
+  value: string;
+  label: string;
+}
+
+interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  options: SelectOption[];
+  placeholder?: string;
+}
+
+export function Select({ options, placeholder, className = '', ...props }: SelectProps) {
   return (
-    <div className="w-full">
+    <div className="relative w-full">
       <select
-        className={`bg-surface-2 text-text focus:bg-surface w-full appearance-none rounded-2xl border-none px-5 py-3.5 text-sm shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:shadow-[0_0_0_4px_rgba(37,99,235,0.15)] focus:outline-none disabled:opacity-50 ${className}`}
+        className={`bg-surface border-border text-text focus:border-primary focus:ring-primary-ring w-full cursor-pointer appearance-none rounded-xl border py-3 ps-4 pe-10 text-sm font-medium shadow-sm transition-all focus:ring-2 focus:outline-none disabled:opacity-50 ${className}`}
         {...props}
       >
-        <option value="" disabled hidden>
-          Select an option
-        </option>
-        <option value="1">{t('common.option_1')}</option>
-        <option value="2">{t('common.option_2')}</option>
+        {placeholder && <option value="">{placeholder}</option>}
+        {options.map((opt) => (
+          <option key={opt.value} value={opt.value}>
+            {opt.label}
+          </option>
+        ))}
       </select>
+      <ChevronDown className="text-faint pointer-events-none absolute end-3.5 top-1/2 h-4 w-4 -translate-y-1/2" />
     </div>
   );
 }

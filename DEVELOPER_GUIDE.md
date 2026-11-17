@@ -1,6 +1,6 @@
-# Clarity Clinic — Patient Website React Developer Guide
+# Medora Clinics — Patient Website React Developer Guide
 
-Welcome to the React developer guide for the Clarity Clinic Patient Website. This document covers our framework architecture, global styling, translation systems, code validation tools, and details the exact task assignments for each developer.
+Welcome to the React developer guide for the Medora Clinics Patient Website. This document covers our framework architecture, global styling, translation systems, code validation tools, and details the exact task assignments for each developer.
 
 ---
 

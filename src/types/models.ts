@@ -2,6 +2,7 @@ export interface Prescription {
   drug: string;
   dosage: string;
   duration: string;
+  frequency?: string;
 }
 
 export interface Visit {
@@ -12,6 +13,9 @@ export interface Visit {
   createdAt: string;
   editableUntil: string;
   isEditable: boolean;
+  doctorName?: string;
+  serviceName?: string;
+  ticketCode?: string;
   prescription: Prescription[];
 }
 
@@ -21,7 +25,7 @@ export interface Payment {
   method: string;
   status: string;
   transactionRef: string;
-  paidAt: string;
+  paidAt: string | null;
 }
 
 export interface Service {
@@ -39,6 +43,8 @@ export interface Doctor {
   rating: number;
   reviewCount: number;
   yearsExperience: number;
+  roomNumber?: string;
+  supportsOnline?: boolean;
   services?: Service[];
 }
 
@@ -46,14 +52,26 @@ export interface User {
   id: string | number;
   email: string;
   name: string;
+  displayName?: string;
   role: 'patient' | 'doctor' | 'admin' | 'receptionist';
   phone: string;
   avatarUrl?: string;
   isActive?: boolean;
 }
 
+export type AppointmentStatus =
+  | 'PendingPayment'
+  | 'Confirmed'
+  | 'Arrived'
+  | 'Completed'
+  | 'NoShow'
+  | 'Cancelled';
+
 export interface Appointment {
   id: number;
+  ticketCode?: string;
+  queueToken?: string;
+  roomNumber?: string;
   patientId?: number | string;
   patientName?: string;
   doctorId?: string | number;
@@ -64,9 +82,10 @@ export interface Appointment {
   startTime: string;
   endTime?: string;
   mode: string;
-  status: string;
+  status: AppointmentStatus | string;
   paymentMethod?: string;
   meetingLink?: string;
+  notes?: string;
   price: number;
   createdByRole?: string;
   createdAt?: string;

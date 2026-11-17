@@ -1,93 +1,121 @@
-import { Button, Input } from '@/components/ui';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { getRegisterSchema } from '@/schemas/auth.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
-import { useRegisterQuery } from '@/api/queries/register.query';
+import { Button, Input } from '@/components/ui';
+import { getRegisterSchema } from '@/schemas/auth.schema';
 import type { RegisterUser } from '@/types';
-import { PageContainer } from '@/components/layout/PageContainer';
+import { useRegisterQuery } from '@/api/queries/register.query';
+import { getSafeRedirectPath } from '@/utils/safeRedirect';
+import { AuthCardShell } from '@/features/auth/AuthCardShell';
 
-export default function Page() {
+export default function RegisterPage() {
   const { t } = useTranslation();
-  const registerSchema = getRegisterSchema(t);
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
+  const fromState = (location.state as { from?: { pathname: string; search?: string } } | null)
+    ?.from;
+  const rawRedirect =
+    searchParams.get('redirect') ||
+    (fromState ? `${fromState.pathname}${fromState.search || ''}` : '/');
+  const redirectTo = getSafeRedirectPath(rawRedirect, '/');
+
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm({
+  } = useForm<RegisterUser>({
     mode: 'onChange',
-    defaultValues: {
-      displayName: '',
-      email: '',
-      phone: '',
-      password: ''
-    },
-    resolver: zodResolver(registerSchema)
+    defaultValues: { displayName: '', email: '', phone: '', password: '' },
+    resolver: zodResolver(getRegisterSchema(t))
   });
 
-  const { mutate: registerUser, isPending, error: registerError } = useRegisterQuery();
+  const { mutate: registerUser, isPending, error: registerError } = useRegisterQuery(redirectTo);
 
-  const onSubmit = (data: RegisterUser) => {
-    registerUser(data);
-    console.log(data);
-  };
+  const loginHref =
+    redirectTo !== '/' ? `/login?redirect=${encodeURIComponent(redirectTo)}` : '/login';
 
   return (
-    <PageContainer className="mx-auto max-w-xl py-24">
-      <div className="flex flex-col gap-1 pb-16">
-        <h1 className="text-[32px] font-extrabold">{t('register.hero_title')}</h1>
-        <p className="text-faint">{t('register.hero_subtitle')}</p>
-      </div>
-      {registerError && <p className="text-danger">{t('register.correct_email_or_password')}</p>}
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
-        <div className="flex flex-col gap-3">
-          <label className="font-600">{t('register.full_name')}</label>
+    <AuthCardShell
+      title={t('register.hero_title')}
+      subtitle={t('register.hero_subtitle')}
+      heldSlotBanner={redirectTo.startsWith('/booking') ? t('register.booking_after') : null}
+      errorBanner={registerError ? t('register.correct_email_or_password') : null}
+      footer={
+        <p className="text-muted text-center text-sm">
+          {t('register.already_have')}{' '}
+          <Link to={loginHref} className="text-primary font-semibold hover:underline">
+            {t('navbar.sign_in')}
+          </Link>
+        </p>
+      }
+    >
+      <form onSubmit={handleSubmit((data) => registerUser(data))} className="flex flex-col gap-4">
+        <div>
+          <label htmlFor="reg-name" className="text-text mb-1.5 block text-sm font-semibold">
+            {t('register.full_name')}
+          </label>
           <Input
+            id="reg-name"
             placeholder={t('register.name_placeholder')}
             type="text"
+            autoComplete="name"
             {...register('displayName')}
           />
           {errors.displayName && (
-            <p className="text-danger">{String(errors.displayName.message)}</p>
+            <p className="text-danger mt-1 text-xs">{String(errors.displayName.message)}</p>
           )}
         </div>
-        <div className="flex flex-col gap-3">
-          <label className="font-600">{t('register.phone')}</label>
+        <div>
+          <label htmlFor="reg-phone" className="text-text mb-1.5 block text-sm font-semibold">
+            {t('register.phone')}
+          </label>
           <Input
+            id="reg-phone"
             placeholder={t('register.phone_placeholder')}
-            type="number"
+            type="tel"
+            autoComplete="tel"
             {...register('phone')}
           />
-          {errors.phone && <p className="text-danger">{String(errors.phone.message)}</p>}
+          {errors.phone && (
+            <p className="text-danger mt-1 text-xs">{String(errors.phone.message)}</p>
+          )}
         </div>
-        <div className="flex flex-col gap-3">
-          <label className="font-600">{t('register.email')}</label>
+        <div>
+          <label htmlFor="reg-email" className="text-text mb-1.5 block text-sm font-semibold">
+            {t('register.email')}
+          </label>
           <Input
+            id="reg-email"
             placeholder={t('register.email_placeholder')}
             type="email"
+            autoComplete="email"
             {...register('email')}
           />
-          {errors.email && <p className="text-danger">{String(errors.email.message)} </p>}
-          {/* {errors.email?.type === 'email' && (
-            <p className="text-danger">{t('register.email_already_registered')}</p>
-          )} */}
+          {errors.email && (
+            <p className="text-danger mt-1 text-xs">{String(errors.email.message)}</p>
+          )}
         </div>
-        <div className="flex flex-col gap-3">
-          <label className="font-600">{t('register.password')}</label>
+        <div>
+          <label htmlFor="reg-password" className="text-text mb-1.5 block text-sm font-semibold">
+            {t('register.password')}
+          </label>
           <Input
+            id="reg-password"
             placeholder={t('register.password_placeholder')}
             type="password"
+            autoComplete="new-password"
             {...register('password')}
           />
-          {errors.password && <p className="text-danger">{errors.password.message}</p>}
+          {errors.password && (
+            <p className="text-danger mt-1 text-xs">{String(errors.password.message)}</p>
+          )}
         </div>
-        <div className="mt-5 flex flex-col gap-3">
-          <Button className="w-full py-4" disabled={isPending}>
-            <p> {isPending ? t('register.cta') + '...' : t('register.cta')} </p>
-          </Button>
-          <p className="text-faint mx-auto">{t('register.terms_privacy')}</p>
-        </div>
+        <Button type="submit" className="mt-2 w-full py-3.5" disabled={isPending}>
+          {isPending ? `${t('register.cta')}...` : t('register.cta')}
+        </Button>
+        <p className="text-faint text-center text-xs">{t('register.terms_privacy')}</p>
       </form>
-    </PageContainer>
+    </AuthCardShell>
   );
 }

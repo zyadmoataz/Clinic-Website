@@ -1,11 +1,14 @@
-import { useMockPaymentMutation } from '@/api/queries/booking.query';
-import type { AppointmentMode, PaymentCheckout, PaymentMethod, Appointment } from '@/types';
-import { PageContainer } from '@/components/layout/PageContainer';
-import { Button, Spinner } from '@/components/ui';
-import { CheckCircle2, CreditCard, CircleX, Video } from 'lucide-react';
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { CheckCircle2, CircleX } from 'lucide-react';
+import { useMockPaymentMutation } from '@/api/queries/booking.query';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { Button } from '@/components/ui';
+import { BookingStepper } from '@/features/booking/BookingStepper';
+import { DigitalTicketPass } from '@/features/booking/DigitalTicketPass';
+import { OnlinePaymentCheckoutCard } from '@/features/booking/OnlinePaymentCheckoutCard';
+import type { Appointment, AppointmentMode, PaymentCheckout, PaymentMethod } from '@/types';
 
 type ConfirmationState = 'checkout' | 'success' | 'failed';
 
@@ -17,32 +20,42 @@ interface BookingConfirmationState {
   amount: number;
 }
 
+function readPersistedState(): BookingConfirmationState | null {
+  const raw = sessionStorage.getItem('medora_last_ticket');
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as BookingConfirmationState;
+  } catch {
+    return null;
+  }
+}
+
 export default function BookingConfirmation() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
+  const locationState =
+    (useLocation().state as BookingConfirmationState | null) || readPersistedState();
   const { mutate: mockPayment, isPending } = useMockPaymentMutation();
 
-  const locationState = useLocation().state as BookingConfirmationState | null;
-
-  const appointment = locationState?.appointment;
-  const mode = locationState?.mode;
-  const paymentMethod = locationState?.paymentMethod;
-  const amount = locationState?.amount;
-
+  const [confirmedAppt, setConfirmedAppt] = useState<Appointment | null>(
+    locationState?.appointment ?? null
+  );
   const [status, setStatus] = useState<ConfirmationState>(
-    paymentMethod === 'Online' ? 'checkout' : 'success'
+    locationState?.paymentMethod === 'Online' &&
+      locationState?.appointment?.payment?.status !== 'Paid'
+      ? 'checkout'
+      : 'success'
   );
 
-  if (!locationState || !appointment) {
+  if (!locationState || !confirmedAppt) {
     return (
       <PageContainer className="py-12 text-center">
         <div className="bg-surface border-border mx-auto max-w-xl rounded-3xl border p-8 shadow-sm">
-          <CircleX className="text-danger mx-auto mb-5 h-14 w-14" />
+          <CircleX className="text-danger mx-auto mb-4 h-12 w-12" />
           <h1 className="text-text text-2xl font-bold">{t('common.error')}</h1>
-          <p className="text-muted mt-2">{t('booking.no_data_desc')}</p>
-          <Button className="mt-8 w-full" onClick={() => navigate('/')}>
-            {t('common.go_home')}
+          <p className="text-muted mt-2 text-sm">{t('booking.no_data_desc')}</p>
+          <Button className="mt-6 w-full" onClick={() => navigate('/doctors')}>
+            {t('navbar.find_doctor')}
           </Button>
         </div>
       </PageContainer>
@@ -51,109 +64,69 @@ export default function BookingConfirmation() {
 
   const handlePay = () => {
     mockPayment(
+      { appointmentId: confirmedAppt.id, status: 'Paid' },
       {
-        appointmentId: appointment.id,
-        status: 'Paid'
-      },
-      {
-        onSuccess: () => setStatus('success'),
+        onSuccess: (res) => {
+          const updated = res.appointment || {
+            ...confirmedAppt,
+            status: 'Confirmed',
+            payment: { ...confirmedAppt.payment!, status: 'Paid' }
+          };
+          setConfirmedAppt(updated);
+          sessionStorage.setItem(
+            'medora_last_ticket',
+            JSON.stringify({ ...locationState, appointment: updated })
+          );
+          setStatus('success');
+        },
         onError: () => setStatus('failed')
       }
     );
   };
 
   return (
-    <PageContainer className="py-12">
-      <div className="mx-auto max-w-xl">
+    <PageContainer className="py-8 md:py-12">
+      <BookingStepper currentStep={3} />
+      <div className="mx-auto max-w-2xl">
         {status === 'checkout' && (
-          <div className="bg-surface border-border rounded-3xl border p-8 text-center shadow-sm">
-            <CreditCard className="text-primary mx-auto mb-5 h-14 w-14" />
-
-            <h1 className="text-text text-2xl font-bold">{t('booking.complete_payment')}</h1>
-
-            <p className="text-muted mt-2">{t('booking.secure_checkout')}</p>
-
-            <div className="bg-surface-2 mt-8 rounded-2xl p-5">
-              <p className="text-muted text-sm">{t('booking.amount_due')}</p>
-
-              <p className="text-primary mt-2 text-3xl font-bold">{amount} EGP</p>
-            </div>
-
-            <div className="mt-8 flex flex-col gap-3">
-              <Button onClick={handlePay} disabled={isPending}>
-                {isPending ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <Spinner className="h-4 w-4" />
-                    {t('booking.processing_payment')}
-                  </span>
-                ) : (
-                  t('booking.pay_amount', { amount })
-                )}
-              </Button>
-
-              <Button onClick={() => navigate('/my-appointments')}>
-                {t('booking.cancel_payment')}
-              </Button>
-            </div>
-          </div>
+          <OnlinePaymentCheckoutCard
+            amount={locationState.amount}
+            isPending={isPending}
+            onPay={handlePay}
+            onCancel={() => navigate('/my-appointments')}
+          />
         )}
 
         {status === 'failed' && (
           <div className="bg-surface border-border rounded-3xl border p-8 text-center shadow-sm">
-            <CircleX className="text-danger mx-auto mb-5 h-14 w-14" />
-
+            <CircleX className="text-danger mx-auto mb-4 h-12 w-12" />
             <h1 className="text-text text-2xl font-bold">{t('booking.payment_failed')}</h1>
-
-            <p className="text-muted mt-2">{t('booking.payment_failed_desc')}</p>
-
-            <Button className="mt-8 w-full" onClick={handlePay} disabled={isPending}>
-              {isPending ? (
-                <span className="flex items-center justify-center gap-2">
-                  <Spinner className="h-4 w-4" />
-                  {t('booking.processing_payment')}
-                </span>
-              ) : (
-                t('booking.try_payment_again')
-              )}
+            <p className="text-muted mt-2 text-sm">{t('booking.payment_failed_desc')}</p>
+            <Button className="mt-6 w-full" onClick={handlePay} disabled={isPending}>
+              {t('booking.try_payment_again')}
             </Button>
           </div>
         )}
 
         {status === 'success' && (
-          <div className="bg-surface border-border rounded-3xl border p-8 text-center shadow-sm">
-            <CheckCircle2 className="text-success mx-auto mb-5 h-16 w-16" />
-
-            <h1 className="text-text text-2xl font-bold">
-              {paymentMethod === 'Online'
-                ? t('booking.payment_success')
-                : t('booking.booking_success')}
-            </h1>
-
-            <p className="text-muted mt-2">
-              {paymentMethod === 'Online'
-                ? t('booking.payment_success_desc')
-                : t('booking.appointment_success_desc')}
-            </p>
-
-            {mode === 'Online' && appointment.meetingLink && (
-              <div className="bg-primary/5 border-primary/20 mt-8 flex flex-col items-start gap-4 rounded-2xl border p-5 text-left sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center gap-2">
-                  <Video className="text-primary h-5 w-5 shrink-0" />
-                  <span className="font-semibold">{t('booking.join_link')}</span>
-                </div>
-
-                <Button
-                  className="w-full sm:w-auto"
-                  onClick={() => window.open(appointment.meetingLink, '_blank')}
-                >
-                  {t('booking.join_meeting')}
-                </Button>
-              </div>
-            )}
-
-            <Button className="mt-8 w-full" onClick={() => navigate('/my-appointments')}>
-              {t('booking.view_appointment')}
-            </Button>
+          <div className="animate-fade-up space-y-6">
+            <div className="flex items-center justify-center gap-2.5 text-center">
+              <CheckCircle2 className="text-success h-7 w-7" />
+              <h1 className="text-text text-2xl font-extrabold">
+                {locationState.paymentMethod === 'Online'
+                  ? t('booking.payment_success')
+                  : t('booking.booking_success')}
+              </h1>
+            </div>
+            <DigitalTicketPass appointment={confirmedAppt} />
+            <div className="no-print flex flex-wrap justify-center gap-3">
+              <Button onClick={() => navigate('/my-appointments')}>
+                {t('booking.view_appointment')}
+              </Button>
+              <Button variant="secondary" onClick={() => navigate('/doctors')}>
+                {t('navbar.find_doctor')}
+              </Button>
+            </div>
           </div>
         )}
       </div>

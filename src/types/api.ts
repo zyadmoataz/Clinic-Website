@@ -1,4 +1,4 @@
-import type { Appointment } from './models';
+import type { Appointment } from './models.ts';
 
 export interface LoginUser {
   email: string;
@@ -26,6 +26,7 @@ export interface PrescriptionItem {
   drug: string;
   dosage: string;
   duration: string;
+  frequency?: string;
 }
 
 export interface MedicalVisit {
@@ -36,6 +37,9 @@ export interface MedicalVisit {
   createdAt: string;
   editableUntil: string;
   isEditable: boolean;
+  doctorName?: string;
+  serviceName?: string;
+  ticketCode?: string;
   prescription: PrescriptionItem[];
 }
 
@@ -58,6 +62,10 @@ export interface DoctorSummary {
   rating: number;
   reviewCount: number;
   yearsExperience: number;
+  roomNumber?: string;
+  supportsOnline?: boolean;
+  nextAvailableDate?: string | null;
+  nextAvailableSlot?: string | null;
 }
 
 export interface DoctorDetail extends DoctorSummary {
@@ -66,6 +74,9 @@ export interface DoctorDetail extends DoctorSummary {
 
 export interface DoctorsListResponse {
   items: DoctorSummary[];
+  page?: number;
+  pageSize?: number;
+  total?: number;
 }
 
 export interface DoctorSlotsResponse {
@@ -76,10 +87,8 @@ export interface DoctorSlotsResponse {
 export interface DoctorFilters {
   search?: string;
   specialization?: string;
-}
-
-export interface ApiErrorData {
-  message?: string;
+  mode?: string;
+  availableOn?: string;
 }
 
 export interface PaymentCheckout {
@@ -88,9 +97,7 @@ export interface PaymentCheckout {
 }
 
 export type AppointmentMode = 'Online' | 'InClinic';
-
 export type PaymentMethod = 'Cash' | 'Online';
-
 export type PaymentStatus = 'Paid' | 'Refunded' | 'Pending';
 
 export interface CreateAppointmentPayload {
@@ -100,6 +107,12 @@ export interface CreateAppointmentPayload {
   startTime: string;
   mode: AppointmentMode;
   paymentMethod: PaymentMethod;
+  notes?: string;
+}
+
+export interface RescheduleAppointmentPayload {
+  date: string;
+  startTime: string;
 }
 
 export interface BookAppointmentResponse {
@@ -114,6 +127,7 @@ export interface MockPaymentPayload {
 
 export interface MockPaymentResponse {
   paid: boolean;
+  appointment?: Appointment;
 }
 
 export interface ChangePasswordPayload {

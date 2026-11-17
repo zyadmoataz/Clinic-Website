@@ -1,150 +1,139 @@
+import { useState } from 'react';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { CalendarX } from 'lucide-react';
 import { useBookAppointmentMutation } from '@/api/queries/booking.query';
+import { useDoctorQuery } from '@/api/queries/doctors.query';
 import { BookingSummaryCard } from '@/components/cards/BookingSummaryCard';
 import { EmptyState } from '@/components/feedback/EmptyState';
 import { ErrorState } from '@/components/feedback/ErrorState';
+import { LoadingState } from '@/components/feedback/LoadingState';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { Button, Spinner } from '@/components/ui';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Banknote, CalendarX, CreditCard } from 'lucide-react';
-import { formatTimeLabel } from '@/utils/formatTimeLabel';
-import { Monitor, Building2 } from 'lucide-react';
-import { OptionCard } from '@/components/cards/OptionCard';
+import { BookingOptionsPanel } from '@/features/booking/BookingOptionsPanel';
+import { BookingStepper } from '@/features/booking/BookingStepper';
+import { resolveBookingData } from '@/features/booking/resolveBookingData';
+import { useBookingDraftStore } from '@/store/bookingDraftStore';
 import type { AppointmentMode, PaymentMethod } from '@/types';
-
-interface BookingLocationState {
-  doctorId: string;
-  doctorName: string;
-  serviceId: number;
-  serviceName: string;
-  price: number;
-  date: string;
-  timeSlot: string;
-}
+import { formatTimeLabel } from '@/utils/formatTimeLabel';
+import { parseBookingParams, type BookingDraftParams } from '@/utils/safeRedirect';
 
 export default function BookingPage() {
-  const state = useLocation().state as BookingLocationState | undefined;
-
-  const navigate = useNavigate();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const { draft, clearDraft } = useBookingDraftStore();
 
-  const [mode, setMode] = useState<AppointmentMode>('Online');
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('Online');
-  const [error, setError] = useState(false);
+  const urlParams = parseBookingParams(location.search || searchParams.toString());
+  const routeState = (location.state as Partial<BookingDraftParams> | null) ?? null;
+  const targetDoctorId = routeState?.doctorId || urlParams?.doctorId || draft?.doctorId;
+  const { data: doctor, isLoading: doctorLoading } = useDoctorQuery(targetDoctorId);
+  const resolved = resolveBookingData(routeState, urlParams, draft, doctor);
 
+  const [mode, setMode] = useState<AppointmentMode>('InClinic');
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('Cash');
+  const [notes, setNotes] = useState('');
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const { mutate: bookAppointment, isPending } = useBookAppointmentMutation();
 
-  if (!state) {
+  if (doctorLoading && !resolved?.doctorName) {
     return (
       <PageContainer className="py-10">
+        <LoadingState count={2} />
+      </PageContainer>
+    );
+  }
+
+  if (!resolved) {
+    return (
+      <PageContainer className="py-12">
         <EmptyState
           icon={<CalendarX className="h-6 w-6" />}
           title={t('booking.no_data')}
           description={t('booking.no_data_desc')}
+          action={<Button onClick={() => navigate('/doctors')}>{t('navbar.find_doctor')}</Button>}
         />
       </PageContainer>
     );
   }
 
-  const handleBook = () => {
-    setError(false);
+  const effectiveMode: AppointmentMode = doctor?.supportsOnline === false ? 'InClinic' : mode;
 
+  const handleBook = () => {
+    setErrorMsg(null);
     bookAppointment(
       {
-        doctorId: state.doctorId,
-        serviceId: state.serviceId,
-        date: state.date,
-        startTime: state.timeSlot,
-        mode,
-        paymentMethod
+        doctorId: resolved.doctorId,
+        serviceId: resolved.serviceId,
+        date: resolved.date,
+        startTime: resolved.timeSlot,
+        mode: effectiveMode,
+        paymentMethod,
+        notes: notes.trim() || undefined
       },
       {
         onSuccess: (response) => {
-          navigate('/booking/confirmation', {
-            state: {
-              appointment: response.appointment,
-              payment: response.payment,
-              mode,
-              paymentMethod,
-              amount: state.price
-            }
-          });
+          clearDraft();
+          const payload = {
+            appointment: response.appointment,
+            payment: response.payment,
+            mode: effectiveMode,
+            paymentMethod,
+            amount: resolved.price || response.appointment.price
+          };
+          sessionStorage.setItem('medora_last_ticket', JSON.stringify(payload));
+          navigate('/booking/confirmation', { state: payload, replace: true });
         },
-        onError: () => setError(true)
+        onError: (err) => {
+          const msg = (err as { response?: { data?: { message?: string } } })?.response?.data
+            ?.message;
+          setErrorMsg(msg || t('booking.book_error'));
+        }
       }
     );
   };
 
   return (
-    <PageContainer className="py-8 text-center">
-      <div className="mx-auto w-11/12 md:h-1/2">
-        {error && (
-          <div className="mt-6">
-            <ErrorState message={t('booking.book_error')} onRetry={handleBook} />
-          </div>
-        )}
-
-        {!error && (
-          <>
+    <PageContainer className="py-8 md:py-12">
+      <BookingStepper currentStep={2} />
+      {errorMsg && (
+        <div className="mx-auto mb-6 max-w-4xl">
+          <ErrorState
+            message={errorMsg}
+            onRetry={() => navigate(`/doctors/${resolved.doctorId}`)}
+          />
+        </div>
+      )}
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 lg:grid-cols-5">
+        <div className="lg:col-span-3">
+          <BookingOptionsPanel
+            supportsOnline={doctor?.supportsOnline !== false}
+            mode={effectiveMode}
+            paymentMethod={paymentMethod}
+            notes={notes}
+            onModeChange={setMode}
+            onPaymentChange={setPaymentMethod}
+            onNotesChange={setNotes}
+          />
+        </div>
+        <aside className="lg:col-span-2">
+          <div className="sticky top-24 space-y-4">
             <BookingSummaryCard
-              doctorName={state.doctorName}
-              serviceName={state.serviceName}
-              price={state.price}
-              date={state.date}
-              timeSlot={formatTimeLabel(state.timeSlot)}
+              doctorName={resolved.doctorName || 'Doctor'}
+              serviceName={resolved.serviceName || 'Consultation'}
+              price={resolved.price ?? 0}
+              date={resolved.date}
+              timeSlot={formatTimeLabel(resolved.timeSlot)}
             />
-            <div className="flex flex-col items-center justify-center">
-              <div className="border-border w-11/12 rounded-2xl border p-5 shadow-sm md:w-1/2">
-                <h3 className="text-text mb-4 text-lg font-semibold">{t('booking.mode')}</h3>
-                <OptionCard<AppointmentMode>
-                  value={mode}
-                  onChange={setMode}
-                  options={[
-                    {
-                      value: 'InClinic',
-                      title: t('booking.in_clinic'),
-                      icon: <Building2 className="inline h-6 w-6" />
-                    },
-                    {
-                      value: 'Online',
-                      title: t('booking.online'),
-                      icon: <Monitor className="inline h-6 w-6" />
-                    }
-                  ]}
-                />
-              </div>
-              <div className="border-border my-10 w-11/12 rounded-2xl border p-5 shadow-sm md:w-1/2">
-                <h3 className="text-text mb-4 text-lg font-semibold">
-                  {t('booking.payment_method')}
-                </h3>
-                <OptionCard<PaymentMethod>
-                  value={paymentMethod}
-                  onChange={setPaymentMethod}
-                  options={[
-                    {
-                      value: 'Cash',
-                      title: t('booking.cash'),
-                      icon: <Banknote className="inline h-6 w-6" />
-                    },
-                    {
-                      value: 'Online',
-                      title: t('booking.pay_online'),
-                      icon: <CreditCard className="inline h-6 w-6" />
-                    }
-                  ]}
-                />
-              </div>
-            </div>
-
             <Button
               type="button"
               onClick={handleBook}
               disabled={isPending}
-              className="mt-6 w-2/3 md:w-3/5"
+              className="w-full py-3.5"
             >
               {isPending ? (
-                <span className="flex items-center justify-center gap-2">
+                <span className="flex items-center gap-2">
                   <Spinner className="h-4 w-4" />
                   {t('booking.booking')}
                 </span>
@@ -152,8 +141,8 @@ export default function BookingPage() {
                 t('booking.confirm_booking')
               )}
             </Button>
-          </>
-        )}
+          </div>
+        </aside>
       </div>
     </PageContainer>
   );

@@ -1,0 +1,14 @@
+# Medora Clinics Patient Portal
+> Smart digital clinic appointment booking, queue ticketing, and electronic prescription platform.
+
+## Public Pages
+- [Homepage & Quick Specialist Search](https://medoraclinics.com/)
+- [Verified Specialists Directory & Open Fee Comparison](https://medoraclinics.com/doctors)
+- [Doctor Profile, Visit Services, and Open Time Slots](https://medoraclinics.com/doctors/:id)
+
+## Authenticated Patient Portal
+- [Slot Confirmation & Payment Options](https://medoraclinics.com/booking)
+- [QR Digital Ticket Pass & Queue Token](https://medoraclinics.com/booking/confirmation)
+- [Ticket Queue Tracking, Rescheduling & Cancellation](https://medoraclinics.com/my-appointments)
+- [Digital Visit Summaries & Medication Schedules](https://medoraclinics.com/my-prescriptions)
+- [Account & Display Preferences](https://medoraclinics.com/profile)
