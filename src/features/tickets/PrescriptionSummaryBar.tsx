@@ -1,4 +1,5 @@
-import { FileText, Pill, Search, ShieldCheck, Stethoscope } from 'lucide-react';
+import { FileText, Pill, ShieldCheck, Stethoscope } from 'lucide-react';
+import { SearchInput } from '@/components/ui';
 import type { Visit } from '@/types';
 
 interface PrescriptionSummaryBarProps {
@@ -60,17 +61,12 @@ export function PrescriptionSummaryBar({
         })}
       </div>
 
-      <label className="bg-surface border-border focus-within:border-primary focus-within:ring-primary/15 flex cursor-text items-center gap-2.5 rounded-xl border px-4 py-2.5 shadow-xs transition-all focus-within:ring-2">
-        <Search className="text-faint h-4 w-4 shrink-0" aria-hidden="true" />
-        <input
-          type="search"
-          value={search}
-          onChange={(e) => onSearchChange(e.target.value)}
-          placeholder="Filter prescriptions by medication, diagnosis, doctor, or ticket..."
-          aria-label="Filter prescriptions"
-          className="text-text placeholder:text-faint w-full min-w-0 bg-transparent text-sm focus:outline-none"
-        />
-      </label>
+      <SearchInput
+        value={search}
+        onChange={onSearchChange}
+        placeholder="Filter prescriptions by medication, diagnosis, doctor, or ticket..."
+        ariaLabel="Filter prescriptions"
+      />
     </div>
   );
 }

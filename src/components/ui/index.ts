@@ -5,6 +5,7 @@ export { Input } from './Input';
 export { LanguageToggle } from './LanguageToggle';
 export { Modal } from './Modal';
 export { QrCodeSvg } from './QrCodeSvg';
+export { SearchInput } from './SearchInput';
 export { Select } from './Select';
 export { Skeleton, DoctorCardSkeleton, TicketCardSkeleton } from './Skeleton';
 export { Spinner } from './Spinner';

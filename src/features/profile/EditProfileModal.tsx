@@ -53,7 +53,12 @@ export function EditProfileModal({
           <label htmlFor="prof-name" className="text-text mb-1 block text-sm font-semibold">
             {t('profile.name')}
           </label>
-          <Input id="prof-name" type="text" {...register('displayName')} />
+          <Input
+            id="prof-name"
+            type="text"
+            placeholder={t('register.name_placeholder')}
+            {...register('displayName')}
+          />
           {errors.displayName && (
             <p className="text-danger mt-1 text-xs">{String(errors.displayName.message)}</p>
           )}
@@ -62,7 +67,12 @@ export function EditProfileModal({
           <label htmlFor="prof-phone" className="text-text mb-1 block text-sm font-semibold">
             {t('profile.phone')}
           </label>
-          <Input id="prof-phone" type="tel" {...register('phone')} />
+          <Input
+            id="prof-phone"
+            type="tel"
+            placeholder={t('register.phone_placeholder')}
+            {...register('phone')}
+          />
           {errors.phone && (
             <p className="text-danger mt-1 text-xs">{String(errors.phone.message)}</p>
           )}

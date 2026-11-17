@@ -1,6 +1,6 @@
-import { Monitor, Search } from 'lucide-react';
+import { Monitor } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Select } from '@/components/ui';
+import { SearchInput, Select } from '@/components/ui';
 
 interface DoctorsFilterBarProps {
   search: string;
@@ -24,17 +24,12 @@ export function DoctorsFilterBar({
   return (
     <>
       <div className="mb-4 flex flex-col gap-3 lg:flex-row lg:items-center">
-        <label className="bg-surface border-border focus-within:border-primary focus-within:ring-primary/15 flex flex-1 cursor-text items-center gap-2.5 rounded-xl border px-4 py-3 shadow-sm transition-all focus-within:ring-2">
-          <Search className="text-faint h-4 w-4 shrink-0" aria-hidden="true" />
-          <input
-            type="search"
-            value={search}
-            onChange={(e) => onUpdate('search', e.target.value)}
-            placeholder={t('doctors.search_placeholder')}
-            aria-label={t('doctors.search_placeholder')}
-            className="text-text placeholder:text-faint w-full min-w-0 bg-transparent text-sm focus:outline-none"
-          />
-        </label>
+        <SearchInput
+          value={search}
+          onChange={(val) => onUpdate('search', val)}
+          placeholder={t('doctors.search_placeholder')}
+          className="flex-1"
+        />
         <div className="grid grid-cols-2 gap-3 sm:flex">
           <div className="sm:w-44">
             <Select

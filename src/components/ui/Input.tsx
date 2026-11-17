@@ -14,7 +14,7 @@ export function Input({
     <div className="relative w-full">
       <input
         type={inputType}
-        className={`bg-surface-2 text-text placeholder-faint focus:bg-surface focus:ring-primary-ring w-full rounded-2xl border-none px-5 py-3.5 text-sm shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:ring-4 focus:outline-none disabled:opacity-50 ${isPassword ? 'pe-12' : ''} ${className}`}
+        className={`bg-surface-2 border-border focus:border-primary text-text placeholder:text-faint focus:bg-surface focus:ring-primary/15 w-full rounded-xl border px-4 py-3 text-sm shadow-xs transition-all duration-200 outline-none focus:ring-4 focus:outline-none focus-visible:outline-none disabled:opacity-50 ${isPassword ? 'pe-12' : ''} ${className}`}
         {...props}
       />
       {isPassword && (

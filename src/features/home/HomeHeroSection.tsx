@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, BadgeCheck, Search, Sparkles } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Search, Sparkles, X } from 'lucide-react';
 import { Button } from '@/components/ui';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { HeroTicketPreviewCard } from './HeroTicketPreviewCard';
@@ -55,18 +55,31 @@ export function HomeHeroSection() {
 
             <form
               onSubmit={handleQuickSearch}
-              className="bg-surface/95 border-border focus-within:border-primary focus-within:ring-primary-ring mb-5 flex max-w-xl flex-col gap-2 rounded-2xl border p-2 shadow-md backdrop-blur-md transition-all focus-within:ring-2 sm:flex-row sm:items-center"
+              className="group bg-surface/95 border-border hover:border-border-strong focus-within:border-primary focus-within:ring-primary/15 mb-5 flex max-w-xl flex-col gap-2 rounded-2xl border p-2 shadow-md backdrop-blur-md transition-all focus-within:ring-4 sm:flex-row sm:items-center"
             >
               <label className="flex flex-1 cursor-text items-center gap-2.5 ps-2.5">
-                <Search className="text-faint h-4 w-4 shrink-0" aria-hidden="true" />
+                <Search
+                  className="text-faint group-focus-within:text-primary h-4 w-4 shrink-0 transition-colors"
+                  aria-hidden="true"
+                />
                 <input
                   type="search"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder={t('doctors.search_placeholder')}
                   aria-label={t('doctors.search_placeholder')}
-                  className="text-text placeholder:text-faint w-full min-w-0 bg-transparent py-2.5 pe-2 text-sm focus:outline-none"
+                  className="text-text placeholder:text-faint w-full min-w-0 bg-transparent py-2.5 pe-2 text-sm outline-none focus:outline-none focus-visible:outline-none [&::-webkit-search-cancel-button]:hidden"
                 />
+                {query && (
+                  <button
+                    type="button"
+                    onClick={() => setQuery('')}
+                    aria-label="Clear search"
+                    className="text-faint hover:bg-surface-2 hover:text-text flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors"
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </button>
+                )}
               </label>
               <Button type="submit" className="gap-2 rounded-xl px-5 py-2.5 text-sm">
                 {t('home.hero.main-cta')}
