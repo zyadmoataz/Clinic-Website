@@ -8,8 +8,8 @@
 
 The patient-facing doctor discovery, smart queue ticketing, and digital e-prescription portal for **Medora Clinics**, engineered to synchronize with the companion [Staff Operations Dashboard (Angular 21)](https://github.com/zyadmoataz/Clinic-Dashboard).
 
-**Live Demo:** [https://clinic-website-brown-pi.vercel.app/](https://clinic-website-brown-pi.vercel.app/)  
-**Companion Staff Dashboard:** [https://clinic-dashboard-ashy.vercel.app/staff/login](https://clinic-dashboard-ashy.vercel.app/staff/login)
+**Live Demo:** [https://clinic-patient-website.vercel.app](https://clinic-patient-website.vercel.app)  
+**Companion Staff Dashboard:** [https://clinic-doctor-dashboard.vercel.app/](https://clinic-doctor-dashboard.vercel.app)
 
 ---
 
